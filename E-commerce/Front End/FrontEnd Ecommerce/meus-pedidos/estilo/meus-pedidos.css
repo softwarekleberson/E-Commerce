@@ -115,7 +115,7 @@ section>p {
 }
 
 table {
-    width: 70%;
+    width: 90%;
     margin-top: 5px;
     margin-left: 99px;
 }
@@ -220,7 +220,6 @@ td>p {
 
 .button {
     padding: 10px 20px;
-    margin-right: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
