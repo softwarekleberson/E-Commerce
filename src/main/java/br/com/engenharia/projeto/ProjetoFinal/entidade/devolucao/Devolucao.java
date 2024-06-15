@@ -9,8 +9,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,16 +24,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "devolucoes")
 @Entity(name = "Devolucao")
+@EqualsAndHashCode(of = "id")
 public class Devolucao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@ManyToOne
+	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 	
+	@ManyToOne
+	@JoinColumn(name = "cupom_id")
 	private Cupom cupom;
 	
 	@Enumerated(EnumType.STRING)
