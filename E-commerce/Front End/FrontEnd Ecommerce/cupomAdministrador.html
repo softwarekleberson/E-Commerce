@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cupom</title>
+    <link rel="stylesheet" href="cupomAdministrador/cupomAdministrador.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Formulário de Cupom</h2>
+        <form id="cupomForm">
+            <div class="form-group">
+                <label for="idCliente">ID do Cliente</label>
+                <input type="number" id="idCliente" name="idCliente" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoCupom">Tipo de Cupom</label>
+                <select id="tipoCupom" name="tipoCupom" required>
+                    <option value="TROCA" selected>Troca</option>
+                    <option value="DEVOLUCAO">Devolução</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="number" step="0.01" id="valor" name="valor" placeholder="00.00" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Enviar</button>
+                <a href="administrador.html">Voltar</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="cupomAdministrador/index.js"></script>
+</body>
+</html>

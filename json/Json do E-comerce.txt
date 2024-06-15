@@ -1,0 +1,286 @@
+								POST(GEREAL)
+
+
+http://localhost:8080/cliente
+
+{
+  "genero": "MASCULINO",
+  "nome": "kleberson dos santos silva",
+  "nascimento": "1994-10-05",
+  "cpf": "43000544037",
+  "email": {
+    "email": "kleberson@email.com"
+  },
+  "telefone": {
+    "ddd": "11",
+    "telefone": "123456789",
+    "tipo": "MOVEL"
+  },
+  "senha": {
+    "senha": "SENHAa123@"
+  },
+  "confirmarSenha": {
+    "confirmarSenha": "SENHAa123@"
+  },
+  "entrega": [
+    {
+      "endereco": {
+        "tipoResidencia": "Condominio",
+        "tipoLogradouro": "Alameda",
+        "logradouro": "Praça",
+        "numero": "123",
+        "bairro": "Vila belmiro",
+        "cep": "12345678",
+        "observacao": "",
+        "cidade": "Santos",
+        "estado": "São Paulo",
+        "pais": "Brasil"
+      },
+      "fraseEntrega": "Entregar no portão"
+    },
+    {
+      "endereco": {
+        "tipoResidencia": "Apartamento",
+        "tipoLogradouro": "Avenida",
+        "logradouro": "Ginasio",
+        "numero": "456",
+        "bairro": "Chelsea",
+        "cep": "54321987",
+        "observacao": "Ao lado do estadio do stanford Brid",
+        "cidade": "Londres",
+        "estado": "Londres",
+        "pais": "Inglaterra"
+      },
+      "fraseEntrega": "Entregar apos as 8 horas da noite"
+    }
+  ],
+	
+  "cobranca": [
+    {
+      "endereco": {
+        "tipoResidencia": "Cortiço",
+        "tipoLogradouro": "Rua",
+        "logradouro": "vila",
+        "numero": "789",
+        "bairro": "Avenida Brasil",
+        "cep": "98765432",
+        "observacao": "",
+        "cidade": "Nazareno",
+        "estado": "Minas Gerais",
+        "pais": "Brasil"
+      }
+    },
+		
+    {
+      "endereco": {
+        "tipoResidencia": "Condominio",
+        "tipoLogradouro": "Alamenda",
+        "logradouro": "Rua",
+        "numero": "1011",
+        "bairro": "Vila da prata",
+        "cep": "12345678",
+        "observacao": "Entregar a cobrança após as 6 da manha",
+        "cidade": "Mogi Das Cruzes",
+        "estado": "São Paulo",
+        "pais": "Brasil"
+      }
+    }
+  ]
+}
+
+
+
+-----------------------------------
+
+								CARTOES
+http://localhost:8080/cartoes
+
+
+{
+  "idCliente": 1,
+  "principal": false,
+  "numeroCartao": "4916123456789799",
+  "nomeImpresso": "Kleberson silva",
+  "codigo": "919",
+  "bandeira": "ELO"
+}
+
+
+
+
+-----------------------------------------
+
+
+						POST(NOVA COBRANCA)
+
+http://localhost:8080/endereco/cobranca/1
+
+  "endereco": {
+    "tipoResidencia": "Tipo da Residência",
+    "tipoLogradouro": "Tipo do Logradouro",
+    "logradouro": "Nome do Logradouro",
+    "numero": "Número do Endereço",
+    "bairro": "Nome do Bairro",
+    "cep": "12385403",
+    "observacao": "Observação (opcional)",
+    "cidade": "Nome da Cidade",
+    "estado": "Nome do Estado",
+    "pais": "Nome do País"
+  }
+}
+
+
+------------------
+							NOVAS ENTREGAS (POST)
+
+http://localhost:8080/endereco/entrega/1
+
+
+{
+  "endereco": {
+    "tipoResidencia": "Casa",
+    "tipoLogradouro": "Rua",
+    "logradouro": "Exemplo",
+    "numero": "123",
+    "bairro": "Centro",
+    "cep": "12345678",
+    "observacao": "Próximo à praça",
+    "cidade": "Exemploville",
+    "estado": "EX",
+    "pais": "Brasil"
+  },
+  "fraseEntrega": "Entregar na portaria"
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+							GET
+
+http://localhost:8080/cliente
+http://localhost:8080/cartoes/1
+http://localhost:8080/endereco/entrega/1
+http://localhost:8080/endereco/cobranca/1
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+							PUT (GERAL)
+
+
+http://localhost:8080/cartoes
+
+{
+	
+		"idCliente" : 1,
+		"idCartao" : 1,
+		"nomeImpresso" : "ppp nnnnnnn",
+		"codigo" : "777"
+	
+}
+
+
+
+------------------------------------------
+						ATUALIZAÇÃO SENHA
+
+http://localhost:8080/cliente/senha
+
+{
+
+	"idCliente" : 1,
+	"senha" : "8080VAIbb#",
+	"confirmarSenha" : {
+			"confirmarSenha" : "8080VAIbb#"
+	}
+}
+
+
+-------------------------------------------------------------------------------
+							PUT CLIENTE
+
+http://localhost:8080/cliente
+
+{
+
+		"idCliente" : 1,
+		"nome" : "kleber da silva",
+		"genero" : "MASCULINO",
+		"nascimento" : "1965-12-05",
+	
+		"email" : {
+			"email" : "klebersilva@gmail.com"
+		},
+	
+		"telefone" : {
+			"ddd" : 15,
+			"telefone" : "963258741"
+			
+		}
+
+}
+
+-------------------------------------------------------------------------
+							ATUALIZAÇÃO COBRANCA
+
+http://localhost:8080/endereco/cobranca/1/1
+
+
+{
+  "tipoResidencia": "tipo residencia",
+  "tipoLogradouro": "Rua do estadio",
+  "logradouro": "logradouro da frança",
+  "numero": "888",
+  "bairro": "Vila",
+  "cep": "12340000",
+  "observacao": "Próximo ao estadio do nice",
+  "cidade": "Nice city",
+  "estado": "Nice",
+  "pais": "França"
+}
+
+
+---------------------------------------------------------------------------------
+							ATUALIZAÇÃO ENTREGA
+
+http://localhost:8080/endereco/entrega/1/2		
+
+
+{
+  "entrega": {
+    "tipoResidencia": "Beira Mar",
+    "tipoLogradouro": "vvvvvvvv",
+    "logradouro": "sssssssss",
+    "numero": "110",
+    "bairro": "rrrrr",
+    "cep": "12345678",
+    "observacao": "ffffff",
+    "cidade": "ccccc",
+    "estado": "eeeee",
+    "pais": "ppppppppppppppppppppppppp"
+  },
+  "fraseEntrega": ""
+}
+
+
+
+-----------------------------------------------------------------------------
+
+
+										DELETE
+
+http://localhost:8080/endereco/cobranca/1/2
+http://localhost:8080/endereco/entrega/1/1
+http://localhost:8080/cartoes/1
+http://localhost:8080/cliente/1
+
+					
+
+							

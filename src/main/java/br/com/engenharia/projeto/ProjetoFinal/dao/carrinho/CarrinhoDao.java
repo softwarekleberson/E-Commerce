@@ -1,0 +1,39 @@
+package br.com.engenharia.projeto.ProjetoFinal.dao.carrinho;
+
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import br.com.engenharia.projeto.ProjetoFinal.dtos.carrinho.DetalhamentoCarrinho;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.CarrinhoRepository;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
+
+
+@Service
+public class CarrinhoDao implements IdaoCarrinho{
+
+	private CarrinhoRepository carrinhoRepository;
+	
+	private ClienteRepository clienteRepository;
+	
+	public CarrinhoDao(CarrinhoRepository carrinhoRepository) {
+		this.carrinhoRepository = carrinhoRepository;
+	}
+
+	@Override
+	public void salvar(Carrinho carrinho) {
+		carrinhoRepository.save(carrinho);
+	}
+
+	 public Page<DetalhamentoCarrinho> listar(Long clienteId, Pageable page) {
+	        Optional<Cliente> cliOpt = clienteRepository.findById(clienteId);
+	        if (cliOpt.isEmpty()) {
+	            throw new IllegalArgumentException("Id do cliente não existe");
+	        }
+	        return carrinhoRepository.findDetalhesCarrinhoByClienteId(clienteId, page);
+	 }
+}
