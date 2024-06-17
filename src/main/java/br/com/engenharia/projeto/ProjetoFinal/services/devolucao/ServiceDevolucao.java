@@ -46,10 +46,11 @@ public class ServiceDevolucao {
 		var pedido = carregaPedidoPeloCodigoPedido(dados);
 		var cliente = carregaClientePeloId(dados);
 		var admAleatorio = escolheAdmAleatoriamente();
+		String codigoPedido = pedido.getCodigoPedido();
 		String criaCodigoDevolucao = UUID.randomUUID().toString();
 				
 		var devolucao = new Devolucao(null, criaCodigoDevolucao,LocalDate.now(),
-									  null, cliente, pedido,
+									  null, cliente, pedido, codigoPedido,
 									  admAleatorio, AnalisePedidoDevolucao.ESPERANDO_DEVOLUCAO);
 		
 		devolucaoDao.salvar(devolucao);

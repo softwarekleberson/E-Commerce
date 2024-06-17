@@ -47,6 +47,8 @@ public class Devolucao {
 	@JoinColumn(name = "pedidos_id")
 	private Pedido pedido;
 	
+	private String codigoPedido;
+	
 	@ManyToOne
 	@JoinColumn(name = "administradores_id")
 	private Administrador administrador;
