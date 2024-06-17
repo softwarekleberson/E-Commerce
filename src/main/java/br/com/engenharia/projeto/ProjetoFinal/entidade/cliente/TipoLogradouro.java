@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class TipoLogradouro {
 
 	public void setTipoLogradouro(String tipoLogradouro) {
 		if(tipoLogradouro == null || tipoLogradouro.trim().length() == 0) {
-			throw new IllegalArgumentException("Tipo logradouro não deve ser nulo");
+			throw new ValidacaoExcepetion("Tipo logradouro não deve ser nulo");
 		}
 		this.tipoLogradouro = tipoLogradouro.trim();
 	}

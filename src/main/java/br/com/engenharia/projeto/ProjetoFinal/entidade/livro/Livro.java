@@ -11,6 +11,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroDimensao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroImagem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -123,7 +124,7 @@ public class Livro {
     
     public void setPreco(BigDecimal preco) {
 		if(preco.compareTo(BigDecimal.ZERO) <= 0 ) {
-			throw new IllegalArgumentException("Preço não deve "
+			throw new ValidacaoExcepetion("Preço não deve "
 					+ "ser menor ou igual a 0");
 		}
     	this.preco = preco;
@@ -131,7 +132,7 @@ public class Livro {
 
     public void setTitulo(String titulo) {
         if (titulo == null || titulo.trim().isEmpty() || titulo.length() > QUANTIDADE_MAXIMA_CARACTERES_TITULO) {
-            throw new IllegalArgumentException("Quantidade de caracteres em título superior ao permitido");
+            throw new ValidacaoExcepetion("Quantidade de caracteres em título superior ao permitido");
         }
         this.titulo = titulo;
     }
@@ -139,21 +140,21 @@ public class Livro {
     public void setIsbn(String isbn) {
         String regex = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$";
         if (!isbn.matches(regex)) {
-            throw new IllegalArgumentException("Isbn incorreto, formato correto xxx-x-xx-xxxxxx-x");
+            throw new ValidacaoExcepetion("Isbn incorreto, formato correto xxx-x-xx-xxxxxx-x");
         }
         this.isbn = isbn;
     }
 
     public void setPaginas(int paginas) {
         if (paginas <= 0) {
-            throw new IllegalArgumentException("Quantidade de páginas deve ser superior a 0 páginas");
+            throw new ValidacaoExcepetion("Quantidade de páginas deve ser superior a 0 páginas");
         }
         this.paginas = paginas;
     }
 
     public void setSinopse(String sinopse) {
         if (sinopse == null || sinopse.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sinopse não deve ser nula ou vazia");
+            throw new ValidacaoExcepetion("Sinopse não deve ser nula ou vazia");
         }
         this.sinopse = sinopse;
     }

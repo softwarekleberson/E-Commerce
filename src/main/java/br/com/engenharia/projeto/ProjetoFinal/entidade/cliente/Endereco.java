@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -67,21 +68,21 @@ public abstract class Endereco {
 
 	public void setLogradouro(String logradouro) {
 		if(logradouro == null || logradouro.trim().length() == 0) {
-			throw new IllegalArgumentException("Logradouro não deve ser nulo");
+			throw new ValidacaoExcepetion("Logradouro não deve ser nulo");
 		}
 		this.logradouro = logradouro.trim();
 	}
 
 	public void setNumero(String numero) {
 		if(numero == null || numero.trim().length() == 0) {
-			throw new IllegalArgumentException("Numero não deve ser nulo");
+			throw new ValidacaoExcepetion("Numero não deve ser nulo");
 		}
 		this.numero = numero.trim();
 	}
 
 	public void setBairro(String bairro) {
 		if(bairro == null || bairro.trim().length() == 0) {
-			throw new IllegalArgumentException("Bairro não deve ser nulo");
+			throw new ValidacaoExcepetion("Bairro não deve ser nulo");
 		}
 		this.bairro = bairro.trim();
 	}
@@ -89,7 +90,7 @@ public abstract class Endereco {
 	public void setCep(String cep) {
 		String regexCEP = "\\d{8}";
 		if(!cep.matches(regexCEP)) {
-			throw new IllegalArgumentException("Cep no formato irregular");
+			throw new ValidacaoExcepetion("Cep no formato irregular");
 		}
 		this.cep = cep.trim();
 	}
@@ -100,14 +101,14 @@ public abstract class Endereco {
 
 	public void setTipoLogradouro(String tipoLogradouro) {
 		if(tipoLogradouro == null || tipoLogradouro.trim().length() == 0) {
-			throw new IllegalArgumentException("Tipo de logradouro não deve ser nulo");
+			throw new ValidacaoExcepetion("Tipo de logradouro não deve ser nulo");
 		}
 		this.tipoLogradouro = new TipoLogradouro(tipoLogradouro);
 	}
 
 	public void setTipoResidencia(String tipoResidencia) {
 		if(tipoResidencia == null || tipoResidencia.trim().length() == 0) {
-			throw new IllegalArgumentException("Tipo de residencia não deve ser nulo");
+			throw new ValidacaoExcepetion("Tipo de residencia não deve ser nulo");
 
 		}
 		this.tipoResidencia = new TipoResidencia(tipoResidencia);

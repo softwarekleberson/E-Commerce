@@ -10,7 +10,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
-import jakarta.persistence.CascadeType;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -103,14 +103,14 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		if (nome == null || nome.trim().length() <= VERIFICA_NOME) {
-			throw new IllegalArgumentException("Nome deve possuir mais de 2 digitos");
+			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
 		}
 		this.nome = nome.trim();
 	}
 
 	public void setCpf(String cpf) {
 		if (cpf == null || cpf.trim().length() != VERICA_CPF) {
-			throw new IllegalArgumentException("Cpf deve conter apenas numeros");
+			throw new ValidacaoExcepetion("Cpf deve conter apenas numeros");
 		}
 		this.cpf = cpf.trim();
 	}
@@ -156,7 +156,6 @@ public class Cliente {
 	}
 
 	public void setEntregas(List<DadosCadastroEntrega> entregas) {
-		System.out.println(entregas);
 		this.entregas = entregas.stream()
 				.map(entrega -> new Entrega(entrega)) // Convertendo DadosCadastroEntrega para Entrega
 				.collect(Collectors.toList());

@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class Pais {
 	
 	public void setPais(String pais) {
 		if(pais == null || pais.trim().length() == 0) {
-			throw new IllegalArgumentException("Pais não deve ser nulo");
+			throw new ValidacaoExcepetion("Pais não deve ser nulo");
 		}
 		this.pais = pais.trim();
 	}

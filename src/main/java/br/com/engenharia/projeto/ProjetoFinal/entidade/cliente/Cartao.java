@@ -1,6 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -72,14 +73,14 @@ public class Cartao {
 	
 	public void setNomeImpresso(String nomeImpresso) {
 		if(nomeImpresso == null || nomeImpresso.trim().isEmpty() || nomeImpresso.length() <= 2) {
-			throw new IllegalArgumentException("Nome deve possuir mais de 2 digitos");
+			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
 		}
 		this.nomeImpresso = nomeImpresso.trim();
 	}
 	
 	public void setCodigo(String codigo) {
 	    if(codigo.trim().length() != CODIGO_CARTAO_CREDITO_MINIMO && codigo.trim().length() != CODIGO_CARTAO_CREDITO_MAXIMO) {
-	        throw new IllegalArgumentException("Codigo do cartão deve ter 3 ou 4 digitos");
+	        throw new ValidacaoExcepetion("Codigo do cartão deve ter 3 ou 4 digitos");
 	    }
 	    this.codigo = codigo.trim();
 	}
@@ -90,7 +91,7 @@ public class Cartao {
 	
 	public void setNumeroCartao(String numeroCartao) {
 		if(numeroCartao.trim().length() < NUMERO_CARTAO_CARTAO_MINIMO || numeroCartao.trim().length() > NUMERO_CARTAO_CARTAO_MAXIMO) {
-            throw new IllegalArgumentException("Codigo do cartão deve possuir entre 13 e 19 digitos");
+            throw new ValidacaoExcepetion("Codigo do cartão deve possuir entre 13 e 19 digitos");
         }
 	    this.numeroCartao = numeroCartao.trim();
 	}

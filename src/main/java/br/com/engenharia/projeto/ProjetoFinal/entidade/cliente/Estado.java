@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,8 @@ public class Estado{
 	}	
 	
 	public void setEstado(String estado) {
-		System.out.println(estado);
 		if(estado == null || estado.trim().length() == 0) {
-			throw new IllegalArgumentException("Estado não deve ser nulo");
+			throw new ValidacaoExcepetion("Estado não deve ser nulo");
 		}
 		this.estado = estado.trim();
 	}

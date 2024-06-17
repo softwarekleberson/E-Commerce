@@ -1,6 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroImagem;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Imagens {
 	public void setUrl(String url) {
 	    String regex = "^(https?|ftp):\\/\\/(\\-\\.)?([^\\s\\/\\?\\.#]+\\.?)+(\\/[^\\s]*)?$";
 		if(!url.matches(regex)) {
-			throw new IllegalArgumentException("Url invalida");
+			throw new ValidacaoExcepetion("Url invalida");
 		}
 		this.url = url;
 	}

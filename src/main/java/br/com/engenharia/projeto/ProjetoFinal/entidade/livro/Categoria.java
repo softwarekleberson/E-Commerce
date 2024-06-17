@@ -1,6 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroCategoria;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,7 +41,7 @@ public class Categoria {
 	 
 	 public void setCategoria(String categoria) {
 	     if (categoria == null || categoria.trim().isEmpty()) {
-	       throw new IllegalArgumentException("Nome da categoria não deve ser nulo ou vazio");
+	       throw new ValidacaoExcepetion("Nome da categoria não deve ser nulo ou vazio");
 	     }
 	     this.categoria = categoria;
 	 }

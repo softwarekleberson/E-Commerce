@@ -3,6 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class Email {
 		Matcher matcher = pattern.matcher(email);
 		
 		if (!matcher.matches()) {
-	        throw new IllegalArgumentException("Formato de email inválido");
+	        throw new ValidacaoExcepetion("Formato de email inválido");
 	    }
 		 
 		this.email = email.trim();

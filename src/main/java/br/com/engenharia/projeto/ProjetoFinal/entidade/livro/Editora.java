@@ -1,5 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
 
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class Editora {
 	
 	public void setEditora(String editora) {
 		if(editora.trim() == null) {
-			throw new IllegalArgumentException("Editora não deve ser nula");
+			throw new ValidacaoExcepetion("Editora não deve ser nula");
 		}
 		this.editora = editora;
 	}

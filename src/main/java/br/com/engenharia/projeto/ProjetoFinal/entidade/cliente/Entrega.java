@@ -3,6 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -54,7 +55,7 @@ public class Entrega extends Endereco{
 	
 	public void setFraseEntrega(String fraseEntrega) {
 		if(fraseEntrega == null || fraseEntrega.trim().length() == 0) {
-			throw new IllegalArgumentException("Frase de entrega não deve ser nulo");
+			throw new ValidacaoExcepetion("Frase de entrega não deve ser nulo");
 		}
 		this.fraseEntrega = fraseEntrega.trim();
 	}

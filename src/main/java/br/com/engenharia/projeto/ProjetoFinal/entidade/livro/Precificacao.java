@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroPrecificacao;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,7 +43,7 @@ public class Precificacao {
 	
 	public void setPrecificacao(BigDecimal precificacao) {
 		if(precificacao == null || precificacao.compareTo(BigDecimal.ZERO) <= 0) {
-	        throw new IllegalArgumentException("A precificação deve ser um valor positivo maior que zero.");
+	        throw new ValidacaoExcepetion("A precificação deve ser um valor positivo maior que zero.");
 		}
 		this.precificacao = precificacao;
 	}

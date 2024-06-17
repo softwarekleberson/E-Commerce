@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class Cidade {
 	
 	public void setCidade(String cidade) {
 		if (cidade == null || cidade.trim().isEmpty()) {
-			throw new IllegalArgumentException("Cidade não deve ser nulo ou vazio");
+			throw new ValidacaoExcepetion("Cidade não deve ser nulo ou vazio");
 		 }
 		
 		this.cidade = cidade.trim();

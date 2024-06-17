@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -78,7 +79,7 @@ public class Pedido {
 
 	public void setQuantidade(int quantidade) {
 		if(quantidade <= QUANTIDADE_MINIMA) {
-			throw new IllegalArgumentException("Qauntidade não deve ser menor ou igual a 0");
+			throw new ValidacaoExcepetion("Qauntidade não deve ser menor ou igual a 0");
 		}
 		this.quantidade = quantidade;
 	}
@@ -89,7 +90,7 @@ public class Pedido {
 
 	public void setCodigoPedido(String codigoPedido) {
         if (codigoPedido == null) {
-            throw new IllegalArgumentException("codigoPedido não pode ser null");
+            throw new ValidacaoExcepetion("codigoPedido não pode ser null");
         }
         
         this.codigoPedido = codigoPedido;

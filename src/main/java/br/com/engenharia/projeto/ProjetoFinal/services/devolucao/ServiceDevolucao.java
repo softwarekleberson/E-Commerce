@@ -38,6 +38,7 @@ public class ServiceDevolucao {
 		
 	public DadosDetalhamentoDevolucao pedidoDevolucao(@Valid DadosCadastroDevolucao dados) {
 		
+		//Refatorar e colocar as regras de negocio aqui
 		var cliente = verificaStatusAtivoCliente(dados);
 		verificaCodigoPedido(dados);
 		var pedido = carregaPedidoPeloCodigoPedido(dados);

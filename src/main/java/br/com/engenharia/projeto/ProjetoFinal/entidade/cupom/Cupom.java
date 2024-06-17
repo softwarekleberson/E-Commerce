@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -53,7 +54,7 @@ public class Cupom {
 
 	public void setValor(BigDecimal valor) {
 		if(valor.compareTo(BigDecimal.ZERO) <= 0) {
-			throw new IllegalArgumentException("Valor não deve ser menor ou igual a zero");
+			throw new ValidacaoExcepetion("Valor não deve ser menor ou igual a zero");
 		}
 		this.valor = valor;
 	}

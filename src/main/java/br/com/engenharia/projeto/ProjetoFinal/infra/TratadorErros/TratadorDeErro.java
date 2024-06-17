@@ -40,9 +40,9 @@ public class TratadorDeErro {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getLocalizedMessage());
 	    }
 
-	private record DadosErroValidacao(String nome, String mensagem){
-		public DadosErroValidacao(FieldError erro) {
-			this(erro.getField(), erro.getDefaultMessage());
+	    private record DadosErroValidacao(String nome, String mensagem){
+	    	public DadosErroValidacao(FieldError erro) {
+	    		this(erro.getField(), erro.getDefaultMessage());
 		}
 	}
 }
