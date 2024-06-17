@@ -105,7 +105,7 @@ public class ClienteDao implements IdaoCliente {
 		
 		Optional<Cliente> cpfVerifica = clienteRepository.findByCpf(entidade.getCpf());
 		if(cpfVerifica.isPresent()) {
-			throw new IllegalArgumentException("Cpf cadastrado anteriormente");
+			throw new ClienteNaoEncontradoExcecao("Cpf cadastrado anteriormente");
 		}
 		return cpfVerifica;
 	}
@@ -119,7 +119,7 @@ public class ClienteDao implements IdaoCliente {
 	public Cliente pegaClienteAtivo(Long id) {
 		Cliente cliente = clienteRepository.findByIdAndAtivoTrue(id);
 		if(cliente.getAtivo() != true) {
-			throw new IllegalArgumentException("Cliente inativo");
+			throw new ClienteNaoEncontradoExcecao("Cliente inativo");
 		}
 		
 		return cliente;

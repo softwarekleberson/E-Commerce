@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.carrinho.DetalhamentoCarrinho;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.CarrinhoNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.CarrinhoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
-
 
 @Service
 public class CarrinhoDao implements IdaoCarrinho{
@@ -32,7 +32,7 @@ public class CarrinhoDao implements IdaoCarrinho{
 	 public Page<DetalhamentoCarrinho> listar(Long clienteId, Pageable page) {
 	        Optional<Cliente> cliOpt = clienteRepository.findById(clienteId);
 	        if (cliOpt.isEmpty()) {
-	            throw new IllegalArgumentException("Id do cliente não existe");
+	            throw new CarrinhoNaoEncontradoExcecao("Id do cliente não existe");
 	        }
 	        return carrinhoRepository.findDetalhesCarrinhoByClienteId(clienteId, page);
 	 }

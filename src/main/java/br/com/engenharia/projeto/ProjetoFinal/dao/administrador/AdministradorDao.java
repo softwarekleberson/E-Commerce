@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.AdministradorNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.administrador.AdministradorRepository;
 
 @Service
@@ -29,7 +30,7 @@ public class AdministradorDao implements IdaoAdministrador{
 	public void deletar(Long id) {
 		Optional<Administrador> existeAdministrador = repository.findById(id);
 		if(existeAdministrador.isEmpty()) {
-			throw new IllegalArgumentException("Id administrador invalido");
+			throw new AdministradorNaoEncontradoExcecao("Administrador excluido ou id incorreto");
 		}
 		repository.deleteById(id);
 	}

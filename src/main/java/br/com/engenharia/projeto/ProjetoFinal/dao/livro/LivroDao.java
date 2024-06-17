@@ -13,6 +13,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.LivroNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.AutorRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.CategoriaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.ImagensProdutoRepository;
@@ -64,7 +65,7 @@ public class LivroDao implements IdaoLivro{
 	public Page<DadosDetalhamentoLivro> listarLivros(Pageable pageable) {
 		Page<Livro> livros = livroRepository.findAllByAtivoTrue(pageable);
 		if(livros.isEmpty()) {
-			throw new IllegalArgumentException("Não a livros disponiveis");
+			throw new LivroNaoEncontradoExcecao("Não a livros disponiveis");
 		}
 		return livros.map(DadosDetalhamentoLivro::new);
 	}
@@ -171,7 +172,7 @@ public class LivroDao implements IdaoLivro{
 		Optional<Livro> livro = livroRepository.findById(livroId);
 		
 		if(livro.isEmpty()) {
-			throw new IllegalArgumentException("Id do livro incorreto");
+			throw new LivroNaoEncontradoExcecao("Id do livro incorreto");
 		}
 		
 		var exclusaoLogica = livroRepository.getReferenceById(livroId);

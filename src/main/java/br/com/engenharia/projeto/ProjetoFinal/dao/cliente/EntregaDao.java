@@ -39,7 +39,7 @@ public class EntregaDao implements IdaoEntrega{
 		Optional<Cliente> existeCliente = clienteRepository.findById(entrega.getCliente().getId());
 		
 		if(existeCliente.isEmpty()) {
-			throw new IllegalArgumentException("Id do cliente não existe");
+			throw new EntregaNaoEncontradaExcecao("Id do cliente não existe");
 		}
 		
 		entrega.setCliente(entrega.getCliente().getId());
@@ -55,7 +55,7 @@ public class EntregaDao implements IdaoEntrega{
 		Optional<Entrega> opDataBaseEntrega = repository.findById(entregaId);
 		
 		if(opDataBaseEntrega.isEmpty()) {
-			throw new IllegalArgumentException("Id Entrega incorreto");
+			throw new EntregaNaoEncontradaExcecao("Id Entrega incorreto");
 		}
 		
 		else {
@@ -123,7 +123,7 @@ public class EntregaDao implements IdaoEntrega{
 	public Page<DadosDetalhamentoEntrega> listarEntregasDoCliente(Long clienteId, Pageable pageable) {
 		Page<Entrega> entregas = repository.findByCliente_Id(clienteId, pageable);	        
 	    if(entregas.isEmpty()) {
-	    	throw new IllegalArgumentException("Id incorreto");
+	    	throw new EntregaNaoEncontradaExcecao("Id incorreto");
 	    }
 		return entregas.map(DadosDetalhamentoEntrega::new);
 	}
@@ -134,7 +134,7 @@ public class EntregaDao implements IdaoEntrega{
 		Optional<Entrega> entrega =  repository.findById(idEntrega);
 		
 		if(entrega.isEmpty()) {
-			throw new IllegalArgumentException("Id incorreto do cliente ou entrega");
+			throw new EntregaNaoEncontradaExcecao("Id incorreto do cliente ou entrega");
 		}else {
 			repository.deleteById(idEntrega);
 		}

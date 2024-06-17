@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarImagem;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.ImagemNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.ImagensProdutoRepository;
@@ -38,7 +39,7 @@ public class ImagemProdutoDao implements IdaoImagensProduto{
 			Optional<Imagens> optImagens = imagensProdutoRepository.findById(dado.idImagem());
 
 			if(optLivro.isEmpty() || optImagens.isEmpty()) {
-	            throw new IllegalArgumentException("Id da categoria ou id livro incorreto");
+	            throw new ImagemNaoEncontradoExcecao("Id da categoria ou id livro incorreto");
 			}
 			
 			Imagens imagems = optImagens.get();
@@ -56,7 +57,7 @@ public class ImagemProdutoDao implements IdaoImagensProduto{
 		Optional<Imagens> optImagens = imagensProdutoRepository.findById(idImagem);
 		
 		if(optLivro.isEmpty() || optImagens.isEmpty()) {
-			throw new IllegalArgumentException("Id da imagem ou id livro incorreto");
+			throw new ImagemNaoEncontradoExcecao("Id da imagem ou id livro incorreto");
 		}
 		
 		imagensProdutoRepository.deleteById(idImagem);

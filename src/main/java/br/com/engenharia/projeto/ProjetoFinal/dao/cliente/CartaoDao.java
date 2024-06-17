@@ -59,7 +59,7 @@ public class CartaoDao implements IdaoCartao{
 	public void deletar(Long id) {
 		Optional<Cartao> cartao = repository.findById(id);
 		if(cartao.isEmpty()) {
-			throw new IllegalArgumentException("Id cartão incorreto");
+			throw new CartaoNaoEncontradoExcecao("Id cartão incorreto");
 		}
 		repository.deleteById(id);
 	}
@@ -67,7 +67,7 @@ public class CartaoDao implements IdaoCartao{
 	public Page listarCartaosDoCliente(Long clienteId, Pageable pageable) {
 		 Page<Cartao> cartoesPage = repository.findByCliente_Id(clienteId, pageable);	        
 	     if(cartoesPage.isEmpty()) {
-	    	 throw new IllegalArgumentException("Id incorreto");
+	    	 throw new CartaoNaoEncontradoExcecao("Id incorreto");
 	     }
 		 return cartoesPage.map(DadosDetalhamentoCartao::new);
 	}

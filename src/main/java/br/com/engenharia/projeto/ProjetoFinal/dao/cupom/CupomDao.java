@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
-import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.CupomNaoEcontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cupom.CupomRepositroy;
 
 @Service
@@ -29,7 +28,7 @@ public class CupomDao implements IdaoCupom{
 	public Page listarCuponsDosClientes(Long clienteId, Pageable pageable) {
 		 Page<Cupom> cuponsPage = repository.findByCliente_Id(clienteId, pageable);	        
 	     if(cuponsPage.isEmpty()) {
-	    	 throw new IllegalArgumentException("Id incorreto");
+	    	 throw new CupomNaoEcontradoExcecao("Id incorreto");
 	     }
 		 return cuponsPage.map(DadosDetalhamentoCupom::new);
 	}

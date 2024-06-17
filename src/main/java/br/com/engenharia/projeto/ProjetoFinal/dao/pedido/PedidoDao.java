@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.TrocaDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.PedidoNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 
 @Service
@@ -27,7 +27,7 @@ public class PedidoDao implements IdaoPedido{
 	public boolean verificaCodigoPedido(String codigoPedido) {
 		Optional<Pedido> pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
 		if(pedido.isEmpty()) {
-			throw new IllegalArgumentException("Codigo do produto não encontrado");
+			throw new PedidoNaoEncontradoExcecao("Codigo do produto não encontrado");
 		}
 		return true;
 	}
@@ -35,7 +35,7 @@ public class PedidoDao implements IdaoPedido{
 	public Pedido devolvePedidoPeloCodigo(String codigoPedido) {
 		var pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
 		if(pedido.isEmpty()) {
-			throw new IllegalArgumentException("Codigo pedido incorreto");
+			throw new PedidoNaoEncontradoExcecao("Codigo pedido incorreto");
 		}
 		return pedido.get();
 	}

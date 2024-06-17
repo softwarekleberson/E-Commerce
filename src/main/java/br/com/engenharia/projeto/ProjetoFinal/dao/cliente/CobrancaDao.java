@@ -53,7 +53,7 @@ public class CobrancaDao implements IdaoCobranca{
 		Optional<Cobranca> opDataBaseCobranca = repository.findById(cobrancaId);
 		
 		if(opDataBaseCobranca.isEmpty()) {
-			throw new IllegalArgumentException("Id cliente ou id cobranca incorreto");
+			throw new CobrancaNaoEncontradaExcecao("Id cliente ou id cobranca incorreto");
 		}
 		
 		else {
@@ -117,7 +117,7 @@ public class CobrancaDao implements IdaoCobranca{
 	public Page<DadosDetalhamentoCobranca> listarEnderecosCobrancaDoCliente(Long clienteId, Pageable pageable) {
 		Page<Cobranca> cobrancas = repository.findByCliente_Id(clienteId, pageable);	        
 	    if(cobrancas.isEmpty()) {
-	    	throw new IllegalArgumentException("Id incorreto");
+	    	throw new CobrancaNaoEncontradaExcecao("Id incorreto");
 	    }
 		return cobrancas.map(DadosDetalhamentoCobranca::new);
 	}
@@ -128,11 +128,12 @@ public class CobrancaDao implements IdaoCobranca{
 		Optional<Cobranca> cobranca =  repository.findById(idCobranca);
 		
 		if(cobranca.isEmpty()) {
-			throw new IllegalArgumentException("Id cliente ou cobrança incorreto");
+			throw new CobrancaNaoEncontradaExcecao("Id cliente ou cobrança incorreto");
 		}
+		
 		else {
-				repository.deleteById(idCobranca);
-			}
+			repository.deleteById(idCobranca);
+		}
 	}
 	
 	private void verificaCobrancaPrincipalClienteUpdate(Cobranca entidade) {

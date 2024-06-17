@@ -16,5 +16,4 @@ public class DevolucaoDao implements IdaoDevolucao{
 	public void salvar(Devolucao devolucao) {
 		this.devolucao.save(devolucao);
 	}
-
 }
