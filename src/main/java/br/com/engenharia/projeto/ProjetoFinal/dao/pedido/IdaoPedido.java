@@ -6,5 +6,4 @@ public interface IdaoPedido {
 
 	public void salvar(Pedido pedido);
 	public boolean verificaCodigoPedido(String codigoPedido);
-	public boolean verificaSePedidoEstaEmEstadoDeDevolucao(Long idPedido);
 }

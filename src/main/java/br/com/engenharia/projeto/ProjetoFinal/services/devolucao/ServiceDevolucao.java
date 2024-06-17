@@ -1,11 +1,13 @@
 package br.com.engenharia.projeto.ProjetoFinal.services.devolucao;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.devolucao.IstrategyDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.administrador.AdministradorDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
@@ -17,8 +19,6 @@ import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.StatusEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.TrocaDevolucao;
 import jakarta.validation.Valid;
 
 @Service
@@ -34,53 +34,31 @@ public class ServiceDevolucao {
 	private ClienteDao clienteDao;
 	
 	@Autowired
+	private List<IstrategyDevolucao> validacoes;
+	
+	@Autowired
 	private DevolucaoDao devolucaoDao;
 		
 	public DadosDetalhamentoDevolucao pedidoDevolucao(@Valid DadosCadastroDevolucao dados) {
 		
-		//Refatorar e colocar as regras de negocio aqui
-		var cliente = verificaStatusAtivoCliente(dados);
-		verificaCodigoPedido(dados);
+		validacoes.forEach(v ->v.processar(dados));
+		
 		var pedido = carregaPedidoPeloCodigoPedido(dados);
-		verificaSeTrocaFoiPedida(pedido);
-		verificaStatusEntrega(pedido);
-		verificaSePedidoFoiPedidoDevolucaoAnterior(pedido);
-
-		var adm = escolheAdmAleatoriamente();
-		var analisePedidoDevolucao = analisaPedidoDevolucao();
-		String codigoDevolucao = UUID.randomUUID().toString();
-		
-		
-		var devolucao = new Devolucao(null, codigoDevolucao,LocalDate.now(),
+		var cliente = carregaClientePeloId(dados);
+		var admAleatorio = escolheAdmAleatoriamente();
+		String criaCodigoDevolucao = UUID.randomUUID().toString();
+				
+		var devolucao = new Devolucao(null, criaCodigoDevolucao,LocalDate.now(),
 									  null, cliente, pedido,
-									  adm, analisePedidoDevolucao);
+									  admAleatorio, AnalisePedidoDevolucao.ESPERANDO_DEVOLUCAO);
 		
 		devolucaoDao.salvar(devolucao);
 		return new DadosDetalhamentoDevolucao(devolucao);
 	}
 
-	private void verificaSePedidoFoiPedidoDevolucaoAnterior(Pedido pedido) {
-		boolean trocaPedida = pedidoDao.verificaSePedidoEstaEmEstadoDeDevolucao(pedido.getId());
-		if(trocaPedida != true) {
-			throw new IllegalArgumentException("Pedido consta em estado de devolução");
-		}
-	}
-
-	private void verificaSeTrocaFoiPedida(Pedido pedido) {
-		if(pedido.getTrocaDevolucao() != TrocaDevolucao.DEVOLUCAO_PEDIDO) {
-			throw new IllegalArgumentException("Devolução não pedida");
-		}
-	}
-
-	private AnalisePedidoDevolucao analisaPedidoDevolucao() {
-		var analisePedidoDevolucao = AnalisePedidoDevolucao.ESPERANDO_DEVOLUCAO;
-		return analisePedidoDevolucao;
-	}
-
-	private void verificaStatusEntrega(Pedido pedido) {
-		if(pedido.getStatusEntrega() != StatusEntrega.RECEBIDO) {
-			throw new IllegalArgumentException("Não se pode devolver produto não entregue");
-		}
+	private Cliente carregaClientePeloId(DadosCadastroDevolucao dados) {
+		var cliente = clienteDao.recuperaClientePelo(dados.idCliente());
+		return cliente;
 	}
 
 	private Administrador escolheAdmAleatoriamente() {
@@ -91,19 +69,5 @@ public class ServiceDevolucao {
 	private Pedido carregaPedidoPeloCodigoPedido(DadosCadastroDevolucao dados) {
 		var pedido = pedidoDao.devolvePedidoPeloCodigo(dados.codigoPedido());
 		return pedido;
-	}
-
-	private void verificaCodigoPedido(DadosCadastroDevolucao dados) {
-		if(!pedidoDao.verificaCodigoPedido(dados.codigoPedido())) {
-			throw new IllegalArgumentException("Codigo produto incorreto");
-		}
-	}
-
-	private Cliente verificaStatusAtivoCliente(DadosCadastroDevolucao dados) {
-		var cliente = clienteDao.pegaClienteAtivo(dados.idCliente());
-		if(cliente.getAtivo() != true) {
-			throw new IllegalArgumentException("Cliente inativo ou inativo");
-		}
-		return cliente;
 	}
 }

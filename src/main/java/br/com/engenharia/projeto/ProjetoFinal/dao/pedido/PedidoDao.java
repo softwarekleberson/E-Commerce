@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.TrocaDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 
 @Service
@@ -21,14 +22,6 @@ public class PedidoDao implements IdaoPedido{
 	@Override
 	public void salvar(Pedido pedido) {
 		pedidoRepository.save(pedido);
-	}
-	
-	public boolean verificaSePedidoEstaEmEstadoDeDevolucao(Long idPedido) {
-		var pedido = pedidoRepository.getReferenceById(idPedido);
-		if(pedido != null) {
-			throw new IllegalArgumentException("Este pedido consta em pedido de troca ");
-		}
-		return false;
 	}
 
 	public boolean verificaCodigoPedido(String codigoPedido) {
