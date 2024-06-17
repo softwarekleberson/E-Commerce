@@ -4,6 +4,5 @@ public enum StatusEntrega {
 
 	EM_SEPARACAO,
 	EM_TRASITO,
-	ENTREGUE,
 	RECEBIDO
 }

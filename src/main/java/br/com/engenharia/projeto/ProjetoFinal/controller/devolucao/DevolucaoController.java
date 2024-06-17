@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosCadastroAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.services.devolucao.ServiceDevolucao;
 import jakarta.validation.Valid;
 
@@ -22,9 +22,9 @@ public class DevolucaoController {
 	private ServiceDevolucao service;
 	
 	@PostMapping
-	public ResponseEntity cadastrarPedidoDevolucao(@RequestBody @Valid DadosCadastroAdministrador dados, UriComponentsBuilder uriBuilder) {
-		var dto = service.criar(dados);
-	    var uri = uriBuilder.path("/devolucoes/{id}").buildAndExpand(dto.id()).toUri();
+	public ResponseEntity cadastrarPedidoDevolucao(@RequestBody @Valid DadosCadastroDevolucao dados, UriComponentsBuilder uriBuilder) {
+		var dto = service.pedidoDevolucao(dados);
+	    var uri = uriBuilder.path("/devolucoes/{id}").buildAndExpand(dto.codigoDevolucao()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 }

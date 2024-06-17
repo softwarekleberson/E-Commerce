@@ -7,7 +7,7 @@ CREATE TABLE pedidos (
     carrinho_id BIGINT NOT NULL,
     livro_id BIGINT NOT NULL,
     status_entrega VARCHAR(50) NOT NULL,
-    status_devolucao VARCHAR(50),
+    troca_devolucao VARCHAR(50),
     FOREIGN KEY (carrinho_id) REFERENCES carrinhos(id),
     FOREIGN KEY (livro_id) REFERENCES livros(id)
 );

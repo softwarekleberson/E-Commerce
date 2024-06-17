@@ -13,7 +13,8 @@ public class DevolucaoDao implements IdaoDevolucao{
 	private DevolucaoRepository devolucao;
 	
 	@Override
-	public void salavar(Devolucao devolucao) {
+	public void salvar(Devolucao devolucao) {
 		this.devolucao.save(devolucao);
-	}	
+	}
+
 }

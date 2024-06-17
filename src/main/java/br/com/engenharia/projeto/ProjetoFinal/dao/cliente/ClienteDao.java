@@ -116,6 +116,16 @@ public class ClienteDao implements IdaoCliente {
 	}
 	
 	@Override
+	public Cliente pegaClienteAtivo(Long id) {
+		Cliente cliente = clienteRepository.findByIdAndAtivoTrue(id);
+		if(cliente.getAtivo() != true) {
+			throw new IllegalArgumentException("Cliente inativo");
+		}
+		
+		return cliente;
+	}
+	
+	@Override
 	@Transactional
 	public void deletar(Long id) {
 		

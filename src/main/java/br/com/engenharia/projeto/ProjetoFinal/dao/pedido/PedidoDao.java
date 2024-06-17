@@ -1,8 +1,8 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.pedido;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
@@ -22,11 +22,28 @@ public class PedidoDao implements IdaoPedido{
 	public void salvar(Pedido pedido) {
 		pedidoRepository.save(pedido);
 	}
-
-	@Override
-	public Page pegaTodosClientes(Pageable page) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean verificaSePedidoEstaEmEstadoDeDevolucao(Long idPedido) {
+		var pedido = pedidoRepository.getReferenceById(idPedido);
+		if(pedido != null) {
+			throw new IllegalArgumentException("Este pedido consta em pedido de troca ");
+		}
+		return false;
 	}
 
+	public boolean verificaCodigoPedido(String codigoPedido) {
+		Optional<Pedido> pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
+		if(pedido.isEmpty()) {
+			throw new IllegalArgumentException("Codigo do produto não encontrado");
+		}
+		return true;
+	}
+
+	public Pedido devolvePedidoPeloCodigo(String codigoPedido) {
+		var pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
+		if(pedido.isEmpty()) {
+			throw new IllegalArgumentException("Codigo pedido incorreto");
+		}
+		return pedido.get();
+	}
 }

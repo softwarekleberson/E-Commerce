@@ -1,7 +1,9 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao;
 
+import java.time.LocalDate;
+
+import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -31,22 +33,28 @@ public class Devolucao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String codigoDevolucao;
+	
+	private LocalDate dataPedidoTroca;
+	
+	private LocalDate dataConclusaoTroca;
+	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "clientes_id")
 	private Cliente cliente;
 	
 	@ManyToOne
-	@JoinColumn(name = "pedido_id")
+	@JoinColumn(name = "pedidos_id")
 	private Pedido pedido;
 	
 	@ManyToOne
-	@JoinColumn(name = "cupom_id")
-	private Cupom cupom;
+	@JoinColumn(name = "administradores_id")
+	private Administrador administrador;
 	
 	@Enumerated(EnumType.STRING)
-	private PedidoDevolucao pedidoDevolucao;
-	
-	public void aceitaOuNaoTroca(PedidoDevolucao devolucao) {
-		this.pedidoDevolucao = devolucao;
+	private AnalisePedidoDevolucao AnalisePedidoDevolucao;
+		
+	public void aceitaOuNaoTroca(AnalisePedidoDevolucao AnalisePedidoDevolucao) {
+		this.AnalisePedidoDevolucao = AnalisePedidoDevolucao;
 	}
 }

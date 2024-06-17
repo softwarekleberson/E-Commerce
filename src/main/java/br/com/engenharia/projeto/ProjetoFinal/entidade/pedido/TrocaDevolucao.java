@@ -2,7 +2,9 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.pedido;
 
 public enum TrocaDevolucao {
 
-	COMPRADO,
-	TROCA,
-	DEVOLUCAO
+	DEVOLUCAO_NAO_PEDIDA,
+	DEVOLUCAO_PEDIDO,
+	DEVOLUCAO_ACEITA,
+	DEVOLUCAO_RECUSADA
+
 }

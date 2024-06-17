@@ -51,17 +51,21 @@ public class Pedido {
     private StatusEntrega  statusEntrega;
 
     @Enumerated(EnumType.STRING)
-    private TrocaDevolucao statusDevolucao;
+    private TrocaDevolucao trocaDevolucao;
+    
+    public Pedido () {
+    	
+    }
     
     public Pedido(DadosCadastroPedido dados) {
 		setPedidoRealizado(LocalDate.now());
 		setQuantidade(dados.quantidade());
 		setStatusEntrega(StatusEntrega.EM_SEPARACAO);
-		setStatusDevolucao(TrocaDevolucao.COMPRADO);
+		setTrocaDevolucao(TrocaDevolucao.DEVOLUCAO_NAO_PEDIDA);
 	}
     
-    public void devolverItem(TrocaDevolucao troca) {
-    	this.statusDevolucao = troca;
+    public void devolverItem(TrocaDevolucao trocaDevolucao) {
+    	this.trocaDevolucao = trocaDevolucao;
     }
 
 	public void setId(Long id) {
@@ -103,15 +107,15 @@ public class Pedido {
 		this.statusEntrega = statusEntrega;
 	}
 
-	public void setStatusDevolucao(TrocaDevolucao statusDevolucao) {
-		this.statusDevolucao = statusDevolucao;
+	public void setTrocaDevolucao(TrocaDevolucao trocaDevolucao) {
+		this.trocaDevolucao = trocaDevolucao;
 	}
 
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", pedidoRealizado=" + pedidoRealizado + ", quantidade=" + quantidade
 				+ ", valorTotal=" + valorTotal + ", codigoPedido=" + codigoPedido + ", carrinho=" + carrinho
-				+ ", livro=" + livro + ", statusEntrega=" + statusEntrega + ", statusDevolucao=" + statusDevolucao
+				+ ", livro=" + livro + ", statusEntrega=" + statusEntrega + ", trocaDevolucao=" + trocaDevolucao
 				+ "]";
 	}
 }

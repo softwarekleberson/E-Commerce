@@ -18,4 +18,5 @@ public interface IdaoCliente {
 	Page pegaTodosClientes(Pageable page);
 	public Optional<Cliente> verificaExistenciaClienteId(Long id);
 	public Cliente recuperaClientePelo(Long id);
+	public Cliente pegaClienteAtivo(Long id);
 }

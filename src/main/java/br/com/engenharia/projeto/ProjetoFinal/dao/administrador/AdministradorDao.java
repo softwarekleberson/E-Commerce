@@ -20,6 +20,10 @@ public class AdministradorDao implements IdaoAdministrador{
 	public void salvar(Administrador adminstrador) {
 		repository.save(adminstrador);
 	}
+	
+	public Administrador pegaAdministradorAleatorio() {
+		return repository.findRandomAdministrador();
+	}
 
 	@Override
 	public void deletar(Long id) {
