@@ -1,1 +1,2 @@
 Desenvolvemos um E-commerce aplicando a arquitetura  Api Restful, com o Frontend construído em HTML, CSS e JavaScript. Utilizamos a linguagem Java em conjunto com o framework Spring Boot para implementar o CRUD e as validações das regras de negócio. As tecnologias incluídas são : Clean Code, Testes Unitários com Mockito, documentação automatizada utilizando Spring Doc-OpenAPI, migração de banco de dados com Flyway e validação de CPF.
+Este projeto é para a materia de Laboratorio de engenharia de software
