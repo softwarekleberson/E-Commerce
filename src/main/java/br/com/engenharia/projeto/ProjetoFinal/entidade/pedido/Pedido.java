@@ -24,7 +24,7 @@ import lombok.Getter;
 @Getter
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
-@EqualsAndHashCode(of = "codigoPedido")
+@EqualsAndHashCode(of = "id")
 public class Pedido {
 
     @Id
@@ -52,7 +52,7 @@ public class Pedido {
     private StatusEntrega  statusEntrega;
 
     @Enumerated(EnumType.STRING)
-    private TrocaDevolucao trocaDevolucao;
+    private DevolucaoFoiPedidaOUNAO trocaDevolucao;
     
     public Pedido () {
     	
@@ -62,10 +62,14 @@ public class Pedido {
 		setPedidoRealizado(LocalDate.now());
 		setQuantidade(dados.quantidade());
 		setStatusEntrega(StatusEntrega.EM_SEPARACAO);
-		setTrocaDevolucao(TrocaDevolucao.DEVOLUCAO_NAO_PEDIDA);
+		setTrocaDevolucao(DevolucaoFoiPedidaOUNAO.DEVOLUCAO_NAO_PEDIDA);
 	}
     
-    public void devolverItem(TrocaDevolucao trocaDevolucao) {
+    public void devolucaoPedida(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
+    	this.trocaDevolucao = trocaDevolucao;
+    }
+    
+    public void devolverItem(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
     	this.trocaDevolucao = trocaDevolucao;
     }
 
@@ -108,7 +112,7 @@ public class Pedido {
 		this.statusEntrega = statusEntrega;
 	}
 
-	public void setTrocaDevolucao(TrocaDevolucao trocaDevolucao) {
+	public void setTrocaDevolucao(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
 		this.trocaDevolucao = trocaDevolucao;
 	}
 

@@ -16,8 +16,10 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolu
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import jakarta.validation.Valid;
 
@@ -39,26 +41,31 @@ public class ServiceDevolucao {
 	@Autowired
 	private DevolucaoDao devolucaoDao;
 		
-	public DadosDetalhamentoDevolucao pedidoDevolucao(@Valid DadosCadastroDevolucao dados) {
-		
-		validacoes.forEach(v ->v.processar(dados));
+	public DadosDetalhamentoDevolucao pedidoDevolucao(@Valid DadosCadastroDevolucao dados, Long idCliente) {
 		
 		var pedido = carregaPedidoPeloCodigoPedido(dados);
-		var cliente = carregaClientePeloId(dados);
+		pedido.devolucaoPedida(DevolucaoFoiPedidaOUNAO.DEVOLUCAO_PEDIDO);
+		pedidoDao.salvar(pedido);
+
+		validacoes.forEach(v ->v.processar(dados));
+		
+		var cliente = carregaClientePeloId(idCliente);
 		var admAleatorio = escolheAdmAleatoriamente();
 		String codigoPedido = pedido.getCodigoPedido();
 		String criaCodigoDevolucao = UUID.randomUUID().toString();
 				
 		var devolucao = new Devolucao(null, criaCodigoDevolucao,LocalDate.now(),
 									  null, cliente, pedido, codigoPedido,
-									  admAleatorio, AnalisePedidoDevolucao.ESPERANDO_DEVOLUCAO);
+									  admAleatorio, EsperandoDevolucaoOuRecebido.ESPERANDO_DEVOLUCAO,
+									  AnalisePedidoDevolucaoAceitoOuRecusa.EM_ANALISE
+									  );
 		
 		devolucaoDao.salvar(devolucao);
 		return new DadosDetalhamentoDevolucao(devolucao);
 	}
 
-	private Cliente carregaClientePeloId(DadosCadastroDevolucao dados) {
-		var cliente = clienteDao.recuperaClientePelo(dados.idCliente());
+	private Cliente carregaClientePeloId(Long id) {
+		var cliente = clienteDao.recuperaClientePelo(id);
 		return cliente;
 	}
 

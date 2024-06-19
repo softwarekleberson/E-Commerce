@@ -6,8 +6,11 @@ import java.time.LocalDate;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,6 +45,10 @@ public class Estoque {
 	
 	@Embedded
 	private Fornecedor fornecedor;
+	
+	@Column(name = "estado_produto")
+	@Enumerated(EnumType.STRING)
+	private EstadoDoProdutoAoEntrarNoEstoque estadoDoProduto;
 
 	public Estoque(DadosCadastroEstoque dados) {
 		setQuantidade(dados.quantidade());
@@ -56,6 +63,10 @@ public class Estoque {
 		livro.setId(id);
 	}
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public void setQuantidade(int quantidade) {
 		if(quantidade <= QUANTIDADE_ESTOQUE) {
 			throw new ValidacaoExcepetion("Não é permitido entrada no estoque "
@@ -66,9 +77,9 @@ public class Estoque {
 	}
 
 	public void setValorCusto(BigDecimal valorCusto) {
-		if(valorCusto.compareTo(BigDecimal.ZERO) <= 0) {
-			throw new ValidacaoExcepetion("Valor de custo não deve ser menor ou "
-											 + "igual a 0");
+		if(valorCusto.compareTo(BigDecimal.ZERO) < 0) {
+			throw new ValidacaoExcepetion("Valor de custo não deve ser menor que "
+											 + "0");
 		}
 		this.valorCusto = valorCusto;
 	}
@@ -79,5 +90,9 @@ public class Estoque {
 	
 	public void setFornecedor(String fornecedor) {
 		this.fornecedor = new Fornecedor(fornecedor);
+	}
+	
+	public void setEstadoDoProduto(EstadoDoProdutoAoEntrarNoEstoque estadoDoProduto) {
+		this.estadoDoProduto = estadoDoProduto;
 	}
 }

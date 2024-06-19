@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -53,10 +55,19 @@ public class Devolucao {
 	@JoinColumn(name = "administradores_id")
 	private Administrador administrador;
 	
+	@Column(name = "esperando_devolucao")
 	@Enumerated(EnumType.STRING)
-	private AnalisePedidoDevolucao AnalisePedidoDevolucao;
+	private EsperandoDevolucaoOuRecebido esperandoDevolucaoOuRecebido;
 		
-	public void aceitaOuNaoTroca(AnalisePedidoDevolucao AnalisePedidoDevolucao) {
-		this.AnalisePedidoDevolucao = AnalisePedidoDevolucao;
+	@Column(name = "analise_devolucao")
+	@Enumerated(EnumType.STRING)
+	private AnalisePedidoDevolucaoAceitoOuRecusa analisePedido;
+	
+	public void devoluvaoChegou(EsperandoDevolucaoOuRecebido esperandoDevolucaoOuRecebido) {
+		this.esperandoDevolucaoOuRecebido = esperandoDevolucaoOuRecebido;
+	}
+	
+	public void analisePedidoDevolucao(AnalisePedidoDevolucaoAceitoOuRecusa analisePedido) {
+		this.analisePedido = analisePedido;
 	}
 }

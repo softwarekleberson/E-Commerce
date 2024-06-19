@@ -7,7 +7,8 @@ CREATE TABLE devolucoes (
     clientes_id BIGINT NOT NULL,
     pedidos_id BIGINT NOT NULL,
     administradores_id BIGINT NOT NULL,
-    analise_pedido_devolucao VARCHAR(55),
+    esperando_devolucao VARCHAR(55) NOT NULL,
+    analise_devolucao VARCHAR(55) NOT NULL,
     CONSTRAINT fk_devolucoes_clientes FOREIGN KEY (clientes_id) REFERENCES clientes(id),
     CONSTRAINT fk_devolucoes_pedidos FOREIGN KEY (pedidos_id) REFERENCES pedidos(id),
     CONSTRAINT fk_devolucoes_administradores FOREIGN KEY (administradores_id) REFERENCES administradores(id)

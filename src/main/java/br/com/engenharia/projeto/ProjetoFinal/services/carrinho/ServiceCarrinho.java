@@ -36,12 +36,6 @@ public class ServiceCarrinho {
 	public void adicionarItemAoCarrinho(Long clienteId, Long livroId, int quantidade) {
 		
 		Cliente cliente = verificaExistenciaCliente(clienteId);
-		/*boolean disponivelEmEstoque = verificaEstoque(livroId, quantidade);
-		
-		if(!disponivelEmEstoque) {
-			new IllegalArgumentException("Quantidade de livros indisponivel");
-		}
-		*/
 		
 		Carrinho carrinho = cliente.getCarrinho();		
 		Livro livro = inicializaLivro(livroId);
@@ -90,11 +84,6 @@ public class ServiceCarrinho {
 	private Livro inicializaLivro(Long livroId) {
 		Livro livro = livroDao.recuperarLivroPeloId(livroId);
 		return livro;
-	}
-
-	private boolean verificaEstoque(Long livroId, int quantidade) {
-		boolean disponivelEmEstoque = estoqueDao.verificaEstoque(livroId, quantidade);
-		return disponivelEmEstoque;
 	}
 
 	private Cliente verificaExistenciaCliente(Long clienteId) {

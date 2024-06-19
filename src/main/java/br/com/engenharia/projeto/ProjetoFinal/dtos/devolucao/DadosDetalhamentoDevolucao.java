@@ -2,7 +2,8 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao;
 
 import java.math.BigDecimal;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
 
 public record DadosDetalhamentoDevolucao(
@@ -12,7 +13,8 @@ public record DadosDetalhamentoDevolucao(
 		String codigoPedido,
 		int quantidade,
 		BigDecimal precoTotal,
-		AnalisePedidoDevolucao devolucao
+		EsperandoDevolucaoOuRecebido devolucao,
+		AnalisePedidoDevolucaoAceitoOuRecusa analiseDevolucao
 		
 		) {
 
@@ -21,6 +23,7 @@ public record DadosDetalhamentoDevolucao(
 			 devolucao.getPedido().getCodigoPedido(),
 			 devolucao.getPedido().getQuantidade(),
 			 devolucao.getPedido().getValorTotal(),
-			 devolucao.getAnalisePedidoDevolucao());
+			 devolucao.getEsperandoDevolucaoOuRecebido(),
+			 devolucao.getAnalisePedido());
 	}
 }

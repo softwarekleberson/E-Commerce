@@ -1,7 +1,5 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.livro;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +21,8 @@ public class EstoqueDao implements IdaoEstoque{
 		repository.save(estoque);
 	}
 
-	public boolean verificaEstoque(Long id, int quantidadeRequerida) {
-		Optional<Estoque> estoque =  repository.findById(id);
-		var e = estoque.orElseThrow(() -> new IllegalArgumentException("Id do livro não encontrado, tente novamnete"));
-		return estoque.get().getQuantidade() >= quantidadeRequerida;
+	public int verificaDisponibilidadeLivro(Long idLivro) {
+		var quantidadeDisponivel = repository.findTotalQuantidadeByLivroId(idLivro);
+		return quantidadeDisponivel;
 	}
 }
