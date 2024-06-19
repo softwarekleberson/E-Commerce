@@ -15,42 +15,57 @@
         
             <a href="home.html"><img class="fechar" src="imagem/x.jpeg" alt="voltar pagina"></a>
 
-                <label for="genero">Gênero </label>
-                <select id="genero" name="genero">
-                    <option value="MASCULINO">MASCULINO</option>
-                    <option value="FEMININO">FEMININO</option> 
-                </select><br><br>
+                <fieldset>
+                    <legend>Genero</legend>
+                    <label for="genero">Gênero </label>
+                    <select id="genero" name="genero">
+                        <option value="MASCULINO">MASCULINO</option>
+                        <option value="FEMININO">FEMININO</option>
+                    </select><br><br>
+                </fieldset>
                 
-                <label for="nome">Nome </label>
-                <input type="text" id="nome" name="nome" placeholder="Nome completo" required><br><br>
+                <fieldset>
+                    <legend>Dados Pessoais</legend>
+                    <label for="nome">Nome </label>
+                    <input type="text" id="nome" name="nome" placeholder="Nome completo" required><br><br>
+                    
+                    <label for="nascimento">Data de Nascimento </label>
+                    <input type="date" id="nascimento" name="nascimento" required><br><br>
+                    
+                    <label for="cpf">CPF </label>
+                    <input type="text" id="cpf" name="cpf" placeholder="Ex : 12345678904" autocomplete="off"><br><br>
+                </fieldset>
                 
-                <label for="nascimento">Data de Nascimento </label>
-                <input type="date" id="nascimento" name="nascimento" required><br><br>
+                <fieldset>
+                    <legend>Senha</legend>
+                    <label for="senha">Senha </label>
+                    <input type="password" id="senha" name="senha" placeholder="Senha deve conter 8 caracteres : letra maiscula, minuscula, numero e caracter" required><br><br>
+                    
+                    <label for="confirmarSenha">Confirmar Senha </label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme senha anterior" required><br><br>
+                </fieldset>
                 
-                <label for="cpf">CPF </label>
-                <input type="text" id="cpf" name="cpf" placeholder="Ex : 12345678904" autocomplete="off"><br><br>
+                <fieldset>
+                    <legend>Email</legend>
+                    <label for="email">E-mail </label>
+                    <input type="email" id="email" name="email" required placeholder="email@gmail.com" autocomplete="off"><br><br>
+                </fieldset>
                 
-                <label for="senha">Senha </label>
-                <input type="password" id="senha" name="senha" placeholder="Senha deve conter 8 caracteres : letra maiscula, minuscula, numero e caracter" required><br><br>
-                
-                <label for="confirmarSenha">Confirmar Senha </label>
-                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme senha anterior" required><br><br>
-                
-                <label for="email">E-mail </label>
-                <input type="email" id="email" name="email" required placeholder="email@gmail.com" autocomplete="off"><br><br>
-                
-                <label for="ddd">DDD </label>
-                <input type="text" id="ddd" name="ddd" placeholder="Ex : 11"><br><br>
-                
-                <label for="telefone">Telefone </label>
-                <input type="text" id="telefone" name="telefone" placeholder="Ex : 123456789" autocomplete="off"><br><br>
-                
-                <label for="tipo">Tipo de Telefone </label>
-                <select id="tipo" name="tipo">
-                    <option value="COMERCIAL">COMERCIAL</option>
-                    <option value="MOVEL">MOVEL</option>
-                    <option value="FIXO">FIXO</option>
-                </select><br><br>
+                <fieldset>
+                    <legend>Contato</legend>
+                    <label for="ddd">DDD </label>
+                    <input type="text" id="ddd" name="ddd" placeholder="Ex : 11"><br><br>
+                    
+                    <label for="telefone">Telefone </label>
+                    <input type="text" id="telefone" name="telefone" placeholder="Ex : 123456789" autocomplete="off"><br><br>
+                    
+                    <label for="tipo">Tipo de Telefone </label>
+                    <select id="tipo" name="tipo">
+                        <option value="COMERCIAL">COMERCIAL</option>
+                        <option value="MOVEL">MOVEL</option>
+                        <option value="FIXO">FIXO</option>
+                    </select><br><br>
+                </fieldset>
 
                 <fieldset>
                     <legend>Endereço Entrega</legend>
