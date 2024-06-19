@@ -73,6 +73,13 @@ label {
     display: block;
     margin-top: 10px;
     margin-bottom: 8px;
+    margin-left: 5px;
+
+}
+
+fieldset {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 input[type="text"],
@@ -81,9 +88,10 @@ input[type="tel"],
 input[type="password"],
 select,
 textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 15px;
+    margin-left: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }

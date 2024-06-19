@@ -31,21 +31,26 @@
             <label for="nascimento">Data de Nascimento:</label>
             <input type="date" id="nascimento" name="nascimento"  ><br><br>
 
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="email@gmail.com"><br><br>
+            <fieldset>
+                <legend>Informações Contato</legend>
 
-            <label for="ddd">DDD:</label>
-            <input type="text" id="ddd" name="ddd" placeholder="Ex: 11"><br><br>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="email@gmail.com"><br><br>
+            </fieldset>
 
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" placeholder="Ex: 123456789"><br><br>
-
-            <label for="tipo">Tipo de Telefone:</label>
-            <select id="tipo" name="tipo">
-                <option value="COMERCIAL">COMERCIAL</option>
-                <option value="MOVEL">MOVEL</option>
-                <option value="FIXO">FIXO</option>
-            </select><br><br>
+            <fieldset>
+                <legend>Telefone</legend>
+                <label for="ddd">DDD:</label>
+                <input type="text" id="ddd" name="ddd" placeholder="Ex: 11"><br><br>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" placeholder="Ex: 123456789"><br><br>
+                <label for="tipo">Tipo de Telefone:</label>
+                <select id="tipo" name="tipo">
+                    <option value="COMERCIAL">COMERCIAL</option>
+                    <option value="MOVEL">MOVEL</option>
+                    <option value="FIXO">FIXO</option>
+                </select><br><br>
+            </fieldset>
 
             <button id="enviarBtn" type="submit">Enviar</button>
         </form>
