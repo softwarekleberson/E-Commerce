@@ -1,10 +1,12 @@
 package br.com.engenharia.projeto.ProjetoFinal.services.cliente;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.cartao.IstrategyValidaCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.CartaoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.log.LogDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
@@ -33,11 +35,16 @@ public class ServiceCartao {
 	@Autowired
 	private LogDao daoLog;
 	
+	@Autowired
+	private List<IstrategyValidaCartao> validacoes;
+	
 	public DadosDetalhamentoCartao criar(DadosCadastroCartao dados) {
 		Optional<Cliente> clienteExiste = clienteRepository.findById(dados.idCliente());
 		if(!clienteExiste.isPresent()) {
 			throw new ValidationException("Id cliente não encontrado");
 		}
+		
+		validacoes.forEach(v->v.processar(dados));
 		
 		Cartao cartao = new Cartao(dados);
 		daoCartao.salvar(cartao);	

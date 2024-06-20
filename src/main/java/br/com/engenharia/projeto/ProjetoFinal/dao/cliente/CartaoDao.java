@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 
 @Service
@@ -82,5 +83,10 @@ public class CartaoDao implements IdaoCartao{
 	    if (entidade.isPrincipal()) {
 	        repository.atualizarCartoesNaoPrincipalCliente(entidade.getCliente().getId());
 	    }
+	}
+
+	public Optional<Cartao> cartaoCadastradoAnteriormente(String numeroCartao) {
+		Optional<Cartao> cartao = repository.findBynumeroCartao(numeroCartao);
+		return cartao;
 	}
 }

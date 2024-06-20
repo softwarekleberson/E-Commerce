@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,4 +33,6 @@ public interface CartaoRepository extends JpaRepository<Cartao, Long>{
     @Transactional
     @Query("UPDATE Cartao c SET c.principal = false WHERE c.cliente.id = :id")
 	void atualizarCartoesNaoPrincipalCliente(Long id);
+
+	Optional<Cartao> findBynumeroCartao(String numeroCartao);
 }
