@@ -86,7 +86,6 @@ public class CartaoDao implements IdaoCartao{
 	}
 
 	public Optional<Cartao> cartaoCadastradoAnteriormente(String numeroCartao) {
-		Optional<Cartao> cartao = repository.findBynumeroCartao(numeroCartao);
-		return cartao;
+		return repository.findBynumeroCartao(numeroCartao);
 	}
 }

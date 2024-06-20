@@ -19,7 +19,7 @@ public class VerificaSeCartaoFoiCadastradoAnteriormente implements IstrategyVali
 	@Override
 	public void processar(DadosCadastroCartao dados) {
 		Optional<Cartao> cartao = cartaoDao.cartaoCadastradoAnteriormente(dados.numeroCartao());
-		if(cartao.isPresent()) {
+		if(cartao.isPresent() && cartao.get().getNumeroCartao().equals(dados.numeroCartao()) && cartao.get().getBandeira().equals(dados.bandeira())) {
 			throw new ValidationException("Cartão cadastrado anteriormente");
 		}
 	}
