@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
 
+import java.time.LocalDate;
+
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
@@ -13,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,12 +39,14 @@ public class Cartao {
 	public static final int CODIGO_CARTAO_CREDITO_MAXIMO = 4;
 	private String codigo;
 	
-	public static final int NUMERO_CARTAO_CARTAO_MINIMO = 13;
-	public static final int NUMERO_CARTAO_CARTAO_MAXIMO = 19;
+	public static final int NUMERO_CARTAO_MINIMO = 16;
+	public static final int NUMERO_CARTAO_MAXIMO = 19;
 	private String numeroCartao;
 	
 	@Enumerated(EnumType.STRING)
 	private Bandeira bandeira;
+	
+	private LocalDate dataExpiracao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clientes_id")
@@ -54,6 +59,7 @@ public class Cartao {
 		setCodigo(dados.codigo());
 		setNomeImpresso(dados.nomeImpresso());
 		setNumeroCartao(dados.numeroCartao());
+		setDataExpiracao(dados.dataExpiracao());
 		setCliente(dados.idCliente());
 		setAtivo(true);
 	}
@@ -90,9 +96,18 @@ public class Cartao {
 	}
 	
 	public void setNumeroCartao(String numeroCartao) {
-		if(numeroCartao.trim().length() < NUMERO_CARTAO_CARTAO_MINIMO || numeroCartao.trim().length() > NUMERO_CARTAO_CARTAO_MAXIMO) {
-            throw new ValidacaoExcepetion("Codigo do cartão deve possuir entre 13 e 19 digitos");
+		if(numeroCartao.trim().length() < NUMERO_CARTAO_MINIMO || numeroCartao.trim().length() > NUMERO_CARTAO_MAXIMO) {
+            throw new ValidacaoExcepetion("Codigo do cartão das bandeiras Visa "
+            							  + "e Mastercard devem possuir 16 digitos,"
+            							  + " bandeira Elo até 19 digitos");
         }
 	    this.numeroCartao = numeroCartao.trim();
+	}
+	
+	public void setDataExpiracao(LocalDate dataExpiracao) {
+		if(dataExpiracao.isBefore(LocalDate.now())) {
+			throw new ValidationException("Data de expiração não deve ser no passado");
+		}
+		this.dataExpiracao = dataExpiracao;
 	}
 }

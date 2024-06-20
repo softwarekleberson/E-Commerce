@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
