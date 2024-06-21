@@ -7,7 +7,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
 
 public interface IdaoCartao {
 
-	public String salvar(Cartao entidade);
+	public Cartao salvar(Cartao entidade);
 	Cartao alterar(Long idCartao, DadosAtualizacaoCartao dados);
 	public void deletar(Long id);
 	public Optional<Cartao> cartaoCadastradoAnteriormente(String numeroCartao);

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class CartaoDao implements IdaoCartao{
@@ -24,12 +24,12 @@ public class CartaoDao implements IdaoCartao{
 	}
 	
 	@Override
-	public String salvar(Cartao entidade) {
+	public Cartao salvar(Cartao entidade) {
 		verificaCartaoPrincipalCliente(entidade);
-		repository.save(entidade);
-		return null;
+		return repository.save(entidade);
 	}
 	
+	@Transactional
 	public Cartao alterar(Long idCartao, DadosAtualizacaoCartao dados) {
 		Optional<Cartao> opDataBaseCartao = repository.findById(idCartao);
 		

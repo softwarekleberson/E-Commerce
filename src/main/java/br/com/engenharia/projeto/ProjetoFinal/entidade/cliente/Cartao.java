@@ -35,8 +35,7 @@ public class Cartao {
 	
 	private String nomeImpresso;
 	
-	public static final int CODIGO_CARTAO_CREDITO_MINIMO = 3;
-	public static final int CODIGO_CARTAO_CREDITO_MAXIMO = 4;
+	public static final int CODIGO_CARTAO_CREDITO = 3;
 	private String codigo;
 	
 	public static final int NUMERO_CARTAO_MINIMO = 16;
@@ -64,6 +63,14 @@ public class Cartao {
 		setAtivo(true);
 	}
 
+	public static int getNumeroCartaoMaximo() {
+		return NUMERO_CARTAO_MAXIMO;
+	}
+	
+	public static int getNumeroCartaoMinimo() {
+		return NUMERO_CARTAO_MINIMO;
+	}
+
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
@@ -85,8 +92,8 @@ public class Cartao {
 	}
 	
 	public void setCodigo(String codigo) {
-	    if(codigo.trim().length() != CODIGO_CARTAO_CREDITO_MINIMO && codigo.trim().length() != CODIGO_CARTAO_CREDITO_MAXIMO) {
-	        throw new ValidacaoExcepetion("Codigo do cartão deve ter 3 ou 4 digitos");
+	    if(codigo.trim().length() != CODIGO_CARTAO_CREDITO) {
+	        throw new ValidacaoExcepetion("Codigo do cartão deve conter 3 digitos");
 	    }
 	    this.codigo = codigo.trim();
 	}
@@ -96,11 +103,6 @@ public class Cartao {
 	}
 	
 	public void setNumeroCartao(String numeroCartao) {
-		if(numeroCartao.trim().length() < NUMERO_CARTAO_MINIMO || numeroCartao.trim().length() > NUMERO_CARTAO_MAXIMO) {
-            throw new ValidacaoExcepetion("Codigo do cartão das bandeiras Visa "
-            							  + "e Mastercard devem possuir 16 digitos,"
-            							  + " bandeira Elo até 19 digitos");
-        }
 	    this.numeroCartao = numeroCartao.trim();
 	}
 	

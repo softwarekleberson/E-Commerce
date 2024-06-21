@@ -38,11 +38,12 @@ public class ServiceCartao {
 	@Autowired
 	private List<IstrategyValidaCartao> validacoes;
 	
+	
 	public DadosDetalhamentoCartao criar(DadosCadastroCartao dados) {
 		Optional<Cliente> clienteExiste = clienteRepository.findById(dados.idCliente());
 		if(!clienteExiste.isPresent()) {
 			throw new ValidationException("Id cliente não encontrado");
-		}
+		}	
 		
 		validacoes.forEach(v->v.processar(dados));
 		
