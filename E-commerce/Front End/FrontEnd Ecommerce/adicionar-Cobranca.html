@@ -8,15 +8,18 @@
 </head>
 <body>
     <div class="container-imagem ">
-        <form id="myForm">
+        <form id="myForm" autocomplete="on">
 
             <a href="cobranca.html"><img class="fechar" src="imagem/x.jpeg" alt="voltar pagina"></a>
 
             <label for="idCliente">ID Cliente:</label>
             <input type="text" id="idCliente" name="idCliente" required><br><br>
 
-            <label for="">Endereço de entrega principal</label>
-            <input type="checkbox" id="principal" name="principal"><br>
+            <label for="">Cobranca principal</label>
+            <input type="checkbox" id="principal" name="principal" checked><br>
+
+            <label for="receptorCobranca">Receptor</label>
+            <input type="text" name="receptorCobranca" id="receptorCobranca" autocomplete="name" required placeholder="Quem irá receber a cobrança">
 
             <label for="tipoResidenciaCobranca">Tipo de Residência:</label>
             <input type="text" id="tipoResidenciaCobranca" name="tipoResidenciaCobranca" placeholder="casa, apartamento, kitnet, chalé, cobertura etc" required autocomplete="off"><br><br>
