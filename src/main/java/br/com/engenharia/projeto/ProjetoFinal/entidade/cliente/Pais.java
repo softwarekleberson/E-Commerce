@@ -28,6 +28,6 @@ public class Pais {
 		if(pais == null || pais.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Pais não deve ser nulo");
 		}
-		this.pais = pais.trim();
+		this.pais = pais.trim().toLowerCase();
 	}
 }

@@ -28,6 +28,6 @@ public class TipoLogradouro {
 		if(tipoLogradouro == null || tipoLogradouro.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Tipo logradouro não deve ser nulo");
 		}
-		this.tipoLogradouro = tipoLogradouro.trim();
+		this.tipoLogradouro = tipoLogradouro.trim().toLowerCase();
 	}
 }

@@ -33,7 +33,7 @@ public class Cidade {
 			throw new ValidacaoExcepetion("Cidade não deve ser nulo ou vazio");
 		 }
 		
-		this.cidade = cidade.trim();
+		this.cidade = cidade.trim().toLowerCase();
 	}
 	
 	public void setEstadoCobranca(DadosCadastroCobranca dados) {

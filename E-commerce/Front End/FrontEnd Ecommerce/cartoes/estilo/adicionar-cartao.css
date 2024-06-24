@@ -110,6 +110,10 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+#dataExpiracao {
+    margin-bottom: 20px;
+}
+
 #enviarBtn {
     background-color: #4CAF50;
     color: white; 

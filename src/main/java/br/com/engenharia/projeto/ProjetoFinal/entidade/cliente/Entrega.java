@@ -57,6 +57,6 @@ public class Entrega extends Endereco{
 		if(fraseEntrega == null || fraseEntrega.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Frase de entrega não deve ser nulo");
 		}
-		this.fraseEntrega = fraseEntrega.trim();
+		this.fraseEntrega = fraseEntrega.trim().toLowerCase();
 	}
 }

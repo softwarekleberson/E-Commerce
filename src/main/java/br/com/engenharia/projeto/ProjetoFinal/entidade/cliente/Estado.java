@@ -34,7 +34,7 @@ public class Estado{
 		if(estado == null || estado.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Estado não deve ser nulo");
 		}
-		this.estado = estado.trim();
+		this.estado = estado.trim().toLowerCase();
 	}
 	
 	public void setPais(String pais) {

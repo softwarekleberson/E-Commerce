@@ -92,13 +92,17 @@ public class Cliente {
 		setEntregas(dados.entrega());
 		setCobrancas(dados.cobranca());
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+	
+	public Telefone getTelefone() {
+		return telefone;
 	}
 
 	public void setNome(String nome) {
@@ -173,5 +177,9 @@ public class Cliente {
 
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
 	}
 }

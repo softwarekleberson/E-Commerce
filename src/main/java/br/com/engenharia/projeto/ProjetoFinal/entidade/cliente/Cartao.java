@@ -88,14 +88,14 @@ public class Cartao {
 		if(nomeImpresso == null || nomeImpresso.trim().isEmpty() || nomeImpresso.length() <= 2) {
 			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
 		}
-		this.nomeImpresso = nomeImpresso.trim();
+		this.nomeImpresso = nomeImpresso.trim().toLowerCase();
 	}
 	
 	public void setCodigo(String codigo) {
 	    if(codigo.trim().length() != CODIGO_CARTAO_CREDITO) {
 	        throw new ValidacaoExcepetion("Codigo do cartão deve conter 3 digitos");
 	    }
-	    this.codigo = codigo.trim();
+	    this.codigo = codigo.trim().toLowerCase();
 	}
 	
 	public void setBandeira(Bandeira bandeira) {
@@ -103,7 +103,7 @@ public class Cartao {
 	}
 	
 	public void setNumeroCartao(String numeroCartao) {
-	    this.numeroCartao = numeroCartao.trim();
+	    this.numeroCartao = numeroCartao.trim().toLowerCase();
 	}
 	
 	public void setDataExpiracao(LocalDate dataExpiracao) {

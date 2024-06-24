@@ -35,7 +35,7 @@ public class Telefone {
 		if(!ddd.matches(regexDDD)) {
 			throw new ValidacaoExcepetion("Ddd deve posusir 2 digitos");
 		}
-		this.ddd = ddd.trim();
+		this.ddd = ddd.trim().toLowerCase();
 	}
 	
 	public void setTelefone(String telefone) {
@@ -43,7 +43,7 @@ public class Telefone {
         if(!telefone.matches(regexTelefone)) {
         	throw new ValidacaoExcepetion("Telefone deve conter 8 ou 9 digitos");
         }
-		this.telefone = telefone.trim();
+		this.telefone = telefone.trim().toLowerCase();
 	}
 	
 	public void setTelefone(DadosAtualizacaoCliente dadosAtualizacaoCliente) {

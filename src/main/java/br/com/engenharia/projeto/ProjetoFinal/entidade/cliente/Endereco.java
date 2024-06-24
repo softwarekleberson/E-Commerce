@@ -39,7 +39,7 @@ public abstract class Endereco {
 	
 	@Embedded
 	protected Cidade cidade;
-	
+		
 	public Endereco(@Valid DadosCadastroEntrega dados) {
 		setBairro(dados.bairroEntrega());
 		setCep(dados.cepEntrega());
@@ -59,7 +59,8 @@ public abstract class Endereco {
 		setNumero(dados.numeroCobranca());
 		setObservacao(dados.observacaoCobranca());
 		setTipoLogradouro(dados.tipoLogradouroCobranca());
-		setTipoResidencia(dados.tipoResidenciaCobranca());		
+		setTipoResidencia(dados.tipoResidenciaCobranca());
+		
 	}
 
 	public void setId(Long id) {
@@ -70,21 +71,21 @@ public abstract class Endereco {
 		if(logradouro == null || logradouro.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Logradouro não deve ser nulo");
 		}
-		this.logradouro = logradouro.trim();
+		this.logradouro = logradouro.trim().toLowerCase();
 	}
 
 	public void setNumero(String numero) {
 		if(numero == null || numero.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Numero não deve ser nulo");
 		}
-		this.numero = numero.trim();
+		this.numero = numero.trim().toLowerCase();
 	}
 
 	public void setBairro(String bairro) {
 		if(bairro == null || bairro.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Bairro não deve ser nulo");
 		}
-		this.bairro = bairro.trim();
+		this.bairro = bairro.trim().toLowerCase();
 	}
 
 	public void setCep(String cep) {
@@ -92,11 +93,11 @@ public abstract class Endereco {
 		if(!cep.matches(regexCEP)) {
 			throw new ValidacaoExcepetion("Cep no formato irregular");
 		}
-		this.cep = cep.trim();
+		this.cep = cep.trim().toLowerCase();
 	}
 
 	public void setObservacao(String observacao) {
-		this.observacao = observacao.trim();
+		this.observacao = observacao.trim().toLowerCase();
 	}
 
 	public void setTipoLogradouro(String tipoLogradouro) {
