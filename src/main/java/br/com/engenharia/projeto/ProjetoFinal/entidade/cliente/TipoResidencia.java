@@ -28,6 +28,6 @@ public class TipoResidencia {
 		if(tipoResidencia == null || tipoResidencia.trim().length() == 0) {
 			throw new ValidacaoExcepetion("Tipo residencia não deve ser nulo");
 		}
-		this.tipoResidencia = tipoResidencia.trim();
+		this.tipoResidencia = tipoResidencia.trim().toLowerCase();
 	}
 }

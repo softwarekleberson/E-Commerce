@@ -28,6 +28,6 @@ public class Email {
 	        throw new ValidacaoExcepetion("Formato de email inválido");
 	    }
 		 
-		this.email = email.trim();
+		this.email = email.trim().toLowerCase();
 	}
 }

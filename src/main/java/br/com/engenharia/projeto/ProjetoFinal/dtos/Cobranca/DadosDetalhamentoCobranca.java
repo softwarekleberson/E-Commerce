@@ -8,17 +8,21 @@ public record DadosDetalhamentoCobranca(
 		String bairro, String cep, String observacao,
 		String tipoLogradouto,
 		String tipoResidencia, String cidade,
-		String estado, String pais
-		
+		String estado, String pais, String receptor
 		
 		) {
 
 	public DadosDetalhamentoCobranca(Cobranca cobranca) {
-		this(cobranca.getId(), cobranca.getLogradouro(), cobranca.getNumero(),
-				cobranca.getBairro(), cobranca.getCep(), cobranca.getObservacao(),
+		this(cobranca.getId(), cobranca.getLogradouro(),
+				cobranca.getNumero(),
+				cobranca.getBairro(),
+				cobranca.getCep(),
+				cobranca.getObservacao(),
 				cobranca.getTipoLogradouro().getTipoLogradouro(),
-				cobranca.getTipoResidencia().getTipoResidencia(), cobranca.getCidade().getCidade(),
+				cobranca.getTipoResidencia().getTipoResidencia(),
+				cobranca.getCidade().getCidade(),
 				cobranca.getCidade().getEstado().getEstado(), 
-				cobranca.getCidade().getEstado().getPais().getPais());
+				cobranca.getCidade().getEstado().getPais().getPais(),
+				cobranca.getReceptor());
 	}
 }

@@ -109,14 +109,14 @@ public class Cliente {
 		if (nome == null || nome.trim().length() <= VERIFICA_NOME) {
 			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
 		}
-		this.nome = nome.trim();
+		this.nome = nome.trim().toLowerCase();
 	}
 
 	public void setCpf(String cpf) {
 		if (cpf == null || cpf.trim().length() != VERICA_CPF) {
 			throw new ValidacaoExcepetion("Cpf deve conter apenas numeros");
 		}
-		this.cpf = cpf.trim();
+		this.cpf = cpf.trim().toLowerCase();
 	}
 
 	public void setNascimento(LocalDate nacimento) {

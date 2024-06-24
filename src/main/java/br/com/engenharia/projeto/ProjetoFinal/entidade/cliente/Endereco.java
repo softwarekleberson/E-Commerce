@@ -25,6 +25,7 @@ public abstract class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 	
+	protected String receptor;
 	protected String logradouro;
 	protected String numero;
 	protected String bairro;
@@ -48,7 +49,8 @@ public abstract class Endereco {
 		setNumero(dados.numeroEntrega());
 		setObservacao(dados.observacaoEntrega());
 		setTipoLogradouro(dados.tipoLogradouroEntrega());
-		setTipoResidencia(dados.tipoResidenciaEntrega());		
+		setTipoResidencia(dados.tipoResidenciaEntrega());	
+		setReceptor(dados.receptorEntrega());
 	}
 	
 	public Endereco(@Valid DadosCadastroCobranca dados) {
@@ -60,7 +62,8 @@ public abstract class Endereco {
 		setObservacao(dados.observacaoCobranca());
 		setTipoLogradouro(dados.tipoLogradouroCobranca());
 		setTipoResidencia(dados.tipoResidenciaCobranca());
-		
+		setReceptor(dados.receptorCobranca());
+
 	}
 
 	public void setId(Long id) {
@@ -98,6 +101,10 @@ public abstract class Endereco {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao.trim().toLowerCase();
+	}
+	
+	public void setReceptor(String receptor) {
+		this.receptor = receptor.trim().toLowerCase();
 	}
 
 	public void setTipoLogradouro(String tipoLogradouro) {

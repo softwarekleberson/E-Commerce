@@ -8,6 +8,9 @@ public record DadosCadastroEntrega(
 		boolean principal,
 		
 		@NotNull
+		String receptorEntrega,
+		
+		@NotNull
 		String tipoResidenciaEntrega,
 		
 		@NotNull

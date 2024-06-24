@@ -9,6 +9,9 @@ public record DadosCadastroCobranca(
 		boolean principal,
 		
 		@NotNull
+		String receptorCobranca,
+		
+		@NotNull
 		String tipoResidenciaCobranca,
 		
 		@NotNull

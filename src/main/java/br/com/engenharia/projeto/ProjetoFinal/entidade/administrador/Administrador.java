@@ -52,7 +52,7 @@ public class Administrador {
 		if(nome.trim() == null) {
 			throw new ValidacaoExcepetion("Nome não pode ser nulo");
 		}
-		this.nome = nome;
+		this.nome = nome.trim().toLowerCase();
 	}
 	
 	public void setEmail(String email) {
