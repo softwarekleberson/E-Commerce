@@ -19,14 +19,14 @@
 
 <div class="container">
     <h1>Criar conta administrador</h1>
-    <form id="admin-form">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu email">
-        </div>
+    <form id="admin-form" autocomplete="on">
         <div class="form-group">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" placeholder="Digite seu nome completo">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" autocomplete="email">
         </div>
         <div class="form-group">
             <label for="password">Senha:</label>
