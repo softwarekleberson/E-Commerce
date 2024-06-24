@@ -43,7 +43,7 @@ public class Categoria {
 	     if (categoria == null || categoria.trim().isEmpty()) {
 	       throw new ValidacaoExcepetion("Nome da categoria não deve ser nulo ou vazio");
 	     }
-	     this.categoria = categoria;
+	     this.categoria = categoria.trim().toLowerCase();
 	 }
 	 
      public void addLivro(Livro livro) { 

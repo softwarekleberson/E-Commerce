@@ -20,6 +20,6 @@ public class Editora {
 		if(editora.trim() == null) {
 			throw new ValidacaoExcepetion("Editora não deve ser nula");
 		}
-		this.editora = editora;
+		this.editora = editora.trim().toLowerCase();
 	}
 }

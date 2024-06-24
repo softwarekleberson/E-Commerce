@@ -44,7 +44,7 @@ public class Autor {
 	        if (autor == null || autor.trim().isEmpty()) {
 	            throw new ValidacaoExcepetion("Nome do autor não deve ser nulo ou vazio");
 	        }
-	        this.autor = autor;
+	        this.autor = autor.trim().toLowerCase();
 	    }
 	    
 	    public void addLivro(Livro livro) {

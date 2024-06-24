@@ -134,7 +134,7 @@ public class Livro {
         if (titulo == null || titulo.trim().isEmpty() || titulo.length() > QUANTIDADE_MAXIMA_CARACTERES_TITULO) {
             throw new ValidacaoExcepetion("Quantidade de caracteres em título superior ao permitido");
         }
-        this.titulo = titulo;
+        this.titulo = titulo.trim().toLowerCase();
     }
 
     public void setIsbn(String isbn) {
@@ -142,7 +142,7 @@ public class Livro {
         if (!isbn.matches(regex)) {
             throw new ValidacaoExcepetion("Isbn incorreto, formato correto xxx-x-xx-xxxxxx-x");
         }
-        this.isbn = isbn;
+        this.isbn = isbn.trim().toLowerCase();
     }
 
     public void setPaginas(int paginas) {
@@ -156,11 +156,11 @@ public class Livro {
         if (sinopse == null || sinopse.trim().isEmpty()) {
             throw new ValidacaoExcepetion("Sinopse não deve ser nula ou vazia");
         }
-        this.sinopse = sinopse;
+        this.sinopse = sinopse.trim().toLowerCase();
     }
 
     public void setCodigoBarra(String codigoBarra) {
-        this.codigoBarra = codigoBarra;
+        this.codigoBarra = codigoBarra.trim().toLowerCase();
     }
     
     public void setDimensoes(DadosCadastroDimensao dados) {
