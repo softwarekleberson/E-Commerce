@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.livro.IstrategyLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
@@ -39,8 +40,13 @@ public class ServiceLivro {
 	@Autowired
 	private ImagensProdutoRepository produtoRepository;
 	
+	@Autowired
+	private List<IstrategyLivro> validacoes;
+	
     public DadosDetalhamentoLivro criar(@Valid DadosCadastroLivro dados) {
 
+    	validacoes.forEach(v -> v.validar(dados));
+    	
         Livro livro = new Livro(dados);
         livroDao.salvar(livro);
 

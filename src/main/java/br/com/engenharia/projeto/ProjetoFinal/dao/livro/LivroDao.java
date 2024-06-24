@@ -193,4 +193,9 @@ public class LivroDao implements IdaoLivro{
 	public Livro recuperarLivroPeloId(Long id) {
 		return livroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id do livro não existe"));
 	}
+
+	public Optional<Livro> isbnCadastradoAnteriormente(String isbn) {
+		Optional<Livro> livro = livroRepository.findByisbn(isbn);
+		return livro;
+	}
 }
