@@ -31,7 +31,7 @@ public abstract class Endereco {
 	protected String bairro;
 	protected String cep;
 	protected String observacao;
-		
+	
 	@Embedded
 	protected TipoLogradouro tipoLogradouro;
 	
