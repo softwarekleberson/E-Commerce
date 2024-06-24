@@ -1,2 +1,0 @@
-ALTER TABLE cobrancas 
-ADD COLUMN receptor VARCHAR(50) NOT NULL;

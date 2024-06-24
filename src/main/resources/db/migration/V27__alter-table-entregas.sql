@@ -1,2 +1,0 @@
-ALTER TABLE entregas
-ADD COLUMN receptor VARCHAR(50) NOT NULL;
