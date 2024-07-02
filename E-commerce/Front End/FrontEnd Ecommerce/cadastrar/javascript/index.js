@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             telefone: form.telefone.value,
             tipo: form.tipo.value,
             entrega: [{
+                receptorEntrega: form.receptorEntrega.value,
                 tipoResidenciaEntrega: form.tipoResidenciaEntrega.value,
                 tipoLogradouroEntrega: form.tipoLogradouroEntrega.value,
                 logradouroEntrega: form.logradouroEntrega.value,
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 fraseEntregaEntrega: form.fraseEntregaEntrega.value
             }],
             cobranca: [{
+                receptorCobranca: form.receptorCobranca.value,
                 tipoResidenciaCobranca: form.tipoResidenciaCobranca.value,
                 tipoLogradouroCobranca: form.tipoLogradouroCobranca.value,
                 logradouroCobranca: form.logradouroCobranca.value,
