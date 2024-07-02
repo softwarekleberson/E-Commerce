@@ -16,20 +16,20 @@
 
             <a href="contas-listas.html"><img class="fechar" src="imagem/x.jpeg" alt="voltar pagina"></a>
 
-            <label for="idCliente">ID do Cliente:</label>
-            <input type="text" id="idCliente" name="idCliente" required>
-
-            <label for="genero">Gênero:</label>
-            <select id="genero" name="genero">
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMININO">FEMININO</option>
-            </select><br><br>
-
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Nome completo" autocomplete="name"><br><br>
-
-            <label for="nascimento">Data de Nascimento:</label>
-            <input type="date" id="nascimento" name="nascimento"  ><br><br>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                <label for="idCliente">ID do Cliente:</label>
+                <input type="text" id="idCliente" name="idCliente" required>
+                <label for="genero">Gênero:</label>
+                <select id="genero" name="genero">
+                    <option value="MASCULINO">MASCULINO</option>
+                    <option value="FEMININO">FEMININO</option>
+                </select><br><br>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Nome completo"><br><br>
+                <label for="nascimento">Data de Nascimento:</label>
+                <input type="date" id="nascimento" name="nascimento"  ><br><br>
+            </fieldset>
 
             <fieldset>
                 <legend>Informações Contato</legend>

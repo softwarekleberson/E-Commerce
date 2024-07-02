@@ -37,9 +37,7 @@ form {
     width: 30%;
     max-width: 900px;
     max-height: 600px;
-    /* Definindo uma altura máxima */
     overflow-y: auto;
-    /* Adicionando uma barra de rolagem vertical quando necessário */
     padding: 20px;
     background-color: var(--cor1);
     position: absolute;

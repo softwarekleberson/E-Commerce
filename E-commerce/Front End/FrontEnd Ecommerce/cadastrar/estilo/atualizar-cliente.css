@@ -37,9 +37,7 @@ form {
     width: 30%;
     max-width: 900px;
     max-height: 600px;
-    /* Definindo uma altura máxima */
     overflow-y: auto;
-    /* Adicionando uma barra de rolagem vertical quando necessário */
     padding: 20px;
     background-color: var(--cor1);
     position: absolute;
@@ -55,7 +53,7 @@ form {
     height: 20px;
     width: 20px;
     margin-bottom: -25px;
-    margin-left: 330px;
+    margin-left: 300px;
 }
 
 .section {
@@ -78,8 +76,12 @@ label {
 }
 
 fieldset {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+legend {
+    margin-bottom: 5px;
 }
 
 input[type="text"],
@@ -90,10 +92,14 @@ select,
 textarea {
     width: 90%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     margin-left: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+#nascimento {
+    margin-left: 5px;
 }
 
 input[type="submit"] {
