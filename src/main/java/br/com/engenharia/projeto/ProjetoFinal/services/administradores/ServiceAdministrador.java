@@ -23,7 +23,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTo
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.ProdutoVoltaParaEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Email;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Email;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.TipoCupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;

@@ -1,7 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Telefone;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Telefone;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Entrega;
 
 public record DadosDetalhamentoEntrega(
 		

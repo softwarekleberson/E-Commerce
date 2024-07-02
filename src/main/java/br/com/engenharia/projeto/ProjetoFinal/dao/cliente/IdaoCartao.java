@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.cliente;
 import java.util.Optional;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Cartao;
 
 public interface IdaoCartao {
 

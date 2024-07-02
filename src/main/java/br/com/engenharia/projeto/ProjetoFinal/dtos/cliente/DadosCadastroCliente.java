@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Genero;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.TipoTelefone;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.TipoTelefone;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 

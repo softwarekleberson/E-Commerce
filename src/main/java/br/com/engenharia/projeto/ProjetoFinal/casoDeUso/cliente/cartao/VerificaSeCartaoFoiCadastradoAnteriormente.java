@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.CartaoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Cartao;
 import jakarta.validation.ValidationException;
 
 @Service

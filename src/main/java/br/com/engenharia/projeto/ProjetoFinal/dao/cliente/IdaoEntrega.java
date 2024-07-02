@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosAtualizacaoEntregas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosDetalhamentoEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Entrega;
 
 public interface IdaoEntrega {
 

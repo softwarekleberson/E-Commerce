@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Cobranca;
 
 public record DadosDetalhamentoCobranca(
 		

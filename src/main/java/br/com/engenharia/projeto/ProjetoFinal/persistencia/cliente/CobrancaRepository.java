@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Cobranca;
 import jakarta.transaction.Transactional;
 
 public interface CobrancaRepository extends JpaRepository<Cobranca, Long>{

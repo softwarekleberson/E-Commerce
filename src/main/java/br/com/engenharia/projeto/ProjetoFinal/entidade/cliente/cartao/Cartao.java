@@ -1,8 +1,9 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao;
 
 import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

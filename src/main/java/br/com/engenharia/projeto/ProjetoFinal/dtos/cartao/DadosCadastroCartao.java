@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cartao;
 
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Bandeira;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Bandeira;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroCartao(

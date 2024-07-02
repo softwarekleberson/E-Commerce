@@ -1,6 +1,7 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;

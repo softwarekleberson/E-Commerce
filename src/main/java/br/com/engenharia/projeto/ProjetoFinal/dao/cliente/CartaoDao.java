@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import jakarta.transaction.Transactional;
 

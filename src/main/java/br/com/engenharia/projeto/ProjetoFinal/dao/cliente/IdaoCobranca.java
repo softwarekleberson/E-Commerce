@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Cobranca;
 
 public interface IdaoCobranca {
 

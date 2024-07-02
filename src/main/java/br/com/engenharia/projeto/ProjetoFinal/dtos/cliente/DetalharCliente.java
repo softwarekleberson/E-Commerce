@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Email;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Email;
 
 public record DetalharCliente(
 		

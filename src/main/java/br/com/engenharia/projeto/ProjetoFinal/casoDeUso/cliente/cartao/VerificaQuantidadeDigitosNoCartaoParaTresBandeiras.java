@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.cartao;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Bandeira;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Bandeira;
 import jakarta.validation.ValidationException;
 
 @Service

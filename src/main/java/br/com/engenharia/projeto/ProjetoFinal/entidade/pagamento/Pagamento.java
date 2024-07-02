@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Item;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Entrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
 
 public class Pagamento {

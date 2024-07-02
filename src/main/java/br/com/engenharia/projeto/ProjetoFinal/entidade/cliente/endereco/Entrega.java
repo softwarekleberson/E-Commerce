@@ -1,8 +1,9 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

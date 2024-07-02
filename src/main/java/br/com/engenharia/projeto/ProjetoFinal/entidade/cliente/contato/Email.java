@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
