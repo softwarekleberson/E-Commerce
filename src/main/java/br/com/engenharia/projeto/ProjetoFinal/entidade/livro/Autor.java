@@ -46,9 +46,4 @@ public class Autor {
 	        }
 	        this.autor = autor.trim().toLowerCase();
 	    }
-	    
-	    public void addLivro(Livro livro) {
-	    	livros.add(livro);
-		    livro.getAutores().add(this);
-	    }
 }

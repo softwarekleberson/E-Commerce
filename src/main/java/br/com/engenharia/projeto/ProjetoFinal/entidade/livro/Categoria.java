@@ -45,11 +45,4 @@ public class Categoria {
 	     }
 	     this.categoria = categoria.trim().toLowerCase();
 	 }
-	 
-     public void addLivro(Livro livro) { 
-    	 if(!livros.contains(livro)) {
-		   this.livros.add(livro);
-		   livro.getCategorias().add(this);
-	   }
-	 }
 }

@@ -53,9 +53,6 @@ public class ServiceLivro {
         List<Categoria> categorias = criarCategoria(dados);
         List<Autor> autores = criarAutor(dados);
         List<Imagens> imagens = criarImagem(dados, livro);
-
-        categorias.forEach(categoria -> categoria.addLivro(livro));
-        autores.forEach(autor -> autor.addLivro(livro));
         
         return new DadosDetalhamentoLivro(livro);
     }
