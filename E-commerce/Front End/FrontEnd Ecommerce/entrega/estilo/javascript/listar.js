@@ -22,12 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         const div = document.createElement('div');
                         div.classList.add('card');
                         div.innerHTML = `
-                            <h3 id="nome">${endereco.nome}</h3>
+                            <h3 id="nome">${endereco.receptor}</h3>
                             <p id="logradouro"> ${endereco.logradouro}</p>
                             <p id="tipoResidencia"> ${endereco.tipoResidencia} - ${endereco.numero} ${endereco.observacao}</p>
                             <p id="estado"> ${endereco.cidade}, ${endereco.estado} ${endereco.cep}
-                            <p id="pais"> ${endereco.pais}</p>
-                            <p id="telefone">Telefone ${endereco.ddd}${endereco.telefone}</p> 
+                            <p id="pais"> ${endereco.pais}</p> 
                             <div class="actions">
                                 <a onclick="excluirEntrega(${endereco.id})" href="#">Excluir</a>
                                 <p>|</p>

@@ -65,6 +65,10 @@ public class CobrancaDao implements IdaoCobranca{
 					cobranca.setLogradouro(dados.logradouroCobranca());
 				}
 				
+				if(dados.receptorCobranca() != null) {
+					cobranca.setReceptor(dados.receptorCobranca());
+				}
+				
 				if(dados.principal() == true || dados.principal() == false) {
 					cobranca.setPrincipal(dados.principal());
 					verificaCobrancaPrincipalClienteUpdate(cobranca);

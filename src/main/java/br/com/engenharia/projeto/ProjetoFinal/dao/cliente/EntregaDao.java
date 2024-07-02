@@ -67,6 +67,10 @@ public class EntregaDao implements IdaoEntrega{
 					entrega.setLogradouro(dados.logradouroEntrega());
 				}
 				
+				if(dados.receptorEntrega() != null) {
+					entrega.setReceptor(dados.receptorEntrega());
+				}
+								
 				if(dados.principal() == true || dados.principal() == false) { 
 					entrega.setPrincipal(dados.principal());
 					verificaCobrancaPrincipalClienteUpdate(entrega);

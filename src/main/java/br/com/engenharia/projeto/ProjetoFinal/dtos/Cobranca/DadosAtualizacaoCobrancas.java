@@ -1,10 +1,10 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca;
 
-import jakarta.validation.constraints.NotNull;
-
 public record DadosAtualizacaoCobrancas (
 				
 		boolean principal,
+		
+		String receptorCobranca,
 		
 		String tipoResidenciaCobranca,
 		

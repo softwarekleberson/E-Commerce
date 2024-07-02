@@ -3,6 +3,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     const principal = document.getElementById('principal').checked;
     const tipoResidenciaCobranca = document.getElementById('tipoResidenciaCobranca').value;
+    const receptorCobranca = document.getElementById('receptorCobranca').value;
     const tipoLogradouroCobranca = document.getElementById('tipoLogradouroCobranca').value;
     const logradouroCobranca = document.getElementById('logradouroCobranca').value;
     const numeroCobranca = document.getElementById('numeroCobranca').value;
@@ -18,6 +19,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     const data = {
         "principal": principal || null,
+        "receptorCobranca": receptorCobranca || null,
         "tipoResidenciaCobranca": tipoResidenciaCobranca  || null,
         "tipoLogradouroCobranca": tipoLogradouroCobranca  || null,
         "logradouroCobranca": logradouroCobranca  || null,

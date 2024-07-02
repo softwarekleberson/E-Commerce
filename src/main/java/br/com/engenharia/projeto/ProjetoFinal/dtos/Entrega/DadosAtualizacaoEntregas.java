@@ -1,10 +1,11 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega;
 
-import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizacaoEntregas (
 		
 		boolean principal,
+		
+		String receptorEntrega,
 		
 		String tipoResidenciaEntrega,
 		

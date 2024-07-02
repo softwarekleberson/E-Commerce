@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public abstract class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 	
+	public static final int RECEPTOR_TAMANHO = 0; 
 	protected String receptor;
 	protected String logradouro;
 	protected String numero;
@@ -104,6 +106,9 @@ public abstract class Endereco {
 	}
 	
 	public void setReceptor(String receptor) {
+		if(receptor == null || receptor.trim().length() <= RECEPTOR_TAMANHO) {
+			throw new ValidationException("Receptor não deve ser nulo");
+		}
 		this.receptor = receptor.trim().toLowerCase();
 	}
 

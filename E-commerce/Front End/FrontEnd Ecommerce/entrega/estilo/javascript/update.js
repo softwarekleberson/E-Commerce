@@ -2,6 +2,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     const principal = document.getElementById('principal').checked;
+    const receptorEntrega = document.getElementById('receptorEntrega').value;
     const tipoResidenciaEntrega = document.getElementById('tipoResidenciaEntrega').value;
     const tipoLogradouroEntrega = document.getElementById('tipoLogradouroEntrega').value;
     const logradouroEntrega = document.getElementById('logradouroEntrega').value;
@@ -19,6 +20,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     const data = {
         "principal": principal || null,
+        "receptorEntrega": receptorEntrega || null,
         "tipoResidenciaEntrega": tipoResidenciaEntrega  || null,
         "tipoLogradouroEntrega": tipoLogradouroEntrega  || null,
         "logradouroEntrega": logradouroEntrega  || null,
