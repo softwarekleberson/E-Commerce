@@ -8,6 +8,7 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
     
     var idCliente = document.getElementById('idCliente').value;
     var principal = document.getElementById('principal').checked;
+    var receptorCobranca = document.getElementById('receptorCobranca').value
     var tipoResidenciaCobranca = document.getElementById('tipoResidenciaCobranca').value;
     var tipoLogradouroCobranca = document.getElementById('tipoLogradouroCobranca').value;
     var logradouroCobranca = document.getElementById('logradouroCobranca').value;
@@ -22,6 +23,7 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
     var data = {
         "idCliente": idCliente,
         "principal": principal,
+        "receptorCobranca": receptorCobranca,
         "tipoResidenciaCobranca": tipoResidenciaCobranca,
         "tipoLogradouroCobranca": tipoLogradouroCobranca,
         "logradouroCobranca": logradouroCobranca,

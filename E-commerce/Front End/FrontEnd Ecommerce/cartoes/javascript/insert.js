@@ -35,7 +35,6 @@ function sendDataToBackend(data) {
     })
     .then(data => {
         console.log('Dados enviados com sucesso:', data);
-        return new Promise(resolve => setTimeout(resolve, 2000));
     })
     .catch(error => {
         console.error('Erro:', error);
