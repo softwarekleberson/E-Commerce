@@ -17,7 +17,7 @@ public record DadosDetalhamentoEntrega(
 	
 	public DadosDetalhamentoEntrega(Entrega entrega) {
 		this(entrega.getId(),entrega.getLogradouro(), entrega.getNumero(),
-				entrega.getBairro(), entrega.getCep(), entrega.getObservacao(),
+				entrega.getBairro(), entrega.getCep().getCep(), entrega.getObservacao(),
 				entrega.getFraseEntrega(), entrega.getTipoLogradouro().getTipoLogradouro(),
 				entrega.getTipoResidencia().getTipoResidencia(), entrega.getCidade().getCidade(),
 				entrega.getCidade().getEstado().getEstado(), 

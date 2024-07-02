@@ -31,7 +31,9 @@ public abstract class Endereco {
 	protected String logradouro;
 	protected String numero;
 	protected String bairro;
-	protected String cep;
+	
+	@Embedded
+	protected Cep cep;
 	protected String observacao;
 	
 	@Embedded
@@ -93,11 +95,8 @@ public abstract class Endereco {
 	}
 
 	public void setCep(String cep) {
-		String regexCEP = "\\d{8}";
-		if(!cep.matches(regexCEP)) {
-			throw new ValidacaoExcepetion("Cep no formato irregular");
-		}
-		this.cep = cep.trim().toLowerCase();
+		System.out.println(cep);
+		this.cep = new Cep(cep);
 	}
 
 	public void setObservacao(String observacao) {
