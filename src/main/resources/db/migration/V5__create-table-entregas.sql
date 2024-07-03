@@ -5,7 +5,7 @@ CREATE TABLE entregas (
   logradouro VARCHAR(255) NOT NULL,
   numero VARCHAR(255) NOT NULL,
   bairro VARCHAR(255) NOT NULL,
-  cep VARCHAR(20) NOT NULL,
+  cep VARCHAR(9) NOT NULL,
   observacao VARCHAR(1000),
   frase_entrega VARCHAR(1000) NOT NULL,
   tipo_logradouro VARCHAR(255) NOT NULL,

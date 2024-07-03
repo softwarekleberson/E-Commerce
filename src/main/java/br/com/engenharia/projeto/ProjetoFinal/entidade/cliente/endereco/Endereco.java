@@ -95,7 +95,6 @@ public abstract class Endereco {
 	}
 
 	public void setCep(String cep) {
-		System.out.println(cep);
 		this.cep = new Cep(cep);
 	}
 
