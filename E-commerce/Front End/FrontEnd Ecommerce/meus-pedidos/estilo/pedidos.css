@@ -96,14 +96,16 @@ a:hover {
 
 .caixa-principal {
     width: 1205px;
-    height: 310px;
-    border: 0.05px groove #F0F2F2;
+    height: 330px;
     border-radius: 5px;
-    margin-left: 75px;
+    margin-left: 35px;
+    margin-bottom: 30px;
 }
 
 .cabecalho {
     background-color: #F0F2F2;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .informacoes-pedito {
@@ -125,7 +127,7 @@ a:hover {
     display: inline-block;
     padding-right: 10px;
     padding-left: 10px;
-    margin-right: 270px;
+    margin-right: 220px;
     margin-bottom: 50px;
 }
 
@@ -167,13 +169,13 @@ img {
     width: 20px;
     border-radius: 20px;
     text-align: center;
-    margin-top: 35px;
+    margin-top: 25px;
     margin-left: 85px;
     background-color: white;
 }
 
 .botao-devolucao {
-    margin-top: 15px;
+    margin-top: -10px;
     margin-left: 130px;
     width: 100px;
     height: 25px;
@@ -186,58 +188,3 @@ img {
     height: 25px;
 }
 
-footer {
-    margin-top: 195px;
-    background-color: var(--cor0);
-    color: #fff;
-    padding: 50px;
-    height: 165px;
-}
-
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.footer-section {
-    flex: 1;
-    margin-bottom: 20px;
-}
-
-.footer-section h3 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-}
-
-.footer-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin-left: 400px;
-}
-
-.links-uteis {
-    margin-left: 400px;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.contact {
-    margin-top: 10px;
-}
-
-.contact span {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.footer-bottom {
-    margin-left: 480px;
-}

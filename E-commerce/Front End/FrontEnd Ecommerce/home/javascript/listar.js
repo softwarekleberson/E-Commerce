@@ -1,8 +1,6 @@
-// Fazendo a requisição GET
 fetch('http://localhost:8080/livro')
 .then(response => response.json())
 .then(data => {
-    // Iterando sobre os dados recebidos e preenchendo os elementos HTML
     const produtosDiv = document.getElementById('produtos');
     data.content.forEach(livro => {
         const div = document.createElement('div');

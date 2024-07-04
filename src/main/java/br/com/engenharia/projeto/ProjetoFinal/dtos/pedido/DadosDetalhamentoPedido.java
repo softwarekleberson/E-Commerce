@@ -14,6 +14,7 @@ public record DadosDetalhamentoPedido(
 		int quantidade,
 		BigDecimal valorTotal,
 		String codigoPedido,
+		String descricaoPedido,
 		StatusEntrega  statusEntrega,
 		String urlLivro,
 		String nome,
@@ -22,10 +23,10 @@ public record DadosDetalhamentoPedido(
 		) {
 	
 	public DadosDetalhamentoPedido(Pedido pedido) {
-		this(pedido.getId(),pedido.getPedidoRealizado(), pedido.getQuantidade(),
-			pedido.getValorTotal(),pedido.getCodigoPedido(),
-			pedido.getStatusEntrega(),
-			pedido.getLivro().getImagens().stream().findFirst().map(Imagens::getUrl).orElse(null),
+		this(pedido.getId(),pedido.getPedidoRealizado(),
+			pedido.getQuantidade(), pedido.getValorTotal(),
+			pedido.getCodigoPedido(), pedido.getLivro().getSinopse(),
+			pedido.getStatusEntrega(), pedido.getLivro().getImagens().stream().findFirst().map(Imagens::getUrl).orElse(null),
 			pedido.getLivro().getTitulo(), pedido.getCliente().getId());
 	}
 }
