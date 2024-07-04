@@ -11,6 +11,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.CarrinhoRepository;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 import jakarta.validation.Valid;
 
@@ -26,11 +27,15 @@ public class ServicePedido {
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
 	
-	public DadosDetalhamentoPedido criar(@Valid DadosCadastroPedido dados) {
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	public DadosDetalhamentoPedido criar(@Valid DadosCadastroPedido dados, Long clienteId, Long carrinhoId) {
 		
 		try {
 			var livro = livroRepository.getReferenceById(dados.idLivro());
-			var carrinho = carrinhoRepository.getReferenceById(dados.idCarrinho());
+			var carrinho = carrinhoRepository.getReferenceById(carrinhoId);
+			var cliente = clienteRepository.getReferenceById(clienteId);
 			
 			BigDecimal valorTotal = livro.getPreco().multiply(new BigDecimal(dados.quantidade()));
 			UUID geradorUnico = UUID.randomUUID();
@@ -40,6 +45,7 @@ public class ServicePedido {
 			pedido.setValorTotal(valorTotal);
 			pedido.setLivro(livro);
 			pedido.setCarrinho(carrinho);
+			pedido.setCliente(cliente);
 			pedido.setCodigoPedido(codigoPedido);
 			
 			pedidoDao.salvar(pedido);

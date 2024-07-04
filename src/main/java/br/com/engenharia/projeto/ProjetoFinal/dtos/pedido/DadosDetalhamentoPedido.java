@@ -2,7 +2,6 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
@@ -17,7 +16,8 @@ public record DadosDetalhamentoPedido(
 		String codigoPedido,
 		StatusEntrega  statusEntrega,
 		String urlLivro,
-		String nome
+		String nome,
+		Long idCliente
 		
 		) {
 	
@@ -26,6 +26,6 @@ public record DadosDetalhamentoPedido(
 			pedido.getValorTotal(),pedido.getCodigoPedido(),
 			pedido.getStatusEntrega(),
 			pedido.getLivro().getImagens().stream().findFirst().map(Imagens::getUrl).orElse(null),
-			pedido.getLivro().getTitulo());
+			pedido.getLivro().getTitulo(), pedido.getCliente().getId());
 	}
 }

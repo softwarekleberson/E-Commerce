@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
@@ -47,6 +48,10 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "livro_id", nullable = false)
     private Livro livro;
+    
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
     @Enumerated(EnumType.STRING)
     private StatusEntrega  statusEntrega;
@@ -94,7 +99,7 @@ public class Pedido {
 
 	public void setCodigoPedido(String codigoPedido) {
         if (codigoPedido == null) {
-            throw new ValidacaoExcepetion("codigoPedido não pode ser null");
+            throw new ValidacaoExcepetion("codigo Pedido não pode ser null");
         }
         
         this.codigoPedido = codigoPedido;
@@ -102,6 +107,10 @@ public class Pedido {
 
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public void setLivro(Livro livro) {

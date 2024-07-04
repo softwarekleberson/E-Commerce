@@ -3,8 +3,11 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.pedido;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.PedidoNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
@@ -38,5 +41,13 @@ public class PedidoDao implements IdaoPedido{
 			throw new PedidoNaoEncontradoExcecao("Codigo pedido incorreto");
 		}
 		return pedido.get();
+	}
+
+	public Page<DadosDetalhamentoPedido> listarPedidosCliente(Long clienteId, Pageable pageable) {
+		 Page<Pedido> pedidosPage = pedidoRepository.findByCliente_Id(clienteId, pageable);	        
+	     if(pedidosPage.isEmpty()) {
+	    	 throw new PedidoNaoEncontradoExcecao("Id incorreto");
+	     }
+		 return pedidosPage.map(DadosDetalhamentoPedido::new);
 	}
 }

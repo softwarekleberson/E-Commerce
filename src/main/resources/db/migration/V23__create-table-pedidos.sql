@@ -6,8 +6,10 @@ CREATE TABLE pedidos (
     codigo_pedido VARCHAR(50) NOT NULL,
     carrinho_id BIGINT NOT NULL,
     livro_id BIGINT NOT NULL,
+    cliente_id BIGINT NOT NULL,
     status_entrega VARCHAR(50) NOT NULL,
     troca_devolucao VARCHAR(50),
     FOREIGN KEY (carrinho_id) REFERENCES carrinhos(id),
-    FOREIGN KEY (livro_id) REFERENCES livros(id)
+    FOREIGN KEY (livro_id) REFERENCES livros(id),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
