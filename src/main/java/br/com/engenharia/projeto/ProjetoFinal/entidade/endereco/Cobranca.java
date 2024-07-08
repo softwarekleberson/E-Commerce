@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.endereco;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;

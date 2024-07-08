@@ -4,24 +4,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
-
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
+import jakarta.validation.ValidationException;
 
 @Service
-public class ValidarSenhaAdministrador implements IStrategyAdministrador{
+public class ValidarSenhaAdministrador implements IStrategyAdministrador {
 
+    private static final String SENHA_CURTA = "Senha deve ter no mínimo 8 caracteres";
+    private static final String SENHA_INVALIDA = "Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial";
+    private static final String REGEX_SENHA = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]).*$";
+
+    @Override
     public void processar(Administrador dominio) {
-    	String senha = dominio.getSenha();
+        String senha = dominio.getSenha();
+        
         if (senha.length() < 8) {
-            throw new IllegalArgumentException("Senha deve ter no mínimo 8 caracteres");
+            throw new ValidationException(SENHA_CURTA);
         }
 
-        String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]).*$";
-        Pattern regex = Pattern.compile(pattern);
+        Pattern regex = Pattern.compile(REGEX_SENHA);
         Matcher matcher = regex.matcher(senha);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial");
+            throw new ValidationException(SENHA_INVALIDA);
         }
     }
 }

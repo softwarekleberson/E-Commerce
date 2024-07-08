@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 

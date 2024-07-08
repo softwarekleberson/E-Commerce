@@ -31,13 +31,13 @@ public class Administrador {
 	private String senha;
 	
 	@Transient
-	private String confirmar_Senha;
+	private String confirmarSenha;
 	
 	public Administrador(DadosCadastroAdministrador dados) {
 		setNome(dados.nome());
 		setEmail(dados.email());
 		setSenha(dados.senha());
-		setConfirmar_Senha(dados.confirmarSenha());
+		setConfirmarSenha(dados.confirmarSenha());
 	}
 	
 	public void CriptografarSenha(String senhaCriptografada) {
@@ -63,7 +63,7 @@ public class Administrador {
 		this.senha = senha;
 	}
 	
-	public void setConfirmar_Senha(String confirmar_Senha) {
-		this.confirmar_Senha = confirmar_Senha;
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
 
 @Service
-public class ValidarCriptografiaSenhaAdministrador implements CriptografiaSenhaAdministrador{
+public class CriptografarSenhaAdministrador implements CriptografiaSenhaAdministrador{
 
 	@Override
 	public void processar(Administrador dominio) {

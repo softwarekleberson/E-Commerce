@@ -5,8 +5,8 @@ import java.util.Set;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Cartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Entrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Entrega;
 
 public class Pagamento {
 

@@ -22,8 +22,8 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCob
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosAtualizacaoEntregas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosDetalhamentoEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Entrega;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;

@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.endereco;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.endereco;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
