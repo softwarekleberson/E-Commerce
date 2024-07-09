@@ -74,7 +74,6 @@ public class ClienteController {
 	
 	@PutMapping("/senha")
 	public  ResponseEntity atualizarSenha(@RequestBody @Valid DadosAtualizacaoSenha dados) {
-		System.out.println(dados.idCliente() + " " + dados.senha() + " " + dados.confirmarSenha());
 		DadosDetalhamentoCliente detalharCliente = serviceClienteUpdate.atualizarSenha(dados);
 		return ResponseEntity.ok(detalharCliente);
 	}

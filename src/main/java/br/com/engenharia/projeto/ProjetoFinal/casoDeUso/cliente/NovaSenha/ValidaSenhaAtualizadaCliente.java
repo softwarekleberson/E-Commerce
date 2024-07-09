@@ -6,15 +6,22 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service
 public class ValidaSenhaAtualizadaCliente implements IStrategySenhaAtualizadaCliente {
 
+    private static final String MENSAGEM_ERRO_FORMATO_SENHA = "Senha deve conter pelo menos\"\n"
+    		+ "            							+ \" uma letra maiúscula, uma\"\n"
+    		+ "            							+ \" letra minúscula, um número e um caractere especial";
+	
+    private static final String MENSAGEM_ERRO_QUANTIDADE_MINIMA = "Senha deve ter no mínimo 8 caracteres";
+    
 	@Override
     public void processar(DadosAtualizacaoSenha dados) {
 		String senha = dados.senha();
         if (senha.length() < 8) {
-            throw new IllegalArgumentException("Senha deve ter no mínimo 8 caracteres");
+            throw new ValidacaoExcepetion(MENSAGEM_ERRO_QUANTIDADE_MINIMA);
         }
 
         String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]).*$";
@@ -22,7 +29,7 @@ public class ValidaSenhaAtualizadaCliente implements IStrategySenhaAtualizadaCli
         Matcher matcher = regex.matcher(senha);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial");
+            throw new ValidacaoExcepetion(MENSAGEM_ERRO_FORMATO_SENHA);
         }
     }
 }

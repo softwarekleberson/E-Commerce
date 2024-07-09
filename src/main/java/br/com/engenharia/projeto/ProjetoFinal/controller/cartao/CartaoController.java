@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.controller.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.controller.cartao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.CartaoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dao.cartao.CartaoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;

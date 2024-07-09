@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.administrador;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosCadastroAdministrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Email;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

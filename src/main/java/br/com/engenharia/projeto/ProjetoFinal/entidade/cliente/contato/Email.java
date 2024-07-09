@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

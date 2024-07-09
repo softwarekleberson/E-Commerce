@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.administrador;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
@@ -11,6 +12,7 @@ import br.com.engenharia.projeto.ProjetoFinal.persistencia.administrador.Adminis
 @Service
 public class AdministradorDao implements IdaoAdministrador{
 
+	@Autowired
 	private AdministradorRepository repository;
 	
 	public AdministradorDao(AdministradorRepository repository) {

@@ -1,7 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroDimensao;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

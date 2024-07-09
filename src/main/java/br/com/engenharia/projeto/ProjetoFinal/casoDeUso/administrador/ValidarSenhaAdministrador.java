@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.validation.ValidationException;
 
 @Service
@@ -19,7 +20,7 @@ public class ValidarSenhaAdministrador implements IStrategyAdministrador {
         String senha = dominio.getSenha();
         
         if (senha.length() < 8) {
-            throw new ValidationException(SENHA_CURTA);
+            throw new ValidacaoExcepetion(SENHA_CURTA);
         }
 
         Pattern regex = Pattern.compile(REGEX_SENHA);

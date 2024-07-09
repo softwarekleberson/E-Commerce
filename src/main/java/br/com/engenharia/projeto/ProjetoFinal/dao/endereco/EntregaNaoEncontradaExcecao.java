@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.dao.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.dao.endereco;
 
 public class EntregaNaoEncontradaExcecao extends RuntimeException{
 

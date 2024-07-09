@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.cartao.IstrategyValidaCartao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.CartaoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dao.cartao.CartaoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.log.LogDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;

@@ -15,7 +15,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Telefone;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros;
+package br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.controller.cliente;
+package br.com.engenharia.projeto.ProjetoFinal.controller.endereco;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.CobrancaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.EntregaDao;
+import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.CobrancaDao;
+import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.EntregaDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
