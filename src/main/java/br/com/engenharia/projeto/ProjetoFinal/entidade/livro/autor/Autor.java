@@ -1,6 +1,7 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroAutor;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

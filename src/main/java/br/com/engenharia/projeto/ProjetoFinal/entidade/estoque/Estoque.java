@@ -56,6 +56,7 @@ public class Estoque {
 		setDataEntrada(dados.dataEntrada());
 		setFornecedor(dados.fornecedor());
 		setLivro(dados.idLivro());
+		setEstadoDoProduto(dados.estadoProduto());
 	}
 	
 	public void setLivro(Long id) {

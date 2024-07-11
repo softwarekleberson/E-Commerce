@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.EstoqueDao;
+import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosDetalhamentoEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.estoque.Estoque;
@@ -20,6 +21,9 @@ public class ServiceEstoque {
 	private EstoqueDao estoqueDao;
 	
 	@Autowired
+	private LivroDao livroDao;
+	
+	@Autowired
 	private LivroRepository repository;
 	
 	public DadosDetalhamentoEstoque criar(@Valid DadosCadastroEstoque dados) {
@@ -28,6 +32,10 @@ public class ServiceEstoque {
 		if(existeLivro.isEmpty()) {
 			throw new IllegalArgumentException("Id do livro incorreto");
 		}
+		
+		Livro livro = repository.getReferenceById(dados.idLivro());
+		livro.setAtivo(true);
+		livroDao.salvar(livro);
 		
 	    Estoque estoque = new Estoque(dados);
 	    estoqueDao.salvar(estoque);

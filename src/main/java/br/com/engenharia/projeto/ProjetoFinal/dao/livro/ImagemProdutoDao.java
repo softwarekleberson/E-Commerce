@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarImagem;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.ImagemNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.ImagemNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.ImagensProdutoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 

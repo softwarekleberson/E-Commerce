@@ -64,10 +64,12 @@ public class LivroDao implements IdaoLivro{
 	@Override
 	public Page<DadosDetalhamentoLivro> listarLivros(Pageable pageable) {
 		Page<Livro> livros = livroRepository.findAllByAtivoTrue(pageable);
-		if(livros.isEmpty()) {
-			throw new LivroNaoEncontradoExcecao("Não a livros disponiveis");
+		if (livros.isEmpty()) {
+		   throw new LivroNaoEncontradoExcecao("Não há livros disponíveis");
 		}
-		return livros.map(DadosDetalhamentoLivro::new);
+		    
+		Page<DadosDetalhamentoLivro> dadosDetalhamentoLivros = livros.map(DadosDetalhamentoLivro::new);		    
+		return dadosDetalhamentoLivros;
 	}
 
 	@Override

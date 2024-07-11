@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.livro;
 import java.util.List;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarImagem;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 
 public interface IdaoImagensProduto {
 

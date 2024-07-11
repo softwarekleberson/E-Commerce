@@ -1,9 +1,10 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.livro.precificacao;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroPrecificacao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

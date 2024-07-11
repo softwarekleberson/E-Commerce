@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.livro;
 import java.util.List;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtulizacaoAutor;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Autor;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor.Autor;
 
 public interface IdaoAutor {
 

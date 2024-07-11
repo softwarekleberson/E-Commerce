@@ -3,9 +3,9 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao;
 import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
 
 public record DadosDetalhamentoTotalDevolucao(
 		

@@ -6,11 +6,14 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 
 public interface LivroRepository extends JpaRepository<Livro, Long>{
 
+    @Query("SELECT l FROM Livro l JOIN l.estoque"
+    + " e WHERE l.ativo = true AND e.quantidade > 0")
 	Page<Livro> findAllByAtivoTrue(Pageable paginacao);
 
 	BigDecimal findPrecoById(Long idLivro);

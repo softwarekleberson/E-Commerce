@@ -11,6 +11,10 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroDimensao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroImagem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor.Autor;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.precificacao.Precificacao;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -93,7 +97,7 @@ public class Livro {
     private Precificacao precificacao;
 
     public Livro(DadosCadastroLivro dados) {
-        setAtivo(true);
+        setAtivo(false);
         setData(dados.data());
         setPreco(dados.preco());
         setTitulo(dados.titulo());

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.services.devolucao.ServiceDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.services.devolucao.ServiceGerarPedidoDevolucao;
 import jakarta.validation.Valid;
 
 @RestController
@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 public class DevolucaoController {
 
 	@Autowired
-	private ServiceDevolucao service;
+	private ServiceGerarPedidoDevolucao service;
 	
 	@PostMapping("{idCliente}")
 	public ResponseEntity cadastrarPedidoDevolucao(@PathVariable Long idCliente, @RequestBody @Valid DadosCadastroDevolucao dados, UriComponentsBuilder uriBuilder) {

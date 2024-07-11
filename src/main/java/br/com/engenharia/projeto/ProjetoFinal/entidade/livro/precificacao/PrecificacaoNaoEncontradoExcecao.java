@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.livro.precificacao;
 
 public class PrecificacaoNaoEncontradoExcecao extends RuntimeException{
 

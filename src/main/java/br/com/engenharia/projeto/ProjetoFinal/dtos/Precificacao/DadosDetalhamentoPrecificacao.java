@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.Precificacao;
 
 import java.math.BigDecimal;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Precificacao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.precificacao.Precificacao;
 
 public record DadosDetalhamentoPrecificacao(
 		

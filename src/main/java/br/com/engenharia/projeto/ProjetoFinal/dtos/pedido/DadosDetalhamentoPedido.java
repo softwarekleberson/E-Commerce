@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.pedido;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.StatusEntrega;
 

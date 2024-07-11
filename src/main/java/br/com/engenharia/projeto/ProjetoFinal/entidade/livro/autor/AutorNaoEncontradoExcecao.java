@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidade.livro;
+package br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor;
 
 public class AutorNaoEncontradoExcecao extends RuntimeException{
 

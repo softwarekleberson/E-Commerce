@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.PrecificacaoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Precificacao.DadosDetalhamentoPrecificacao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroPrecificacao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Precificacao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.precificacao.Precificacao;
 import jakarta.validation.Valid;
 
 @Service

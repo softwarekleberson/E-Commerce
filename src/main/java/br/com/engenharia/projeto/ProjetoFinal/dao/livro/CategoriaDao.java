@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarCategoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.CategoriaNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.CategoriaNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.CategoriaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 

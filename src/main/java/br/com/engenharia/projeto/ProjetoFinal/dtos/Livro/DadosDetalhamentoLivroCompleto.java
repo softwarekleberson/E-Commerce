@@ -3,10 +3,10 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.Livro;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Autor;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor.Autor;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 
 public record DadosDetalhamentoLivroCompleto(
 		

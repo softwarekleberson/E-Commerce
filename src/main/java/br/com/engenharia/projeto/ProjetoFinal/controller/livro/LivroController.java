@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroStatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
-import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceLivro;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceAtivarInativarLivro;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceGetLivro;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceInsertLivro;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceUpdateLivro;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,33 +33,54 @@ import jakarta.validation.Valid;
 public class LivroController {
 
 	@Autowired
-	private ServiceLivro service;
+	private ServiceInsertLivro insertLivro;
 	
 	@Autowired
-	private LivroRepository livroRepository;
+	private ServiceUpdateLivro updateLivro;
+	
+	@Autowired
+	private ServiceGetLivro listLivros;
+	
+	@Autowired
+	private ServiceAtivarInativarLivro deleteLivro;
+	
+	@Autowired
+	private LivroDao livroDao;
 	
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroLivro dados, UriComponentsBuilder uriBuilder) {
-		var dto = service.criar(dados);
+		var dto = insertLivro.criar(dados);
 		var uri = uriBuilder.path("/livro/{id}").buildAndExpand(dto.id()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoLivro>> listarLivrosAtivos(@PageableDefault(size = 15) Pageable paginacao){
-		var page = new LivroDao(livroRepository).listarLivros(paginacao);
-		return ResponseEntity.ok(page);
+		Page<DadosDetalhamentoLivro> page = listLivros.listarLivros(paginacao);
+        return ResponseEntity.ok(page);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity detalharLivro(@PathVariable Long id) {
-		var livro = new LivroDao(livroRepository).listarLivroExpecifico(id);
+		var livro = listLivros.listarLivroExpecifico(id);
 		return ResponseEntity.ok(livro);
 	}
 	
 	@PutMapping
 	public ResponseEntity atualizarLivro(@RequestBody @Valid DadosAtualizarLivro dados) {
-		DadosDetalhamentoLivro livro = service.atualizarLivro(dados);
+		DadosDetalhamentoLivro livro = updateLivro.atualizarLivro(dados);
 		return ResponseEntity.ok(livro);
+	}
+	
+	@PutMapping("ativar")
+	public ResponseEntity ativarLivro(@RequestBody @Valid DadosCadastroStatusLivro dados) {
+		deleteLivro.ativarLogica(dados);		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping("inativar")
+	public ResponseEntity inativarLivroManualmente(@RequestBody @Valid DadosCadastroStatusLivro dados) {
+		deleteLivro.delecaoLogica(dados);		
+		return ResponseEntity.noContent().build();
 	}
 }

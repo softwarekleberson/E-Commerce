@@ -19,13 +19,12 @@ import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.DevolucaoAnalisada;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import jakarta.validation.Valid;
 
 @Service
-public class ServiceDevolucao {
+public class ServiceGerarPedidoDevolucao {
 
 	@Autowired
 	private AdministradorDao administradorDao;

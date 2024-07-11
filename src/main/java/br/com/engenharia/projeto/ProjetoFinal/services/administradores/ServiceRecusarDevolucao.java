@@ -1,0 +1,30 @@
+package br.com.engenharia.projeto.ProjetoFinal.services.administradores;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import jakarta.validation.Valid;
+
+@Service
+public class ServiceRecusarDevolucao {
+
+	@Autowired 
+	private DevolucaoDao devolucaoDao;
+	
+	public DadosDetalhamentoTotalDevolucao devolucaoRecusada(@Valid DadosAtualizacaoDevolucao dados, String codigoDevolucao) {
+		var recusaDevolucao = devolucaoDao.carregarDevolucao(codigoDevolucao);
+		
+		recusaDevolucao.setDataConclusaoTroca(LocalDate.now());
+		recusaDevolucao.devoluvaoChegou(dados.esperandoDevolucaoOuRecebido());
+		recusaDevolucao.analisePedidoDevolucao(AnalisePedidoDevolucaoAceitoOuRecusa.TROCA_RECUSADA);
+		devolucaoDao.salvar(recusaDevolucao);
+		
+		return new DadosDetalhamentoTotalDevolucao(recusaDevolucao);
+	}
+}
