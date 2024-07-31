@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.CriptografaSenhaCliente;
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovoCliente.IStrategyCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.CobrancaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.EntregaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.log.LogDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DetalharCliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.log.Log;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -25,16 +25,16 @@ import jakarta.validation.Valid;
 public class ServiceCliente {
 	
     @Autowired
-    private ClienteDao daoCliente;
+    private RepositorioDeCliente repositorioDeCliente;
 
     @Autowired
-    private EntregaDao daoEntrega;
+    private RepositorioDeEntrega repositorioDeEntrega;
 
     @Autowired
-    private CobrancaDao daoCobranca;
+    private RepositorioDeCobranca repositorioDeCobranca;
     
     @Autowired
-    private LogDao daoLog;
+    private RepositorioDeLog repositorioDeLog;
 
     @Autowired
     private List<IStrategyCliente> validadores;
@@ -50,7 +50,7 @@ public class ServiceCliente {
 			Cliente cliente = new Cliente(dados);
 			validadores.forEach(v -> v.processar(cliente));
 			criptografiaSenha.processar(cliente);
-			daoCliente.salvar(cliente);
+			repositorioDeCliente.salvar(cliente);
 
 			List<Cobranca> cobrancas = criarCobrancas(dados, cliente);
 			List<Entrega> entregas = criarEntregas(dados, cliente);
@@ -60,7 +60,7 @@ public class ServiceCliente {
 			salvarEntregas(entregas);
 			
 			Log log = new Log(cliente.getId());
-			daoLog.save(log);
+			repositorioDeLog.save(log);
 			
 			return new DetalharCliente(cliente);
 			
@@ -89,10 +89,10 @@ public class ServiceCliente {
     }
 
     private void salvarCobrancas(List<Cobranca> cobrancas) {
-    	cobrancas.forEach(daoCobranca::salvar);
+    	cobrancas.forEach(repositorioDeCobranca::salvar);
     }
 
     private void salvarEntregas(List<Entrega> entregas) {
-    	entregas.forEach(daoEntrega::salvar);
+    	entregas.forEach(repositorioDeEntrega::salvar);
     }
 }

@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.Email;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
 
 public interface AdministradorRepository extends JpaRepository<Administrador, Long>{
 

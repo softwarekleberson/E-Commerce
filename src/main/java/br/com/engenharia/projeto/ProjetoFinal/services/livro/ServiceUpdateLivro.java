@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 import jakarta.validation.Valid;
@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 public class ServiceUpdateLivro {
 
 	@Autowired
-    private LivroDao livroDao;
+    private RepositorioDeLivro repositorioDeLivro;
 	
 	@Autowired
 	private LivroRepository livroRepository;
@@ -37,7 +37,7 @@ public class ServiceUpdateLivro {
 			throw new ValidacaoExcepetion("Codigo de barra registrado anteriormente");
 		}
 		
-		DadosDetalhamentoLivro livro = livroDao.alterar(dados);
+		DadosDetalhamentoLivro livro = repositorioDeLivro.alterar(dados);
 		return livro;
 	}  
 }

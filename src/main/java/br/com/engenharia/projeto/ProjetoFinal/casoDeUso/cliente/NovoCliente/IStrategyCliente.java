@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovoCliente;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
 
 public interface IStrategyCliente {
 

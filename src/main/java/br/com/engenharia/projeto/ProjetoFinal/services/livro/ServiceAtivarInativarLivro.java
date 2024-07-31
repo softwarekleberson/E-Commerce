@@ -3,21 +3,21 @@ package br.com.engenharia.projeto.ProjetoFinal.services.livro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.StatusLivroDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.RepositorioDeInativacao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroStatusLivro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 
 @Service
 public class ServiceAtivarInativarLivro {
 
 	@Autowired
-	private LivroDao livroDao;
+	private RepositorioDeLivro repositorioDeLivro;
 	
 	@Autowired
-	private StatusLivroDao statusLivroDao;
+	private RepositorioDeInativacao repositorioDeInativacao;
 	
 	@Autowired
 	private LivroRepository livroRepository;
@@ -31,8 +31,8 @@ public class ServiceAtivarInativarLivro {
 											   dados.categoria(),
 											   livro);
 				
-		livroDao.salvar(livro);
-		statusLivroDao.salvar(inativacao);
+		repositorioDeLivro.salvar(livro);
+		repositorioDeInativacao.salvar(inativacao);
 	}
 	
 	public void ativarLogica(DadosCadastroStatusLivro dados) {
@@ -43,8 +43,8 @@ public class ServiceAtivarInativarLivro {
 				   								 dados.justificativa(),
 				                                 dados.categoria(),
 				                                 livro);
-		livroDao.salvar(livro);	
-		statusLivroDao.salvar(ativacao);
+		repositorioDeLivro.salvar(livro);	
+		repositorioDeInativacao.salvar(ativacao);
 
 	}
 }

@@ -5,12 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.AdministradorNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.AdministradorNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.RepositorioDeAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.administrador.AdministradorRepository;
 
 @Service
-public class AdministradorDao implements IdaoAdministrador{
+public class AdministradorDao implements RepositorioDeAdministrador{
 
 	@Autowired
 	private AdministradorRepository repository;
@@ -24,6 +26,7 @@ public class AdministradorDao implements IdaoAdministrador{
 		repository.save(adminstrador);
 	}
 	
+	@Override
 	public Administrador pegaAdministradorAleatorio() {
 		return repository.findRandomAdministrador();
 	}
@@ -35,5 +38,14 @@ public class AdministradorDao implements IdaoAdministrador{
 			throw new AdministradorNaoEncontradoExcecao("Administrador excluido ou id incorreto");
 		}
 		repository.deleteById(id);
+	}
+
+	@Override
+	public boolean verificaEmailCadastrado(Email email) {
+		Optional<Administrador> admEmail = repository.findByEmail(email);
+		if(admEmail.isEmpty()) {
+			return true;
+		}		
+		return false;
 	}
 }

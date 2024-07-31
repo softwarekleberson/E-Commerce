@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cupom.CupomDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceGeraCupomPromocioal;
@@ -28,7 +28,7 @@ public class CupomAdministradorController {
 	private ServiceGeraCupomPromocioal serviceGeraCupomPromocioal;
 	
 	@Autowired
-	private CupomDao cupomDao;
+	private RepositorioDeCupom repositorioDeCupom;
 
 	@PostMapping("/cupons")
 	public ResponseEntity cadastrarCupomPromocional(@RequestBody @Valid DadosCadastroCupom dados, UriComponentsBuilder uriBuilder) {
@@ -39,7 +39,7 @@ public class CupomAdministradorController {
 	
 	@GetMapping("/cupons/{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoCupom>> listarCupomPorCliente(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoCupom> cupons = cupomDao.listarCuponsDosClientes(clienteId, pageable);
+		Page<DadosDetalhamentoCupom> cupons = repositorioDeCupom.listarCuponsDosClientes(clienteId, pageable);
 		return ResponseEntity.ok(cupons);
     }
 }

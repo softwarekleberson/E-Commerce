@@ -14,19 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.CobrancaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.EntregaDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosAtualizacaoEntregas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosDetalhamentoEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 import jakarta.validation.Valid;
 
 @RestController
@@ -35,61 +33,61 @@ import jakarta.validation.Valid;
 public class EnderecoController {
 
 	@Autowired
-	private EntregaRepository entregaRepository;
+	private RepositorioDeEntrega repositorioDeEntrega;
 	
 	@Autowired
-	private CobrancaRepository cobrancaRepository;
+	private RepositorioDeCobranca repositorioDeCobranca;
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private RepositorioDeCliente repositorioDeCliente;
 	
 	@PostMapping("/entrega")
 	public ResponseEntity cadastrarEntrega(@RequestBody @Valid DadosCadastroEntrega dados) {
 		var entrega = new Entrega(dados);
-		new EntregaDao(entregaRepository, clienteRepository).salvarNovoEntrega(entrega);
+		repositorioDeEntrega.salvarNovoEntrega(entrega);
 		return ResponseEntity.ok(entrega);
 	}
 	
 	@PostMapping("/cobranca")
 	public ResponseEntity cadastrarCobranca(@RequestBody @Valid DadosCadastroCobranca dados) {
 		var cobranca = new Cobranca(dados);
-		new CobrancaDao(cobrancaRepository, clienteRepository).salvarNovaCobranca(cobranca);
+		repositorioDeCobranca.salvarNovaCobranca(cobranca);
 		return ResponseEntity.ok(cobranca);
 	}
 	
 	@GetMapping("/entrega/{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoEntrega>> listarEnderecosEntrega(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoEntrega> entregas = new EntregaDao(entregaRepository, clienteRepository).listarEntregasDoCliente(clienteId, pageable);
+		Page<DadosDetalhamentoEntrega> entregas = repositorioDeEntrega.listarEntregasDoCliente(clienteId, pageable);
 		return ResponseEntity.ok(entregas);
     }
 	
 	@GetMapping("/cobranca/{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoCobranca>> listarEnderecosCobranca(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoCobranca> cobrancas = new CobrancaDao(cobrancaRepository, clienteRepository).listarEnderecosCobrancaDoCliente(clienteId, pageable);
+		Page<DadosDetalhamentoCobranca> cobrancas = repositorioDeCobranca.listarEnderecosCobrancaDoCliente(clienteId, pageable);
 		return ResponseEntity.ok(cobrancas);
     }
 	
 	@PutMapping("/entrega/{entregaId}")
 	public  ResponseEntity atualizarEntrega(@PathVariable Long entregaId, @RequestBody @Valid DadosAtualizacaoEntregas dados) {
-		Entrega updateEntrega = new EntregaDao(entregaRepository, clienteRepository).alterar(entregaId, dados);
+		Entrega updateEntrega = repositorioDeEntrega.alterar(entregaId, dados);
 		return ResponseEntity.ok(updateEntrega);
 	}
 	
 	@PutMapping("/cobranca/{cobrancaId}")
 	public  ResponseEntity atualizarCobranca(@PathVariable Long cobrancaId, @RequestBody @Valid DadosAtualizacaoCobrancas dados) {
-		Cobranca updateCobranca = new CobrancaDao(cobrancaRepository, clienteRepository).alterar(cobrancaId, dados);
+		Cobranca updateCobranca = repositorioDeCobranca.alterar(cobrancaId, dados);
 		return ResponseEntity.ok(updateCobranca);
 	}
 	
 	@DeleteMapping("/entrega/{idEntrega}")
 	public ResponseEntity<Void> deletarEnderecoEntrega (@PathVariable Long idEntrega) {
-		new EntregaDao(entregaRepository, clienteRepository).excluir(idEntrega);
+		repositorioDeEntrega.excluir(idEntrega);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@DeleteMapping("/cobranca/{idCobranca}")
 	public ResponseEntity<Void> deletarEnderecoCobranca (@PathVariable Long idCobranca) {
-		new CobrancaDao(cobrancaRepository, clienteRepository).excluir(idCobranca);
+		repositorioDeCobranca.excluir(idCobranca);
 		return ResponseEntity.noContent().build();
 	}	
 }

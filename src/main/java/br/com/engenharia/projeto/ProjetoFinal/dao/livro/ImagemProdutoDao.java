@@ -6,15 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.ImagemNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.RepositorioDeImagensProduto;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarImagem;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.ImagemNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.ImagensProdutoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 
 @Service
-public class ImagemProdutoDao implements IdaoImagensProduto{
+public class ImagemProdutoDao implements RepositorioDeImagensProduto{
 
 	@Autowired
 	private ImagensProdutoRepository imagensProdutoRepository;

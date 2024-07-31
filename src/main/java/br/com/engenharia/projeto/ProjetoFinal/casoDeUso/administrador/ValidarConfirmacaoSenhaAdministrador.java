@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.administrador;
 
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

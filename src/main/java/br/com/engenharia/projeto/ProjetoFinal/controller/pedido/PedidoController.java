@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.pedido.PedidoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
 import jakarta.validation.Valid;
 
@@ -29,7 +28,7 @@ public class PedidoController {
 	private ServicePedido service;
 	
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private RepositorioDePedido repositorioDePedido;
 	
 	@PostMapping("{clienteId}/{carrinhoId}")
 	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long carrinhoId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
@@ -40,7 +39,7 @@ public class PedidoController {
 	
 	@GetMapping("{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoPedido>> listarPorCliente(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoPedido> pedidos = new PedidoDao(pedidoRepository).listarPedidosCliente(clienteId, pageable);
+		Page<DadosDetalhamentoPedido> pedidos = repositorioDePedido.listarPedidosCliente(clienteId, pageable);
 		return ResponseEntity.ok(pedidos);
     }
 }

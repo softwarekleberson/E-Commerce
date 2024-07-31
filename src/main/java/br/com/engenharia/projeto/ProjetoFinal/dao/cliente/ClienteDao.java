@@ -7,9 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.ClienteNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
@@ -17,7 +19,7 @@ import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaReposi
 import jakarta.transaction.Transactional;
 
 @Service
-public class ClienteDao implements IdaoCliente {
+public class ClienteDao implements RepositorioDeCliente {
 
 	@Autowired
 	private ClienteRepository clienteRepository;

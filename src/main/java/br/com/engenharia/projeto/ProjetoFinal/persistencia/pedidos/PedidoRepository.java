@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 

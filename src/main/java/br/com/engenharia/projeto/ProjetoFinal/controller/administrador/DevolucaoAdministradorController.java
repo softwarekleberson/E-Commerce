@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceAceitarDevolucao;
@@ -31,11 +31,11 @@ public class DevolucaoAdministradorController {
     private ServiceAceitarDevolucao serviceAceitarDevolucao;
 
     @Autowired
-    private DevolucaoDao devolucaoDao;
+    private RepositorioDeDevolucao repositorioDeDevolucao;
 
     @GetMapping("/devolucoes/{admId}")
     public ResponseEntity<Page<DadosDetalhamentoTotalDevolucao>> listarTodasAsDevolucoes(@PathVariable Long admId, Pageable pageable) {
-        Page<DadosDetalhamentoTotalDevolucao> devolucoes = devolucaoDao.listarTodasAsDevolucoes(pageable, admId);
+        Page<DadosDetalhamentoTotalDevolucao> devolucoes = repositorioDeDevolucao.listarTodasAsDevolucoes(pageable, admId);
         return ResponseEntity.ok(devolucoes);
     }
 

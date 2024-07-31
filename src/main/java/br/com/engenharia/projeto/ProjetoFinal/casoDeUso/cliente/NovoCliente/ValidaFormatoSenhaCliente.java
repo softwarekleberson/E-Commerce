@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
 
 @Service
 public class ValidaCriptografiaSenhaCliente implements CriptografaSenhaCliente{

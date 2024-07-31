@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroStatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
@@ -43,10 +44,7 @@ public class LivroController {
 	
 	@Autowired
 	private ServiceAtivarInativarLivro deleteLivro;
-	
-	@Autowired
-	private LivroDao livroDao;
-	
+		
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroLivro dados, UriComponentsBuilder uriBuilder) {
 		var dto = insertLivro.criar(dados);

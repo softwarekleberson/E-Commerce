@@ -6,15 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.categoria.CategoriaNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.categoria.RepositorioDeCategoria;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarCategoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.CategoriaNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.CategoriaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 
 @Service
-public class CategoriaDao implements IdaoCategoria{
+public class CategoriaDao implements RepositorioDeCategoria{
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;

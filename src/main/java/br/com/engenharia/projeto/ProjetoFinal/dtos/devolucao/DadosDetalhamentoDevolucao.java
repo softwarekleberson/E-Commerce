@@ -2,9 +2,9 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao;
 
 import java.math.BigDecimal;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.EsperandoDevolucaoOuRecebido;
 
 public record DadosDetalhamentoDevolucao(
 		

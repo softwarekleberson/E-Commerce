@@ -2,8 +2,8 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Genero;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.contato.TipoTelefone;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Genero;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.TipoTelefone;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizacaoCliente(

@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.CriptografaSenhaCliente;
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.IStrategySenhaAtualizadaCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.CobrancaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.endereco.EntregaDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.log.LogDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.log.Log;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import jakarta.validation.Valid;
 
@@ -26,17 +24,11 @@ public class ServiceClienteUpdate {
 	@Autowired
 	private ClienteRepository clienteRepositoy;
 	
-    @Autowired
-    private ClienteDao daoCliente;
+	@Autowired
+    private RepositorioDeCliente repositorioDeCliente;
     
     @Autowired
-    private CobrancaDao cobrancaDao;
-    
-    @Autowired
-    private EntregaDao entregaDao;
-
-    @Autowired
-    private LogDao daoLog;
+    private RepositorioDeLog repositorioDeLog;
     
     @Autowired
     private List<IStrategySenhaAtualizadaCliente> validadores;
@@ -50,9 +42,9 @@ public class ServiceClienteUpdate {
 			throw new IllegalArgumentException("Id incorreto");
 		}
 		
-		daoCliente.alterarCliente(cliente.get().getId(), dados); 
+		repositorioDeCliente.alterarCliente(cliente.get().getId(), dados); 
 		Log log = new Log(dados.idCliente());
-		daoLog.save(log);
+		repositorioDeLog.save(log);
 		
 		return null;
 	}
@@ -65,10 +57,10 @@ public class ServiceClienteUpdate {
 		
 		validadores.forEach(v-> v.processar(dados));
 		validaoresCriptografiaSenha.forEach(v-> v.processar(cliente.get()));
-		daoCliente.alterarSenha(dados.idCliente(), cliente.get().devolveSenhaCriptografada());
+		repositorioDeCliente.alterarSenha(dados.idCliente(), cliente.get().devolveSenhaCriptografada());
 		
 		Log log = new Log(dados.idCliente());
-		daoLog.save(log);
+		repositorioDeLog.save(log);
 		
 		return null;
 	}

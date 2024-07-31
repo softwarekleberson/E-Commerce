@@ -10,10 +10,10 @@ import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.item.ItemDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.EstoqueDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Carrinho;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.carrinho.Item;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.carrinho.Carrinho;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.carrinho.Item;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
 
 @Service
 public class ServiceCarrinho {

@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cartao.CartaoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceCartao;
 import jakarta.validation.Valid;
 
@@ -32,8 +31,8 @@ public class CartaoController {
 	private ServiceCartao service;
 	
 	@Autowired
-	private CartaoRepository repository;
-	
+	private RepositorioDeCartao repositorioDeCartao;
+		
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroCartao dados, UriComponentsBuilder uriBuilder) {
 		var dto = service.criar(dados);
@@ -49,13 +48,13 @@ public class CartaoController {
 	
 	@GetMapping("{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoCartao>> listarPorCliente(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoCartao> cartoes = new CartaoDao(repository).listarCartaosDoCliente(clienteId, pageable);
+		Page<DadosDetalhamentoCartao> cartoes = repositorioDeCartao.listarCartaosDoCliente(clienteId, pageable);
 		return ResponseEntity.ok(cartoes);
     }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar (@PathVariable Long id) {
-		new CartaoDao(repository).deletar(id);
+		repositorioDeCartao.deletar(id);
 		return ResponseEntity.noContent().build();
 	}	
 }

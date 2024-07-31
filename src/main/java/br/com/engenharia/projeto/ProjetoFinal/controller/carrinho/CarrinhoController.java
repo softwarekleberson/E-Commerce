@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.carrinho.CarrinhoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.carrinho.RepositorioDeCarrinho;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.carrinho.DetalhamentoCarrinho;
 import br.com.engenharia.projeto.ProjetoFinal.services.carrinho.ServiceCarrinho;
 
@@ -23,7 +23,7 @@ public class CarrinhoController {
 	private ServiceCarrinho service;
 		
 	@Autowired
-	private CarrinhoDao carrinhoDao;
+	private RepositorioDeCarrinho repositorioDeCarrinho;
 	
     @PostMapping("/cliente/{clienteId}/livro/{livroId}/quantidade/{quantidade}/adicionar")
 	public void adicionarItem(@PathVariable Long clienteId, @PathVariable Long livroId, @PathVariable int quantidade) {
@@ -33,7 +33,7 @@ public class CarrinhoController {
     public ResponseEntity<Page<DetalhamentoCarrinho>> listar
     (@PathVariable Long clienteId, Pageable pageable){
 		
-    	Page<DetalhamentoCarrinho> carrinho = carrinhoDao.listar(clienteId, pageable);
+    	Page<DetalhamentoCarrinho> carrinho = repositorioDeCarrinho.listar(clienteId, pageable);
     	return null;
     }
 }

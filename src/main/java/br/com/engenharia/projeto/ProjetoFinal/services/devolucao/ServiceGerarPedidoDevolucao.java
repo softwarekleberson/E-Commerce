@@ -8,32 +8,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.devolucao.IstrategyDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.administrador.AdministradorDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.pedido.PedidoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.RepositorioDeAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.DevolucaoFoiPedidaOUNAO;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.EsperandoDevolucaoOuRecebido;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.DevolucaoFoiPedidaOUNAO;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import jakarta.validation.Valid;
 
 @Service
 public class ServiceGerarPedidoDevolucao {
 
 	@Autowired
-	private AdministradorDao administradorDao;
+	private RepositorioDeAdministrador repositorioDeAdministrador;
 	
 	@Autowired
-	private PedidoDao pedidoDao;
+	private RepositorioDePedido repositorioDePedido;
 	
 	@Autowired
-	private ClienteDao clienteDao;
+	private RepositorioDeCliente repositorioDeCliente;
 	
 	@Autowired
 	private List<IstrategyDevolucao> validacoes;
@@ -45,7 +45,7 @@ public class ServiceGerarPedidoDevolucao {
 		
 		var pedido = carregaPedidoPeloCodigoPedido(dados);
 		pedido.devolucaoPedida(DevolucaoFoiPedidaOUNAO.DEVOLUCAO_PEDIDO);
-		pedidoDao.salvar(pedido);
+		repositorioDePedido.salvar(pedido);
 
 		validacoes.forEach(v ->v.processar(dados));
 		
@@ -65,17 +65,17 @@ public class ServiceGerarPedidoDevolucao {
 	}
 
 	private Cliente carregaClientePeloId(Long id) {
-		var cliente = clienteDao.recuperaClientePelo(id);
+		var cliente = repositorioDeCliente.recuperaClientePelo(id);
 		return cliente;
 	}
 
 	private Administrador escolheAdmAleatoriamente() {
-		var adm = administradorDao.pegaAdministradorAleatorio();
+		var adm = repositorioDeAdministrador.pegaAdministradorAleatorio();
 		return adm;
 	}
 
 	private Pedido carregaPedidoPeloCodigoPedido(DadosCadastroDevolucao dados) {
-		var pedido = pedidoDao.devolvePedidoPeloCodigo(dados.codigoPedido());
+		var pedido = repositorioDePedido.devolvePedidoPeloCodigo(dados.codigoPedido());
 		return pedido;
 	}
 }

@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.Estoque;
 
 public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
 	

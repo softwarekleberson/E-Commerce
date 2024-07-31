@@ -7,13 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.DevolucaoNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.DevolucaoNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.devolucao.DevolucaoRepository;
 
 @Service
-public class DevolucaoDao implements IdaoDevolucao{
+public class DevolucaoDao implements RepositorioDeDevolucao{
 
 	@Autowired
 	private DevolucaoRepository devolucao;

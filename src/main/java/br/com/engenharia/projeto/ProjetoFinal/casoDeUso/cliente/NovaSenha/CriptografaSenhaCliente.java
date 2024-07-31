@@ -1,5 +1,5 @@
 package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
 
 public interface CriptografaSenhaCliente {
 

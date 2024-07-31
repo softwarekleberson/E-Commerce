@@ -2,8 +2,8 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom;
 
 import java.math.BigDecimal;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.TipoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.TipoCupom;
 
 public record DadosDetalhamentoCupom(
 		

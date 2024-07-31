@@ -16,16 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cliente.ClienteDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceCliente;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceClienteUpdate;
 import jakarta.validation.Valid;
@@ -42,16 +38,7 @@ public class ClienteController {
 	private ServiceClienteUpdate serviceClienteUpdate;
 	
 	@Autowired
-	private ClienteRepository Clienterepository;
-	
-	@Autowired
-	private CartaoRepository cartaoRepository;
-	
-	@Autowired
-	private CobrancaRepository cobrancaRepository;
-	
-	@Autowired
-	private EntregaRepository entregaRepository;
+	private RepositorioDeCliente repositorioDeCliente;
 		
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroCliente dados, UriComponentsBuilder uriBuilder) {
@@ -62,7 +49,7 @@ public class ClienteController {
 	
 	@GetMapping
 	public ResponseEntity<Page<Cliente>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-		var page = new ClienteDao(Clienterepository).pegaTodosClientes(paginacao);
+		var page = repositorioDeCliente.pegaTodosClientes(paginacao);
 		return ResponseEntity.ok(page);
 	}
 	
@@ -80,7 +67,7 @@ public class ClienteController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar (@PathVariable Long id) {
-		new ClienteDao(Clienterepository, cartaoRepository, cobrancaRepository, entregaRepository).deletar(id);
+		repositorioDeCliente.deletar(id);
 		return ResponseEntity.noContent().build();
 	}	
 }

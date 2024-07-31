@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 

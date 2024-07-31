@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.livro.IstrategyLivro;
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.autor.Autor;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.autor.Autor;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.categoria.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.livro.imagem.Imagens;
 import jakarta.validation.Valid;
 
 @Service
 public class ServiceInsertLivro {
 	
 	@Autowired
-    private LivroDao livroDao;
+    private RepositorioDeLivro repositorioDeLivro;
 	
 	@Autowired
 	private List<IstrategyLivro> validacoes;
@@ -29,7 +29,7 @@ public class ServiceInsertLivro {
 
     	validacoes.forEach(v -> v.validar(dados));
         Livro livro = new Livro(dados);
-        livroDao.salvar(livro);
+        repositorioDeLivro.salvar(livro);
 
         List<Categoria> categorias = criarCategoria(dados);
         List<Autor> autores = criarAutor(dados);

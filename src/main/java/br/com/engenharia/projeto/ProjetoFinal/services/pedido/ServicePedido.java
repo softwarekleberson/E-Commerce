@@ -6,10 +6,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.pedido.PedidoDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.CarrinhoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 public class ServicePedido {
 
 	@Autowired
-	private PedidoDao pedidoDao;
+	private RepositorioDePedido repositorioDePedido;
 	
 	@Autowired
 	private LivroRepository livroRepository;
@@ -48,7 +48,7 @@ public class ServicePedido {
 			pedido.setCliente(cliente);
 			pedido.setCodigoPedido(codigoPedido);
 			
-			pedidoDao.salvar(pedido);
+			repositorioDePedido.salvar(pedido);
 			return new DadosDetalhamentoPedido(pedido);
 			
 		} catch (Exception e) {

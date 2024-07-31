@@ -2,8 +2,8 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.cartao;
 
 import org.springframework.stereotype.Service;
 
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.Bandeira;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cliente.cartao.Bandeira;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

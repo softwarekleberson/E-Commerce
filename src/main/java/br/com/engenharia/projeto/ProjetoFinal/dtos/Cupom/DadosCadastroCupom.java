@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom;
 
 import java.math.BigDecimal;
 
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.TipoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.TipoCupom;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroCupom(

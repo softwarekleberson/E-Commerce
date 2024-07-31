@@ -6,34 +6,34 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.cupom.CupomDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.EstoqueDao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.ProdutoVoltaParaEstoque;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.TipoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.RepositorioDeEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.administrador.ProdutoVoltaParaEstoque;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.Cupom;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.cupom.TipoCupom;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.entidade.estoque.Estoque;
 import jakarta.validation.Valid;
 
 @Service
 public class ServiceAceitarDevolucao {
 	
-	@Autowired 
-	private DevolucaoDao devolucaoDao;
+	@Autowired
+	private RepositorioDeDevolucao repositorioDeDevolucao;
 	
 	@Autowired
-	private CupomDao cupomDao;
+	private RepositorioDeCupom repositorioDeCupom;
 	
 	@Autowired
-	private EstoqueDao estoqueDao;
+	private RepositorioDeEstoque repositorioDeEstoque;
 	
 	public DadosDetalhamentoTotalDevolucao devolucaoAceita (@Valid DadosAtualizacaoDevolucao dados, String codigoDevolucao) {
-		var aceitaDevolucao = devolucaoDao.carregarDevolucao(codigoDevolucao);
+		var aceitaDevolucao = repositorioDeDevolucao.carregarDevolucao(codigoDevolucao);
 		
 		aceitaDevolucao.setDataConclusaoTroca(LocalDate.now());
 		aceitaDevolucao.devoluvaoChegou(dados.esperandoDevolucaoOuRecebido());
@@ -41,7 +41,7 @@ public class ServiceAceitarDevolucao {
 		
 		geraCupomAposAprovarDevolucao(aceitaDevolucao);
 		devolucaoVoltaParaEstoque(dados, aceitaDevolucao);
-		devolucaoDao.salvar(aceitaDevolucao);
+		repositorioDeDevolucao.salvar(aceitaDevolucao);
 		
 		return new DadosDetalhamentoTotalDevolucao(aceitaDevolucao);
 	}
@@ -58,7 +58,7 @@ public class ServiceAceitarDevolucao {
 			estoque.setFornecedor("Devolução feita pelo cliente");
 			estoque.setEstadoDoProduto(dados.estadoProduto());
 			
-			estoqueDao.salvar(estoque);
+			repositorioDeEstoque.salvar(estoque);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ServiceAceitarDevolucao {
 		gerarCupom.setStatus(true);
 		gerarCupom.setCliente(clienteId);
 		
-		cupomDao.salvar(gerarCupom);
+		repositorioDeCupom.salvar(gerarCupom);
 		return new DadosDetalhamentoCupom(gerarCupom);
 	}
 }
