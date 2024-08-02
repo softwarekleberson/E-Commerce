@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Cupom</title>
     <link rel="stylesheet" href="cupomAdministrador/cupomAdministrador.css">
 </head>
-<body>
 
+<body>
     <div class="form-container">
-        <h2>Formulário de Cupom</h2>
+        <h1>Cupom promocional</h1>
         <form id="cupomForm">
             <div class="form-group">
                 <label for="idCliente">ID do Cliente</label>
-                <input type="number" id="idCliente" name="idCliente" required>
+                <input type="number" id="idCliente" name="idCliente" placeholder="Id do cliente" required>
             </div>
             <div class="form-group">
                 <label for="tipoCupom">Tipo de Cupom</label>
@@ -27,11 +28,11 @@
             </div>
             <div class="form-group">
                 <button type="submit">Enviar</button>
-                <a href="administrador.html">Voltar</a>
             </div>
         </form>
     </div>
 
     <script src="cupomAdministrador/index.js"></script>
 </body>
+
 </html>

@@ -37,6 +37,10 @@ h1 {
     text-align: center;
 }
 
+div {
+    width: 350px;
+}
+
 .form-group {
     margin-bottom: 20px;
 }

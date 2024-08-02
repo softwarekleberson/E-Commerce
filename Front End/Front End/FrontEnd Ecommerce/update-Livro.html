@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Livro</title>
+    <title>Update Livro</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,13 +16,17 @@
             margin: 0;
         }
 
+        h1 {
+            text-align: center;
+        }
+
         form {
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 800px;
-            margin-top: 100px;
+            margin-top: 50px;
         }
 
         label {
@@ -81,10 +85,11 @@
 
 <body>
     <form id="livro">
+        <h1>Update de Livro</h1>
         <div class="form-group">
             <div>
                 <label for="id">ID do livro:</label>
-                <input type="number" id="id" name="id" required>
+                <input type="number" id="id" name="id" placeholder="Id do livro" required>
             </div>
             <div>
                 <label for="data">Data:</label>
@@ -92,7 +97,7 @@
             </div>
             <div>
                 <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01">
+                <input type="number" id="preco" name="preco" min="0.01">
             </div>
         </div>
 
@@ -103,11 +108,11 @@
             </div>
             <div>
                 <label for="isbn">ISBN:</label>
-                <input type="text" id="isbn" name="isbn">
+                <input type="text" id="isbn" name="isbn" placeholder="Formato isbn xxx-x-xx-xxxxxx-x">
             </div>
             <div>
                 <label for="paginas">Páginas:</label>
-                <input type="number" id="paginas" name="paginas">
+                <input type="number" id="paginas" name="paginas" min="0.01">
             </div>
         </div>
 
@@ -121,22 +126,22 @@
             </div>
             <div>
                 <label for="altura">Altura (cm):</label>
-                <input type="number" id="altura" name="altura" step="0.1">
+                <input type="number" id="altura" name="altura" min="0.01">
             </div>
             <div>
                 <label for="largura">Largura (cm):</label>
-                <input type="number" id="largura" name="largura" step="0.1">
+                <input type="number" id="largura" name="largura" min="0.01">
             </div>
         </div>
 
         <div class="form-group">
             <div>
                 <label for="peso">Peso (kg):</label>
-                <input type="number" id="peso" name="peso" step="0.1">
+                <input type="number" id="peso" name="peso" min="0.01">
             </div>
             <div>
                 <label for="profundidade">Profundidade (cm):</label>
-                <input type="number" id="profundidade" name="profundidade" step="0.1">
+                <input type="number" id="profundidade" name="profundidade" min="0.01">
             </div>
             <div>
                 <label for="editora">Editora:</label>

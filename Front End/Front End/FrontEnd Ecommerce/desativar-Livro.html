@@ -16,12 +16,17 @@
             margin: 0;
         }
 
+        h1 {
+            text-align: center;
+        }
+
         form {
+            margin-top: -150px;
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
+            width: 350px;
         }
 
         label {
@@ -79,13 +84,13 @@
 
 <body>
     <form id="desativar-livro">
-        <h1>Cadastro de Status do Livro</h1>
+        <h1>Retirar livro da home</h1>
 
         <label for="idLivro">ID do Livro:</label>
-        <input type="number" id="idLivro" name="idLivro" required><br><br>
+        <input type="number" id="idLivro" name="idLivro" placeholder="Id do livro" required><br><br>
 
         <label for="justificativa">Justificativa:</label>
-        <textarea id="justificativa" name="justificativa" required></textarea><br><br>
+        <textarea id="justificativa" name="justificativa" placeholder="Qual a justificativa da retirada deste livro da home ?" required></textarea><br><br>
 
         <label for="categoria">Categoria:</label>
         <select id="categoria" name="categoria" required>
