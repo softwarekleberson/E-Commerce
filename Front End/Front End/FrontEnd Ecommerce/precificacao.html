@@ -53,10 +53,12 @@
     </style>
 </head>
 <body>
-    <form action="/submit" method="post">
+    <form id="precificacao">
         <label for="precificacao">Precificação:</label>
-        <input type="number" id="precificacao" name="precificacao" step="0.01" required>
+        <input type="number" id="precificacao" name="precificacao" min="1" required>
         <button type="submit">Enviar</button>
     </form>
+
+    <script src="precificacao/post-precificacao.js"></script>
 </body>
 </html>

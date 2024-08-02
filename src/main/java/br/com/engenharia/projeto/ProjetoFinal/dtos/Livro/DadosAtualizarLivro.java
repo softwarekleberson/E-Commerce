@@ -26,7 +26,6 @@ public record DadosAtualizarLivro(
 		BigDecimal precificacao,
 		String edicao,
 		
-		DadosAtualizacaoEstoque estoque,
 		List<DadosAtualizarImagem> imagem,
 		List<DadosAtulizacaoAutor> autor,
 		List<DadosAtualizarCategoria> categoria

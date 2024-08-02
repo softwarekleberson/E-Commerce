@@ -23,7 +23,6 @@ public class ServiceUpdateLivro {
 	private LivroRepository livroRepository;
 		
 	public DadosDetalhamentoLivro atualizarLivro(@Valid DadosAtualizarLivro dados) {		
-		
 		Optional<Livro> infoLivro = livroRepository.findById(dados.id());
 		if(infoLivro.isEmpty()) {
 			throw new ValidacaoExcepetion("Id do livro não existe");

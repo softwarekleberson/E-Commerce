@@ -130,6 +130,7 @@ public class LivroDao implements RepositorioDeLivro{
 			}
 			
 			if(dados.isbn() != null) {
+				System.out.println("ddddddddd " + dados.isbn());
 				livro.setIsbn(dados.isbn());
 			}
 			

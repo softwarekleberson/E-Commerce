@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,18 +36,18 @@
             margin-bottom: 15px;
         }
 
-        .form-group > div {
+        .form-group>div {
             flex: 1;
             margin-right: 10px;
         }
 
-        .form-group > div:last-child {
+        .form-group>div:last-child {
             margin-right: 0;
         }
 
         input[type="number"],
-        input[type="text"],
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 8px;
             border: 1px solid #cccccc;
@@ -75,8 +76,9 @@
         }
     </style>
 </head>
+
 <body>
-    <form action="/submit" method="post">
+    <form id="ativarForm">
         <div class="form-group">
             <div>
                 <label for="idLivro">ID do Livro:</label>
@@ -84,7 +86,11 @@
             </div>
             <div>
                 <label for="categoria">Categoria:</label>
-                <input type="text" id="categoria" name="categoria" required>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="NOSTALGICO">NOSTALGICO</option>
+                    <option value="PETICAO_PUBLICA">PETICAO PUBLICA</option>
+                </select>
             </div>
         </div>
 
@@ -94,4 +100,5 @@
         <button type="submit">Enviar</button>
     </form>
 </body>
+<script src="ativar-livro/put-ativar-livro.js"></script>
 </html>

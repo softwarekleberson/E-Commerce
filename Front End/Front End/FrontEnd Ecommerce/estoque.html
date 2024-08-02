@@ -32,7 +32,8 @@
 
         input[type="number"],
         input[type="text"],
-        input[type="date"] {
+        input[type="date"],
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -59,7 +60,7 @@
 </head>
 
 <body>
-    <form action="/submit" method="post">
+    <form id="estoqueForm">
         <label for="idLivro">ID do Livro:</label>
         <input type="number" id="idLivro" name="idLivro" required>
 
@@ -76,10 +77,17 @@
         <input type="text" id="fornecedor" name="fornecedor" required>
 
         <label for="estadoProduto">Estado do Produto:</label>
-        <input type="text" id="estadoProduto" name="estadoProduto" required>
+        <select id="estadoProduto" name="estadoProduto" required>
+            <option value="">Selecione o estado do produto</option>
+            <option value="NOVO">Novo</option>
+            <option value="SEME_NOVO">Seme Novo</option>
+            <option value="USADO">Usado</option>
+            <option value="DANIFICADO">Danificado</option>
+        </select>
 
         <button type="submit">Enviar</button>
     </form>
 </body>
+<script src="estoque/post.js"></script>
 
 </html>
