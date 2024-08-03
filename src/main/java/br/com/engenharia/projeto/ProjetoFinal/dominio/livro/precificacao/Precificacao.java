@@ -3,6 +3,8 @@ package br.com.engenharia.projeto.ProjetoFinal.dominio.livro.precificacao;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroPrecificacao;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;

@@ -16,17 +16,18 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroDimensao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroImagem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -70,13 +71,13 @@ public class Livro {
     @Embedded
     private Edicao edicao;
     
-    @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Estoque estoque;
     
-    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Imagens> imagens;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
         name = "livro_autor",
         joinColumns = { @JoinColumn(name = "livro_id") },
@@ -84,7 +85,7 @@ public class Livro {
     )
     private List<Autor> autores;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
         name = "livro_categoria",
         joinColumns = { @JoinColumn(name = "livro_id") },
@@ -92,8 +93,8 @@ public class Livro {
     )
     private List<Categoria> categorias;
     
-    @ManyToOne
-    @JoinColumn(name = "precificacao_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "precificacao_id", referencedColumnName = "id")
     private Precificacao precificacao;
 
     public Livro(DadosCadastroLivro dados) {
@@ -127,12 +128,11 @@ public class Livro {
     }
     
     public void setPreco(BigDecimal preco) {
-		if(preco.compareTo(BigDecimal.ZERO) <= 0 ) {
-			throw new ValidacaoExcepetion("Preço não deve "
-					+ "ser menor ou igual a 0");
-		}
-    	this.preco = preco;
-	}
+        if(preco.compareTo(BigDecimal.ZERO) <= 0 ) {
+            throw new ValidacaoExcepetion("Preço não deve ser menor ou igual a 0");
+        }
+        this.preco = preco;
+    }
 
     public void setTitulo(String titulo) {
         if (titulo == null || titulo.trim().isEmpty() || titulo.length() > QUANTIDADE_MAXIMA_CARACTERES_TITULO) {
@@ -176,8 +176,8 @@ public class Livro {
     }
 
     public void setPrecificacao(Long idPrecificacao) {
-		this.precificacao = new Precificacao(idPrecificacao);
-	}
+        this.precificacao = new Precificacao(idPrecificacao);
+    }
     
     public void setEdicao(String edicao) {
         this.edicao = new Edicao(edicao);
@@ -186,16 +186,16 @@ public class Livro {
     public void setImagem(List<DadosCadastroImagem> imagens) {
         this.imagens = imagens.stream()
             .map(dados -> {
-             Imagens imagem = new Imagens(dados);
-             imagem.setLivro(this);
-             return imagem;
-         })
+                Imagens imagem = new Imagens(dados);
+                imagem.setLivro(this);
+                return imagem;
+            })
             .collect(Collectors.toList());
     }
     
-   public void setEstoque(Estoque estoque) {
-	   this.estoque = estoque;
-   }
+    public void setEstoque(Estoque estoque) {
+        this.estoque = estoque;
+    }
 
     public void setAutores(List<DadosCadastroAutor> autores) {
         this.autores = autores.stream()
@@ -204,17 +204,17 @@ public class Livro {
     }
 
     public void setCategorias(List<DadosCadastroCategoria> categorias) {
-    	this.categorias = categorias.stream()
+        this.categorias = categorias.stream()
                 .map(Categoria::new)
                 .collect(Collectors.toList());
     }
 
-	@Override
-	public String toString() {
-		return "Livro [id=" + id + ", ativo=" + ativo + ", preco=" + preco + ", data=" + data + ", titulo=" + titulo
-				+ ", isbn=" + isbn + ", paginas=" + paginas + ", sinopse=" + sinopse + ", codigoBarra=" + codigoBarra
-				+ ", dimensoes=" + dimensoes + ", editora=" + editora + ", edicao=" + edicao + ", estoque=" + estoque
-				+ ", imagens=" + imagens + ", autores=" + autores + ", categorias=" + categorias + ", precificacao="
-				+ precificacao + "]";
-	}
+    @Override
+    public String toString() {
+        return "Livro [id=" + id + ", ativo=" + ativo + ", preco=" + preco + ", data=" + data + ", titulo=" + titulo
+                + ", isbn=" + isbn + ", paginas=" + paginas + ", sinopse=" + sinopse + ", codigoBarra=" + codigoBarra
+                + ", dimensoes=" + dimensoes + ", editora=" + editora + ", edicao=" + edicao + ", estoque=" + estoque
+                + ", imagens=" + imagens + ", autores=" + autores + ", categorias=" + categorias + ", precificacao="
+                + precificacao + "]";
+    }
 }

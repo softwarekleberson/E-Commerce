@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroImagem;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;

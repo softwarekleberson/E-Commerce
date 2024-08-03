@@ -19,5 +19,5 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
 	BigDecimal findPrecoById(Long idLivro);
 
 	Optional<Livro> findByisbn(String isbn);
-
+	
 }

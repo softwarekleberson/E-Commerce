@@ -29,7 +29,8 @@ public record DadosDetalhamentoLivroCompleto(
 	    String imagemSecundaria,
 	    String imagemTerceara,
 	    String categorias,
-	    String autores
+	    String autores,
+	    int quantidadeDisponivel
 		
 		) {
 
@@ -45,6 +46,6 @@ public record DadosDetalhamentoLivroCompleto(
                 livro.getImagens().stream().skip(1).findFirst().map(Imagens::getUrl).orElse(null),
                 livro.getImagens().stream().skip(2).findFirst().map(Imagens::getUrl).orElse(null),
                 livro.getCategorias().stream().findFirst().map(Categoria::getCategoria).orElse(null),
-                livro.getAutores().stream().findFirst().map(Autor::getAutor).orElse(null));
+                livro.getAutores().stream().findFirst().map(Autor::getAutor).orElse(null), livro.getEstoque().getQuantidade());
 	}
 }

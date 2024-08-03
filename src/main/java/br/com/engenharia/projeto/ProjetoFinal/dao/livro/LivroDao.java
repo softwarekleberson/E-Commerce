@@ -130,7 +130,6 @@ public class LivroDao implements RepositorioDeLivro{
 			}
 			
 			if(dados.isbn() != null) {
-				System.out.println("ddddddddd " + dados.isbn());
 				livro.setIsbn(dados.isbn());
 			}
 			
@@ -194,9 +193,7 @@ public class LivroDao implements RepositorioDeLivro{
 		return new DadosDetalhamentoLivroCompleto(livro);
 	}
 
-	public Livro recuperarLivroPeloId(Long id) {
-		return livroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id do livro não existe"));
-	}
+	
 
 	public Optional<Livro> isbnCadastradoAnteriormente(String isbn) {
 		Optional<Livro> livro = livroRepository.findByisbn(isbn);

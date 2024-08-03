@@ -11,6 +11,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.Categori
 import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.RepositorioDeInativacao;
 import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service
@@ -34,14 +35,13 @@ public class ServiceGetLivro {
         return livros;
     }
 
-	public Livro listarLivroExpecifico(Long id) {
-		var livro = repositorioDeLivro.recuperarLivroPeloId(id);
-		if(livro.getEstoque().getQuantidade() <= QUANTIDADE_MINIMA_LIVRO) {
+	public DadosDetalhamentoLivroCompleto listarLivroExpecifico(Long id) {
+		DadosDetalhamentoLivroCompleto livro = repositorioDeLivro.listarLivroExpecifico(id);
+		if(livro.quantidadeDisponivel() <= QUANTIDADE_MINIMA_LIVRO) {
 			StatusLivro statusLivro = new StatusLivro();
 			statusLivro.setId(null);
 			statusLivro.setCategoria(Categoria.FORA_MERCADO);
 			statusLivro.setJustificativa("Sem estoque");
-			statusLivro.setLivro(livro);
 			repositorioDeInativacao.salvar(statusLivro);
 		}
 		return livro;

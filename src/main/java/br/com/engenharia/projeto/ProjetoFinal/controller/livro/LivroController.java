@@ -19,6 +19,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroStatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceAtivarInativarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceGetLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceInsertLivro;
@@ -57,7 +58,8 @@ public class LivroController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity detalharLivro(@PathVariable Long id) {
-		var livro = listLivros.listarLivroExpecifico(id);
+		DadosDetalhamentoLivroCompleto livro = listLivros.listarLivroExpecifico(id);
+		System.out.println(livro);
 		return ResponseEntity.ok(livro);
 	}
 	
