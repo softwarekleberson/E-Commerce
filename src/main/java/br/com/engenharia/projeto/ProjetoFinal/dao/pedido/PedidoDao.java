@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.PedidoNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.PedidoNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 
 @Service

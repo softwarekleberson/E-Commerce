@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.RepositorioDeDevolucao;
 import jakarta.validation.Valid;
 
 @Service

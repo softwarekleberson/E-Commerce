@@ -7,12 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.CobrancaNaoEncontradaExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.CobrancaNaoEncontradaExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 

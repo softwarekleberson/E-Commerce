@@ -3,9 +3,9 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.pedido;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.Imagens;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.StatusEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.imagem.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
 
 public record DadosDetalhamentoPedido(
 		

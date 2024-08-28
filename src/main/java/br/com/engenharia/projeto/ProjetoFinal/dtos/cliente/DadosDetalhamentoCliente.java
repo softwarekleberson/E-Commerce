@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 
 public record DadosDetalhamentoCliente(
 		Long id, String nome, LocalDate nascimento, String email,

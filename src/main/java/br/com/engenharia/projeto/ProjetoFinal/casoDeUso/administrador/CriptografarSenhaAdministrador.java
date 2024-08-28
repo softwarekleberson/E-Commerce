@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.administrador;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.Administrador;
 
 @Service
 public class CriptografarSenhaAdministrador implements CriptografiaSenhaAdministrador{

@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 
 public record DadosDetalhamentoSenha(
 		

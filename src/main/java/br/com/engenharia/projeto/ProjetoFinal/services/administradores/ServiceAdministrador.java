@@ -1,25 +1,19 @@
 package br.com.engenharia.projeto.ProjetoFinal.services.administradores;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.administrador.IStrategyAdministrador;
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.administrador.CriptografiaSenhaAdministrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.RepositorioDeAdministrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosCadastroAdministrador;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosDetalhamentoAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.RepositorioDeAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
 import jakarta.validation.Valid;
 
 @Service
 public class ServiceAdministrador {
 
-	@Autowired
-	private List<IStrategyAdministrador> validadores;
-	
 	@Autowired
 	private CriptografiaSenhaAdministrador criptografia;
 	
@@ -35,7 +29,6 @@ public class ServiceAdministrador {
 		}
 		
 		Administrador administrador = new Administrador(dados);
-		validadores.forEach(v -> v.processar(administrador));
 		criptografia.processar(administrador);
 		
 		repositorioDeAdministrador.salvar(administrador);

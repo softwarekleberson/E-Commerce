@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeCobranca;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosAtualizacaoCobrancas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosDetalhamentoCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosAtualizacaoEntregas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosDetalhamentoEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeEntrega;
 import jakarta.validation.Valid;
 
 @RestController

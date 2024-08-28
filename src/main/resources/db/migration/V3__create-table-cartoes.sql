@@ -5,7 +5,7 @@ CREATE TABLE cartoes (
   codigo VARCHAR(4) NOT NULL,
   numero_cartao VARCHAR(19) NOT NULL,
   data_expiracao DATE NOT NULL,
-  bandeira VARCHAR(50),
+  bandeira VARCHAR(50) NOT NULL,
   clientes_id BIGINT NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT clientes_id_fk FOREIGN KEY (clientes_id) REFERENCES clientes (id),

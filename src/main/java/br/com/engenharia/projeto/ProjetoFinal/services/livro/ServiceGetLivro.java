@@ -5,13 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.RepositorioDeInativacao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.RepositorioDeInativacao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

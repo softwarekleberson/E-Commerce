@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.livro.IstrategyLivro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.autor.Autor;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.categoria.Categoria;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.autor.Autor;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.categoria.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.imagem.Imagens;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
 import jakarta.validation.Valid;
 
 @Service
@@ -29,7 +29,11 @@ public class ServiceInsertLivro {
 
     	validacoes.forEach(v -> v.validar(dados));
         Livro livro = new Livro(dados);
+        System.out.println(livro.getPrecificacao() + "service livro");
+        
+        System.out.println("oi");
         repositorioDeLivro.salvar(livro);
+        System.out.println("foi");
 
         List<Categoria> categorias = criarCategoria(dados);
         List<Autor> autores = criarAutor(dados);

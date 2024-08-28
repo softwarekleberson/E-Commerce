@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceCliente;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceClienteUpdate;
 import jakarta.validation.Valid;

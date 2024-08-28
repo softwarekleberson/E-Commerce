@@ -1,6 +1,6 @@
 CREATE TABLE estoques (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    livro_id BIGINT,
+    livro_id BIGINT NOT NULL,
     quantidade INT NOT NULL,
     valor_Custo DECIMAL(10, 2) NOT NULL,
     data_Entrada DATE NOT NULL,

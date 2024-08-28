@@ -1,7 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
 
 public record DadosDetalhamentoAdministrador(
 		

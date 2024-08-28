@@ -8,13 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.Livro;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.LivroNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.RepositorioDeLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarDimensao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.LivroNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.AutorRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.CategoriaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.ImagensProdutoRepository;

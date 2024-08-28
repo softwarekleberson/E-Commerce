@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.Livro;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.livro.statusLivro.Categoria;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.Categoria;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroStatusLivro(

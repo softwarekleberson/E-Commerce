@@ -7,12 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.EntregaNaoEncontradaExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosAtualizacaoEntregas;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosDetalhamentoEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.EntregaNaoEncontradaExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 

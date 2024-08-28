@@ -5,7 +5,7 @@ CREATE TABLE clientes (
   nascimento DATE NOT NULL,
   senha VARCHAR(255) NOT NULL,
   genero VARCHAR(20) NOT NULL,
-  ddd VARCHAR(10) NOT NULL,
+  ddd VARCHAR(3) NOT NULL,
   telefone VARCHAR(9) NOT NULL,
   tipo_Telefone VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,

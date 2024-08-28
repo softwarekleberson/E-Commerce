@@ -2,8 +2,8 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
 
 public record DetalharCliente(
 		

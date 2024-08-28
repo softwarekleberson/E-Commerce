@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dao.pedido.PedidoDao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.DevolucaoFoiPedidaOUNAO;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

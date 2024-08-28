@@ -5,10 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.Cupom;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.CupomNaoEcontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.CupomNaoEcontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cupom.CupomRepositroy;
 
 @Service

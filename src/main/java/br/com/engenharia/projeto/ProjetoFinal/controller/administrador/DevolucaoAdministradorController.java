@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.RepositorioDeDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceAceitarDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceRecusarDevolucao;
 import jakarta.validation.Valid;

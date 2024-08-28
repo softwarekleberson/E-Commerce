@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceGeraCupomPromocioal;
 import jakarta.validation.Valid;
 

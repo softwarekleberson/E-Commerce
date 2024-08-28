@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.AdministradorNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.RepositorioDeAdministrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.Email;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.AdministradorNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.RepositorioDeAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.administrador.AdministradorRepository;
 
 @Service

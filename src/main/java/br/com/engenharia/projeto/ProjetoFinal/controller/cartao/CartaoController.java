@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceCartao;
 import jakarta.validation.Valid;
 

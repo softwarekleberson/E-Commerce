@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.carrinho.RepositorioDeCarrinho;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.carrinho.DetalhamentoCarrinho;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.carrinho.RepositorioDeCarrinho;
 import br.com.engenharia.projeto.ProjetoFinal.services.carrinho.ServiceCarrinho;
 
 @RestController

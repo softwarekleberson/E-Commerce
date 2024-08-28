@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.Devolucao;
 
 public interface DevolucaoRepository extends JpaRepository<Devolucao, Long>{
 

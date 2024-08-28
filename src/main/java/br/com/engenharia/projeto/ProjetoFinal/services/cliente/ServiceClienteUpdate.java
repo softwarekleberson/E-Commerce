@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.CriptografaSenhaCliente;
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.IStrategySenhaAtualizadaCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.log.Log;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import jakarta.validation.Valid;
 
@@ -32,7 +32,7 @@ public class ServiceClienteUpdate {
     
     @Autowired
     private List<IStrategySenhaAtualizadaCliente> validadores;
-    
+   
     @Autowired
     private List<CriptografaSenhaCliente> validaoresCriptografiaSenha;
 
@@ -45,8 +45,7 @@ public class ServiceClienteUpdate {
 		repositorioDeCliente.alterarCliente(cliente.get().getId(), dados); 
 		Log log = new Log(dados.idCliente());
 		repositorioDeLog.save(log);
-		
-		return null;
+		return null;		
 	}
 	
 	public DadosDetalhamentoCliente atualizarSenha(@Valid DadosAtualizacaoSenha dados) {
@@ -61,7 +60,6 @@ public class ServiceClienteUpdate {
 		
 		Log log = new Log(dados.idCliente());
 		repositorioDeLog.save(log);
-		
-		return null;
+		return null;		
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 

@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.estoque;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.Estoque;
 
 public record DadosDetalhamentoEstoque(
 		

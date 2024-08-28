@@ -7,11 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.Cartao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.CartaoNaoEncontradoExcecao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosAtualizacaoCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosDetalhamentoCartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.CartaoNaoEncontradoExcecao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import jakarta.transaction.Transactional;
 

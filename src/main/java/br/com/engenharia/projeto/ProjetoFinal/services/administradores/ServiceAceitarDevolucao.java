@@ -6,18 +6,18 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.ProdutoVoltaParaEstoque;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.Cupom;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.TipoCupom;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.RepositorioDeDevolucao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.Estoque;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.estoque.RepositorioDeEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosAtualizacaoDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoTotalDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.ProdutoVoltaParaEstoque;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.RepositorioDeCupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.TipoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.RepositorioDeDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.RepositorioDeEstoque;
 import jakarta.validation.Valid;
 
 @Service

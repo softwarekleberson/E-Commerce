@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
 import jakarta.transaction.Transactional;
 
 public interface CartaoRepository extends JpaRepository<Cartao, Long>{

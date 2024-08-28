@@ -3,10 +3,10 @@ package br.com.engenharia.projeto.ProjetoFinal.dtos.cliente;
 import java.time.LocalDate;
 import java.util.List;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Genero;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.contato.TipoTelefone;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Genero;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.TipoTelefone;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 

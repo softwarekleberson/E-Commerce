@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.Cupom;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.RepositorioDeCupom;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import jakarta.validation.Valid;
 

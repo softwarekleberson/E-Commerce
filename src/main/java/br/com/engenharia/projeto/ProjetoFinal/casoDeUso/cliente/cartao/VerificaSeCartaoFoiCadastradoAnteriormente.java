@@ -5,9 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.Cartao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.RepositorioDeCartao;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
 
 @Service

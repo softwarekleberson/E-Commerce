@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
 import jakarta.validation.Valid;
 

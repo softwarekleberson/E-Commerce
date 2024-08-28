@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha.CriptografaSenhaCliente;
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovoCliente.IStrategyCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Cobranca;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeCobranca;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.endereco.RepositorioDeEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.log.Log;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DetalharCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeCobranca;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.RepositorioDeEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -49,6 +49,7 @@ public class ServiceCliente {
     		
 			Cliente cliente = new Cliente(dados);
 			validadores.forEach(v -> v.processar(cliente));
+			
 			criptografiaSenha.processar(cliente);
 			repositorioDeCliente.salvar(cliente);
 

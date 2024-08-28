@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.casoDeUso.devolucao.IstrategyDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dao.devolucao.DevolucaoDao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.Administrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.administrador.RepositorioDeAdministrador;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.cliente.RepositorioDeCliente;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.Devolucao;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.devolucao.EsperandoDevolucaoOuRecebido;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.DevolucaoFoiPedidaOUNAO;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosDetalhamentoDevolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.Administrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.administrador.RepositorioDeAdministrador;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.Devolucao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import jakarta.validation.Valid;
 
 @Service

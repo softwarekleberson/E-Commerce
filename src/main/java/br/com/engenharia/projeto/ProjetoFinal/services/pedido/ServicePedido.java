@@ -6,10 +6,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.dominio.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.CarrinhoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
