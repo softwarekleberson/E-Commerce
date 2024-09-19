@@ -193,10 +193,12 @@ public class LivroDao implements RepositorioDeLivro{
 		return new DadosDetalhamentoLivroCompleto(livro);
 	}
 
-	
-
 	public Optional<Livro> isbnCadastradoAnteriormente(String isbn) {
 		Optional<Livro> livro = livroRepository.findByisbn(isbn);
 		return livro;
+	}
+	
+	public Optional<Livro> buscarLivroPeloId(Long livroId){
+		return livroRepository.findById(livroId);
 	}
 }

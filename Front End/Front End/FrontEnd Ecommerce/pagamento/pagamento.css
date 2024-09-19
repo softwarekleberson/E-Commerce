@@ -117,10 +117,16 @@ section> h4 {
     display: flex;
 }
 
-section>p {
+section > p {
     margin-top: 5px;
     margin-bottom: 10px;
     margin-left: 300px;
+}
+
+hr {
+    width: 89%;
+    margin-top: 50px;
+    margin-left: 100px;
 }
 
 .link-cartao {

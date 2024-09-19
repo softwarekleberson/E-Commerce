@@ -18,4 +18,5 @@ public interface RepositorioDeLivro {
 	void exclusao(Livro exclusaoLogica);
 	DadosDetalhamentoLivro alterar(DadosAtualizarLivro dados);
 	public Optional<Livro> isbnCadastradoAnteriormente(String isbn);
+	Optional<Livro> buscarLivroPeloId(Long livroId);
 }

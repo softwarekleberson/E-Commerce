@@ -22,8 +22,8 @@ public class EstoqueDao implements RepositorioDeEstoque{
 		repository.save(estoque);
 	}
 
-	public int verificaDisponibilidadeLivro(Long idLivro) {
-		var quantidadeDisponivel = repository.findTotalQuantidadeByLivroId(idLivro);
-		return quantidadeDisponivel;
+	public Estoque verificaDisponibilidadeLivro(Long idLivro) {
+		var livro = repository.findByLivroId(idLivro);
+		return livro;
 	}
 }

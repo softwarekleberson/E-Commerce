@@ -63,7 +63,7 @@ public class ServiceAceitarDevolucao {
 	}
 
 	private DadosDetalhamentoCupom geraCupomAposAprovarDevolucao(Devolucao aceitaDevolucao) {
-		Long clienteId = aceitaDevolucao.getPedido().getCarrinho().getCliente().getId();
+		Long clienteId = aceitaDevolucao.getPedido().getCliente().getId();
 		Cupom gerarCupom = new Cupom();
 		
 		gerarCupom.setId(null);

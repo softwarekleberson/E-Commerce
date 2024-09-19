@@ -3,8 +3,6 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.estoque;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import br.com.engenharia.projeto.ProjetoFinal.dtos.estoque.DadosCadastroEstoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;

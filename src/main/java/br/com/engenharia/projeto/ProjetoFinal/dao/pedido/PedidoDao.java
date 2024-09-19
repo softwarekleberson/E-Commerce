@@ -1,7 +1,5 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.pedido;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,8 +27,8 @@ public class PedidoDao implements RepositorioDePedido{
 	}
 
 	public boolean verificaCodigoPedido(String codigoPedido) {
-		Optional<Pedido> pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
-		if(pedido.isEmpty()) {
+		Pedido pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
+		if(pedido == null) {
 			throw new PedidoNaoEncontradoExcecao("Codigo do produto não encontrado");
 		}
 		return true;
@@ -38,10 +36,10 @@ public class PedidoDao implements RepositorioDePedido{
 
 	public Pedido devolvePedidoPeloCodigo(String codigoPedido) {
 		var pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
-		if(pedido.isEmpty()) {
+		if(pedido == null) {
 			throw new PedidoNaoEncontradoExcecao("Codigo pedido incorreto");
 		}
-		return pedido.get();
+		return pedido;
 	}
 
 	public Page<DadosDetalhamentoPedido> listarPedidosCliente(Long clienteId, Pageable pageable) {

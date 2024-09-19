@@ -1,22 +1,23 @@
 package br.com.engenharia.projeto.ProjetoFinal.controller.pedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.engenharia.projeto.ProjetoFinal.dao.item.RepositorioDeItem;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosAtualizacaoItem;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
-import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosDetalhamentoPedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
+import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedidoUpdate;
 import jakarta.validation.Valid;
 
 @RestController
@@ -25,21 +26,30 @@ import jakarta.validation.Valid;
 public class PedidoController {
 
 	@Autowired
-	private ServicePedido service;
+	private ServicePedido insert;
 	
 	@Autowired
-	private RepositorioDePedido repositorioDePedido;
+	private ServicePedidoUpdate update;
 	
-	@PostMapping("{clienteId}/{carrinhoId}")
-	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long carrinhoId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
-		var dto = service.criar(dados, clienteId, carrinhoId);
+	@Autowired
+	private RepositorioDeItem repositorioDeItem;
+	
+	@PostMapping("{clienteId}/{livroId}")
+	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long livroId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
+		var dto = insert.criar(dados, clienteId, livroId);
 	    var uri = uriBuilder.path("/pedido/{id}").buildAndExpand(dto.id()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	@GetMapping("{clienteId}")
-	public ResponseEntity<Page<DadosDetalhamentoPedido>> listarPorCliente(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoPedido> pedidos = repositorioDePedido.listarPedidosCliente(clienteId, pageable);
-		return ResponseEntity.ok(pedidos);
-    }
+	@PutMapping("itens/produto/{id}")
+	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoItem dados) {
+		DadosDetalhamentoItem detalhamentoItem = update.atualizar(dados, id);
+        return ResponseEntity.ok(detalhamentoItem);
+	}
+	
+	@DeleteMapping("itens/produto/{id}")
+	public ResponseEntity<Void> deletar (@PathVariable Long id){
+		repositorioDeItem.deletar(id);
+		return ResponseEntity.noContent().build();
+	}
 }

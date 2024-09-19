@@ -56,11 +56,6 @@ function sendDataToBackendCartao(data) {
     });
 }
 
-
-/***
- * Insert Entrega requisição Post
- */
-
 document.getElementById('myFormEndereco').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -189,8 +184,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         const div = document.createElement('section');
                         div.classList.add('card');
                         div.innerHTML = `
-                            <h4>2 Cartão principal</h4>
-                            <p id="nomeImpresso">${cartaoPrincipal.nomeImpresso}</hp>
+                            <h4>2 Método de pagamento</h4>
+                            <p id="bandeira">Pagar com ${cartaoPrincipal.bandeira} </p>
+                            <p id="nomeImpresso"> ${cartaoPrincipal.nomeImpresso}</hp>
                             <p id="codigo ">Codigo : ${cartaoPrincipal.codigo}</p>
                             <a class="link-cartao adicionar pagamento" href="#" onclick="adicionarCartao()">Adicionar</a>
                         `;

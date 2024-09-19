@@ -1,4 +1,4 @@
-package br.com.engenharia.projeto.ProjetoFinal.entidades.carrinho;
+package br.com.engenharia.projeto.ProjetoFinal.entidades.item;
 
 public class CarrinhoNaoEncontradoExcecao extends RuntimeException{
 	

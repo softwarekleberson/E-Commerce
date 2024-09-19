@@ -11,7 +11,6 @@ public record DadosDetalhamentoTotalDevolucao(
 		
 		Long idDevolucao,
 		String codigoDevolucao,
-		String urlProduto,
 		String codigoPedido,
 		LocalDate dataPedidoTroca,
 		LocalDate dataConclusaoTroca,
@@ -23,10 +22,6 @@ public record DadosDetalhamentoTotalDevolucao(
 	
 	public DadosDetalhamentoTotalDevolucao(Devolucao dados) {
 		this(dados.getId(), dados.getCodigoDevolucao(),
-				
-			 dados.getPedido().getLivro().getImagens()
-			 .stream().findFirst().map(Imagens::getUrl).orElse(null),
-			 
 			 dados.getCodigoPedido(), dados.getDataPedidoTroca(),
 			 dados.getDataConclusaoTroca(), dados.getAdministrador().getEmail().getEmail(),
 			 dados.getEsperandoDevolucaoOuRecebido(),

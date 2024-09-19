@@ -8,7 +8,6 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranc
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.carrinho.Carrinho;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Telefone;
@@ -20,12 +19,10 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.Valid;
@@ -79,9 +76,6 @@ public class Cliente {
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Cupom> cupons;
-
-	@OneToOne(mappedBy = "cliente", fetch = FetchType.EAGER)
-	private Carrinho carrinho;
 
 	public Cliente(@Valid DadosCadastroCliente dados) {
 
@@ -189,10 +183,6 @@ public class Cliente {
 
 	public void setCupons(List<Cupom> cupons) {
 		this.cupons = cupons;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
 	}
 
 	public void setTelefone(Telefone telefone) {
