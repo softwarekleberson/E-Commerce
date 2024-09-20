@@ -1,5 +1,8 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.pedido;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +29,7 @@ public class PedidoDao implements RepositorioDePedido{
 		pedidoRepository.save(pedido);
 	}
 
+	@Override
 	public boolean verificaCodigoPedido(String codigoPedido) {
 		Pedido pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
 		if(pedido == null) {
@@ -34,6 +38,7 @@ public class PedidoDao implements RepositorioDePedido{
 		return true;
 	}
 
+	@Override
 	public Pedido devolvePedidoPeloCodigo(String codigoPedido) {
 		var pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
 		if(pedido == null) {
@@ -42,11 +47,21 @@ public class PedidoDao implements RepositorioDePedido{
 		return pedido;
 	}
 
+	@Override
 	public Page<DadosDetalhamentoPedido> listarPedidosCliente(Long clienteId, Pageable pageable) {
 		 Page<Pedido> pedidosPage = pedidoRepository.findByCliente_Id(clienteId, pageable);	        
 	     if(pedidosPage.isEmpty()) {
 	    	 throw new PedidoNaoEncontradoExcecao("Id incorreto");
 	     }
 		 return pedidosPage.map(DadosDetalhamentoPedido::new);
+	}
+
+	@Override
+	public List<Pedido> encontrarPedidosNaoPagosAposDataLimite(LocalDate dataLimite) {
+		return pedidoRepository.findByPagoFalseAndPedidoRealizadoBefore(dataLimite);
+	}
+	
+	public void excluir(Pedido pedido) {
+		pedidoRepository.delete(pedido);
 	}
 }

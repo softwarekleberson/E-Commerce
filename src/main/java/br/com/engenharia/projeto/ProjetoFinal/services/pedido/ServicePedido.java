@@ -22,7 +22,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioD
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
 import jakarta.validation.Valid;
 
 @Service
@@ -56,7 +56,7 @@ public class ServicePedido {
 
 	private Pedido criarPedidoERetornarCodigoPedido(Cliente cliente) {
 		var codigoPedido = UUID.randomUUID().toString();
-		Pedido pedido = new Pedido(null, LocalDate.now(), codigoPedido, cliente, StatusEntrega.AGUARDANDO_PAGAMENTO, DevolucaoFoiPedidaOUNAO.DEVOLUCAO_NAO_PEDIDA);
+		Pedido pedido = new Pedido(null, LocalDate.now(), codigoPedido, cliente, StatusPedido.AGUARDANDO_PAGAMENTO, DevolucaoFoiPedidaOUNAO.DEVOLUCAO_NAO_PEDIDA);
 		repositorioDePedido.salvar(pedido);
 		
 		return pedido;

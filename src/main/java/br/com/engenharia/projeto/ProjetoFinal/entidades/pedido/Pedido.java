@@ -39,6 +39,8 @@ public class Pedido {
 
     private LocalDate pedidoRealizado;
     
+    private boolean pago;
+    
     @Transient
     private BigDecimal valorTotal;
 
@@ -55,15 +57,16 @@ public class Pedido {
     private Cliente cliente;
 
     @Enumerated(EnumType.STRING)
-    private StatusEntrega  statusEntrega;
+    private StatusPedido  statusEntrega;
 
     @Enumerated(EnumType.STRING)
     private DevolucaoFoiPedidaOUNAO trocaDevolucao;
     
-    public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusEntrega statusEntrega,
+    public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusPedido statusEntrega,
 			DevolucaoFoiPedidaOUNAO trocaDevolucao) {
 		
     	this.id = id;
+    	this.pago = false;
 		this.pedidoRealizado = pedidoRealizado;
 		this.codigoPedido = codigoPedido;
 		this.cliente = cliente;
@@ -94,6 +97,14 @@ public class Pedido {
 		return valorTotal;
     }
     
+    public void notificarPagamantoPedido() {
+    	this.pago = true;
+    }
+    
+    public void modificarStatusEntrega(StatusPedido status) {
+    	this.statusEntrega = status;
+    }
+    
     public void devolucaoPedida(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
     	this.trocaDevolucao = trocaDevolucao;
     }
@@ -122,7 +133,7 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public void setStatusEntrega(StatusEntrega statusEntrega) {
+	public void setStatusEntrega(StatusPedido statusEntrega) {
 		this.statusEntrega = statusEntrega;
 	}
 
