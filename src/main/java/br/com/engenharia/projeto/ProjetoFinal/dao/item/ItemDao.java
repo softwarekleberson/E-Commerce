@@ -1,9 +1,13 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.item;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosAtualizacaoItem;
@@ -56,5 +60,15 @@ public class ItemDao implements RepositorioDeItem{
 			throw new PedidoNaoEncontradoExcecao("Item não encontrado");
 		}
 		repository.deleteById(id);
+	}
+
+	@Override
+	public Page<DadosDetalhamentoItem> listarItensDoCliente(Long clienteId, Pageable pageable) {
+	    List<DadosDetalhamentoItem> itens = repository.buscarItensDetalhadosPorClienteId(clienteId);
+	    
+	    int start = (int) pageable.getOffset();
+	    int end = Math.min((start + pageable.getPageSize()), itens.size());
+
+	    return new PageImpl<>(itens.subList(start, end), pageable, itens.size());
 	}
 }

@@ -31,9 +31,7 @@ public class ServiceInsertLivro {
         Livro livro = new Livro(dados);
         System.out.println(livro.getPrecificacao() + "service livro");
         
-        System.out.println("oi");
         repositorioDeLivro.salvar(livro);
-        System.out.println("foi");
 
         List<Categoria> categorias = criarCategoria(dados);
         List<Autor> autores = criarAutor(dados);

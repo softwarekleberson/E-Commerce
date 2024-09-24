@@ -18,8 +18,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Getter
 @Setter
 @Entity(name = "Categoria")

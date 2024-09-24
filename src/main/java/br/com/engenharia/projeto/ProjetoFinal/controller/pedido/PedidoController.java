@@ -1,9 +1,12 @@
 package br.com.engenharia.projeto.ProjetoFinal.controller.pedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,6 +43,12 @@ public class PedidoController {
 	    var uri = uriBuilder.path("/pedido/{id}").buildAndExpand(dto.id()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
+	
+	@GetMapping("{clienteId}")
+	public ResponseEntity<Page<DadosDetalhamentoItem>> listarItensPorCliente(@PathVariable Long clienteId, Pageable pageable){
+		Page<DadosDetalhamentoItem> itens = repositorioDeItem.listarItensDoCliente(clienteId, pageable);
+		return ResponseEntity.ok(itens);
+    }
 	
 	@PutMapping("itens/produto/{id}")
 	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoItem dados) {

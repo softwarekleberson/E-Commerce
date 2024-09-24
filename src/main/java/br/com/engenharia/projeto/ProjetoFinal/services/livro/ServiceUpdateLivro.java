@@ -28,11 +28,11 @@ public class ServiceUpdateLivro {
 			throw new ValidacaoExcepetion("Id do livro não existe");
 		}
 		
-		if(infoLivro.get().getIsbn().equals(dados.isbn())) {
+		else if(infoLivro.get().getIsbn().equals(dados.isbn())) {
 			throw new ValidacaoExcepetion("Isbn registrado anteriormente");
 		}
 		
-		if(infoLivro.get().getCodigoBarra().equals(dados.isbn())) {
+		else if(infoLivro.get().getCodigoBarra().equals(dados.isbn())) {
 			throw new ValidacaoExcepetion("Codigo de barra registrado anteriormente");
 		}
 		

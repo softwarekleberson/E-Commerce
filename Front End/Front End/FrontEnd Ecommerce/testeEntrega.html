@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=1.0">
+    <script src="https://kit.fontawesome.com/76a998f4ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="pagamento/pagamento.css">
+    <title>Checkout</title>
+    
+    <style>
+       
+       .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="home.html">Hatchards</a>
+        <nav>
+            <a href="home.html#romance">Romance</a>
+            <a href="home.html#classico">Clássico</a>
+            <a href="home.html#ficcao">Ficção</a>
+            <a href="home.html#distopia">Distopia</a>
+            <a href="home.html#autoajuda">Autoajuda</a>
+            <a href="cupom.html">Cupons</a>
+            <a href="contas-listas.html">Contas e Listas</a>
+            <a href="home-adm.html">Adm</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="cart-and-avatar">
+            <a href="carrinho.html"><i class="fas fa-cart-shopping"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div id="entrega">
+                 <!--Aqui entra entrega principal-->>
+            </div>
+         </section>
+
+        <section>
+            <button id="add-delivery-btn">Adicionar nova entrega</button>
+            <form id="delivery-form" class="hidden">
+                <div>
+                    <label for="principal">Principal:</label>
+                    <input type="checkbox" id="principal">
+                </div>
+
+                <div>
+                    <label for="receptorEntrega">Receptor da Entrega:</label>
+                    <input type="text" id="receptorEntrega">
+                </div>
+
+                <div>
+                    <label for="tipoResidenciaEntrega">Tipo de Residência:</label>
+                    <input type="text" id="tipoResidenciaEntrega">
+                </div>
+
+                <div>
+                    <label for="tipoLogradouroEntrega">Tipo de Logradouro:</label>
+                    <input type="text" id="tipoLogradouroEntrega">
+                </div>
+
+                <div>
+                    <label for="logradouroEntrega">Logradouro:</label>
+                    <input type="text" id="logradouroEntrega">
+                </div>
+
+                <div>
+                    <label for="numeroEntrega">Número:</label>
+                    <input type="text" id="numeroEntrega">
+                </div>
+
+                <div>
+                    <label for="bairroEntrega">Bairro:</label>
+                    <input type="text" id="bairroEntrega">
+                </div>
+
+                <div>
+                    <label for="cepEntrega">CEP:</label>
+                    <input type="text" id="cepEntrega">
+                </div>
+
+                <div>
+                    <label for="observacaoEntrega">Observação:</label>
+                    <input type="text" id="observacaoEntrega">
+                </div>
+
+                <div>
+                    <label for="cidadeEntrega">Cidade:</label>
+                    <input type="text" id="cidadeEntrega">
+                </div>
+
+                <div>
+                    <label for="estadoEntrega">Estado:</label>
+                    <input type="text" id="estadoEntrega">
+                </div>
+
+                <div>
+                    <label for="paisEntrega">País:</label>
+                    <input type="text" id="paisEntrega">
+                </div>
+
+                <div>
+                    <label for="fraseEntregaEntrega">Frase de Entrega:</label>
+                    <input type="text" id="fraseEntregaEntrega">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <section>
+            <div id="cartao">
+                <!--Aqui entra cartao principal-->
+            </div>
+        </section>
+
+        <section>
+            <button id="add-card-btn">Adicionar novo cartão</button>
+            <form id="card-form" class="hidden">
+                <div>
+                    <label for="principal">Principal:</label>
+                    <input type="checkbox" id="principal">
+                </div>
+
+                <div>
+                    <label for="numeroCartao">Número do Cartão:</label>
+                    <input type="text" id="numeroCartao">
+                </div>
+
+                <div>
+                    <label for="nomeImpresso">Nome Impresso no Cartão:</label>
+                    <input type="text" id="nomeImpresso">
+                </div>
+
+                <div>
+                    <label for="codigo">Código de Segurança (CVV):</label>
+                    <input type="text" id="codigo">
+                </div>
+
+                <div>
+                    <label for="bandeira">Bandeira:</label>
+                    <input type="text" id="bandeira">
+                </div>
+
+                <div>
+                    <label for="dataExpiracao">Data de Expiração:</label>
+                    <input type="date" id="dataExpiracao">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>Pague com até dois cupons</h3>
+            <form id="coupon-form">
+                <div id="coupon-fields">
+                    <label for="codigoCupom">Código :</label>
+                    <input type="text" id="codigoCupom1" name="codigoCupom">
+                </div>
+                <button type="button" id="add-coupon-btn">Adicionar outro cupom</button>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Sobre Nós</h3>
+                <p>Somos uma livraria online dedicada a oferecer uma vasta seleção de livros de qualidade para nossos clientes.</p>
+                <div class="contact">
+                    <span><i class="fas fa-map-marker-alt"></i> 123 Rua das Livrarias, Cidade dos Livros, Brasil</span>
+                    <span><i class="fas fa-envelope"></i> info@minhalivraria.com</span>
+                </div>
+            </div>
+            <div class="footer-section links">
+                <h3 class="links-uteis">Links Úteis</h3>
+                <ul>
+                    <li><a href="home.html">Página Inicial</a></li>
+                    <li><a href="home.html#">Catálogo de Livros</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Minha Livraria. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("add-delivery-btn").addEventListener("click", function () {
+            const deliveryForm = document.getElementById("delivery-form");
+            deliveryForm.classList.toggle("hidden");
+        });
+
+        document.getElementById("add-card-btn").addEventListener("click", function () {
+            const cardForm = document.getElementById("card-form");
+            cardForm.classList.toggle("hidden");
+        });
+
+        let couponCount = 1;
+        const couponForm = document.getElementById("coupon-form");
+        const addCouponBtn = document.getElementById("add-coupon-btn");
+
+        addCouponBtn.addEventListener("click", function () {
+            if (couponCount < 2) {
+                couponCount++;
+                const couponField = document.createElement("div");
+                couponField.innerHTML = `
+                    <label for="codigoCupom${couponCount}">Código :</label>
+                    <input type="text" id="codigoCupom${couponCount}" name="codigoCupom">
+                `;
+                couponForm.insertBefore(couponField, addCouponBtn);
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+        fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
+            .then(response => response.json())
+            .then(data => {
+                // Filtra para encontrar o endereço principal
+                const enderecoPrincipal = data.content.find(entrega => entrega.principal);
+
+                if (enderecoPrincipal) {
+                    // Atualiza a seção de entrega com os dados do endereço principal
+                    const entregaSection = document.getElementById("entrega");
+                    entregaSection.innerHTML = `
+                        <h1>Entrega principal</h1>
+                        <p><strong>Logradouro:</strong> ${enderecoPrincipal.logradouro}, ${enderecoPrincipal.numero}</p>
+                        <p><strong>Bairro:</strong> ${enderecoPrincipal.bairro}</p>
+                        <p><strong>CEP:</strong> ${enderecoPrincipal.cep}</p>
+                        <p><strong>Cidade:</strong> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado}, ${enderecoPrincipal.pais}</p>
+                        <p><strong>Frase de Entrega:</strong> ${enderecoPrincipal.fraseEntrega}</p>
+                        <p><strong>Receptor:</strong> ${enderecoPrincipal.receptor}</p>
+                    `;
+                } else {
+                    // Se não encontrar endereço principal
+                    document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
+                }
+            })
+            .catch(error => console.error('Erro ao buscar os dados:', error));
+    });
+        });
+    </script>
+
+    <script src="pagamento/javascript/index.js"></script>
+</body>
+
+</html>
