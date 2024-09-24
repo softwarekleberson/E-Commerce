@@ -119,9 +119,8 @@ table {
 }
 
 img {
-    width: 60%;
-    height: 50%;
-    margin-top: 90px;
+    width: 40%;
+    margin-top: 50px;
 }
 
 select {
@@ -131,7 +130,7 @@ select {
 }
 
 td>p {
-    margin-right: 40px;
+    margin-right: 80px;
 }
 
 .card-compra {
