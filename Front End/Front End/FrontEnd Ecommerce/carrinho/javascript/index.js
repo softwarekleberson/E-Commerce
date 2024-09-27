@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Captura o ID do pedido da URL
+    // Captura o ID do cliente da URL
     const urlParams = new URLSearchParams(window.location.search);
     const clienteId = urlParams.get('clienteId');
 
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => renderCarrinho(data))
             .catch(error => console.error('Erro ao buscar dados:', error));
     } else {
-        console.error('ID do pedido não encontrado na URL.');
+        console.error('ID do cliente não encontrado na URL.');
     }
 });
 
@@ -40,8 +40,9 @@ function renderCarrinho(data) {
             <td>
                 <p>R$ ${item.subtotal.toFixed(2)}</p>
             </td>
-            <td><i class="fa-solid fa-square-xmark remove-item" data-id="${item.id}" style="cursor: pointer;"></i></td>
-
+            <td>
+                <i class="fa-solid fa-square-xmark remove-item" data-id="${item.id}" style="cursor: pointer;"></i>
+            </td>
         `;
         tabelaCarrinho.appendChild(row);
     });
@@ -55,10 +56,26 @@ function renderCarrinho(data) {
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (event) => {
             const itemId = event.target.getAttribute('data-id');
-            // Aqui você pode implementar a remoção do item do carrinho
-            console.log(`Remover item com ID: ${itemId}`);
+            removerItem(itemId);
         });
     });
+}
+
+// Função para remover o item do carrinho com requisição DELETE
+function removerItem(itemId) {
+    fetch(`http://localhost:8080/pedidos/itens/produto/${itemId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log(`Item ${itemId} removido com sucesso.`);
+            // Atualiza o carrinho após a remoção
+            location.reload();  // Recarrega a página para atualizar os itens do carrinho
+        } else {
+            console.error(`Erro ao remover o item ${itemId}.`);
+        }
+    })
+    .catch(error => console.error('Erro ao tentar remover o item:', error));
 }
 
 // Função auxiliar para gerar as opções do select com base na quantidade do item
