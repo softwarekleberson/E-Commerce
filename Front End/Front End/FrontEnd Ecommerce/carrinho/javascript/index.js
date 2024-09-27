@@ -45,6 +45,13 @@ function renderCarrinho(data) {
             </td>
         `;
         tabelaCarrinho.appendChild(row);
+
+        // Adiciona o evento de mudança no <select> para atualizar a quantidade do produto
+        const quantidadeSelect = document.getElementById(`quantidade-${item.id}`);
+        quantidadeSelect.addEventListener('change', (event) => {
+            const novaQuantidade = event.target.value;
+            atualizarQuantidade(item.id, novaQuantidade);
+        });
     });
 
     // Atualiza subtotal e total
@@ -76,6 +83,26 @@ function removerItem(itemId) {
         }
     })
     .catch(error => console.error('Erro ao tentar remover o item:', error));
+}
+
+// Função para atualizar a quantidade de um item no carrinho com requisição PUT
+function atualizarQuantidade(itemId, novaQuantidade) {
+    fetch(`http://localhost:8080/pedidos/itens/produto/${itemId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quantidade: novaQuantidade })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log(`Quantidade do item ${itemId} atualizada para ${novaQuantidade}.`);
+            // Você pode atualizar o subtotal e o total do carrinho aqui se necessário
+        } else {
+            console.error(`Erro ao atualizar a quantidade do item ${itemId}.`);
+        }
+    })
+    .catch(error => console.error('Erro ao tentar atualizar a quantidade:', error));
 }
 
 // Função auxiliar para gerar as opções do select com base na quantidade do item
