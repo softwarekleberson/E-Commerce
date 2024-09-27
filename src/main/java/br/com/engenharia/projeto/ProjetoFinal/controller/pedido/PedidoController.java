@@ -37,7 +37,7 @@ public class PedidoController {
 	@Autowired
 	private RepositorioDeItem repositorioDeItem;
 	
-	@PostMapping("{clienteId}/{livroId}")
+	@PostMapping("{livroId}/{clienteId}")
 	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long livroId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
 		var dto = insert.criar(dados, clienteId, livroId);
 	    var uri = uriBuilder.path("/pedido/{id}").buildAndExpand(dto.id()).toUri();
