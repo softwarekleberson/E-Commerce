@@ -2,7 +2,10 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
@@ -16,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,9 +52,13 @@ public class Pagamento {
     @JoinColumn(name = "pedido_id") 
     private Pedido pedido;
     
-    @Column(name = "metodo_pagamento")
-    @Enumerated(EnumType.STRING)
-    private MetodoPagamento metodoPagamento;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "pagamento_id", nullable = true)
+    private List<Cartao> cartoes;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "pagamento_id", nullable = true)
+    private List<Cupom> cupons;
     
     @Column(name = "status_compra")
     @Enumerated(EnumType.STRING)
