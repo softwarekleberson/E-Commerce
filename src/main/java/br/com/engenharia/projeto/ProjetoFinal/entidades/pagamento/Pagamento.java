@@ -3,6 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
@@ -15,8 +16,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -33,38 +32,40 @@ import lombok.Getter;
 @EqualsAndHashCode(of = "id")
 public class Pagamento {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private LocalDateTime dataPagamento = LocalDateTime.now();
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Entrega entrega;
+     @Id
+     @Column(name = "id", updatable = false, nullable = false)
+     private String id = UUID.randomUUID().toString();
+        
+	 private LocalDateTime dataPagamento = LocalDateTime.now();
+	    
+	 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 @JoinColumn(name = "entrega_id")
+	 private Entrega entrega;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Cobranca cobranca;
-      
-    @Column(name = "valor_total")
-    private BigDecimal valorTotal;
-    
-    @OneToOne
-    @JoinColumn(name = "pedido_id") 
-    private Pedido pedido;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "pagamento_id", nullable = true)
-    private List<Cartao> cartoes;
+     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+     @JoinColumn(name = "cobranca_id")
+     private Cobranca cobranca;
+	      
+	 @Column(name = "valor_total")
+	 private BigDecimal valorTotal;
+	    
+	 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 @JoinColumn(name = "pedido_id") 
+	 private Pedido pedido;
+	    
+	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 @JoinColumn(name = "pagamento_id", nullable = true)
+	 private List<Cartao> cartoes;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "pagamento_id", nullable = true)
-    private List<Cupom> cupons;
-    
-    @Column(name = "status_compra")
-    @Enumerated(EnumType.STRING)
-    private StatusCompra statusCompra;
-    
-    public void mudarStatusPagamento(StatusCompra statusCompra) {
-    	this.statusCompra = statusCompra;
-    }
+	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 @JoinColumn(name = "pagamento_id", nullable = true)
+	 private List<Cupom> cupons;
+	    
+	 @Column(name = "status_compra")
+	 @Enumerated(EnumType.STRING)
+	 private StatusCompra statusCompra;
+	    
+	 public void mudarStatusPagamento(StatusCompra statusCompra) {
+	    this.statusCompra = statusCompra;
+	  }
 }
