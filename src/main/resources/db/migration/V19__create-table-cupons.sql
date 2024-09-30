@@ -1,6 +1,6 @@
 CREATE TABLE cupons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo_cupom VARCHAR(255) NOT NULL,
+	id VARCHAR(36) PRIMARY KEY,          -- UUID como String
+	tipo_cupom VARCHAR(255) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     status TINYINT(1) NOT NULL,
     clientes_id BIGINT NOT NULL,

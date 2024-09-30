@@ -1,10 +1,12 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.cupom;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,9 +31,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 public class Cupom {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-		
+	@Id
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id = UUID.randomUUID().toString();
+       	
     @Enumerated(EnumType.STRING)
 	private TipoCupom tipoCupom;
 	private BigDecimal valor;
@@ -46,10 +49,6 @@ public class Cupom {
 		setTipoCupom(dados.tipoCupom());
 		setCliente(dados.idCliente());
 		setStatus(true);
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setValor(BigDecimal valor) {

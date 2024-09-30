@@ -7,7 +7,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.TipoCupom;
 
 public record DadosDetalhamentoCupom(
 		
-		Long idCupom,
+		String idCupom,
 		Long idCliente,
 		BigDecimal valor,
 		TipoCupom tipoCupom,

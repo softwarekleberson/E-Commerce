@@ -1,6 +1,6 @@
 CREATE TABLE pagamentos (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    data_pagamento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id VARCHAR(36) PRIMARY KEY,          -- UUID como String
+	data_pagamento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     entregas_id BIGINT,
     cobrancas_id BIGINT,
     valor_total DECIMAL(10, 2) NOT NULL,
