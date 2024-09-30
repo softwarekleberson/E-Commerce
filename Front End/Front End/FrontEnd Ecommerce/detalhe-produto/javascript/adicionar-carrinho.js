@@ -1,67 +1,48 @@
-// Função para capturar os parâmetros da URL
-function getParamsFromURL() {
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtendo os parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const livroId = urlParams.get('id');
+    const id = urlParams.get('id');
     const clienteId = urlParams.get('clienteId');
 
-    return { livroId, clienteId };
-}
+    // Verificar se id e clienteId estão definidos
+    if (!id || !clienteId) {
+        console.error('ID ou clienteId não estão definidos na URL.');
+        alert('Erro: ID ou clienteId não estão presentes na URL.');
+        return;
+    }
 
-// Função para capturar a quantidade do span
-function getQuantidade() {
-    const quantidadeElemento = document.getElementById('quantidade');
-    return parseInt(quantidadeElemento.textContent, 10);
-}
+    // Adicionar evento de clique ao botão "Adicionar ao Carrinho"
+    document.getElementById('adicionar-carrinho').addEventListener('click', () => {
+        const quantidade = document.getElementById('quantidade').innerText; // Captura a quantidade
 
-// Adicionando o listener para o botão de "Adicionar ao carrinho"
-document.getElementById('adicionar-carrinho').addEventListener('click', () => {
-    const { livroId, clienteId } = getParamsFromURL(); // Captura id do livro e clienteId
-    const quantidade = getQuantidade(); // Captura a quantidade do span
+        // Montando a URL de destino
+        const url = `http://localhost:8080/pedidos/${id}/${clienteId}`;
 
-    // Dados para enviar na requisição
-    const data = {
-        quantidade,
-    };
+        // Dados a serem enviados no POST
+        const data = {
+            quantidade: quantidade
+        };
 
-    console.log('Dados para adicionar ao carrinho:', data);
-
-    console.log(clienteId, livroId, data.quantidade)
-    // Exemplo de requisição POST
-    fetch(`http://localhost:8080/pedidos/${livroId}/${clienteId}`, { // Corrigindo a URL
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Sucesso:', result);
-            // Aqui você pode adicionar alguma lógica após o sucesso da requisição
+        // Fazendo a requisição POST
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-});
-
-// Carregar os detalhes do livro ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    const { livroId } = getParamsFromURL();
-    carregarDetalhesLivro(livroId);
-
-    // Controle de quantidade
-    const quantidadeElemento = document.getElementById('quantidade');
-    let quantidade = parseInt(quantidadeElemento.textContent, 10);
-
-    document.getElementById('incrementar').addEventListener('click', () => {
-        quantidade += 1;
-        quantidadeElemento.textContent = quantidade;
-    });
-
-    document.getElementById('decrementar').addEventListener('click', () => {
-        if (quantidade > 0) {
-            quantidade -= 1;
-            quantidadeElemento.textContent = quantidade;
-        }
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Sucesso:', data);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+                alert('Erro ao adicionar o livro ao carrinho. Tente novamente.');
+            });
     });
 });

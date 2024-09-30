@@ -3,6 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.controller.pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,10 +46,14 @@ public class PedidoController {
 	}
 	
 	@GetMapping("{clienteId}")
-	public ResponseEntity<Page<DadosDetalhamentoItem>> listarItensPorCliente(@PathVariable Long clienteId, Pageable pageable){
-		Page<DadosDetalhamentoItem> itens = repositorioDeItem.listarItensDoCliente(clienteId, pageable);
-		return ResponseEntity.ok(itens);
-    }
+	public ResponseEntity<Page<DadosDetalhamentoItem>> listarItensPorCliente(
+	        @PathVariable Long clienteId,
+	        @PageableDefault(size = 20, sort = "id") Pageable pageable) {
+
+	    Page<DadosDetalhamentoItem> itens = repositorioDeItem.listarItensDoCliente(clienteId, pageable);
+	    return ResponseEntity.ok(itens);
+	}
+
 	
 	@PutMapping("itens/produto/{id}")
 	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoItem dados) {

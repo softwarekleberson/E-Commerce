@@ -216,6 +216,7 @@ a:hover {
     background-color: green;
     border-radius: 8px;
     text-decoration: none;
+    background-color: aqua;
 }
 
 .fa-solid.fa-cart-shopping {
