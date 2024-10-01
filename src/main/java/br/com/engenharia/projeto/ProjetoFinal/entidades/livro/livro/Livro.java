@@ -29,7 +29,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -71,8 +70,8 @@ public class Livro {
     @Embedded
     private Edicao edicao;
     
-    @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Estoque estoque;
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Estoque> estoques;
     
     @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Imagens> imagens;
@@ -194,9 +193,9 @@ public class Livro {
             .collect(Collectors.toList());
     }
     
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
+    public void setEstoques(List<Estoque> estoques) {
+		this.estoques = estoques;
+	}
 
     public void setAutores(List<DadosCadastroAutor> autores) {
         this.autores = autores.stream()
@@ -208,14 +207,5 @@ public class Livro {
         this.categorias = categorias.stream()
                 .map(Categoria::new)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public String toString() {
-        return "Livro [id=" + id + ", ativo=" + ativo + ", preco=" + preco + ", data=" + data + ", titulo=" + titulo
-                + ", isbn=" + isbn + ", paginas=" + paginas + ", sinopse=" + sinopse + ", codigoBarra=" + codigoBarra
-                + ", dimensoes=" + dimensoes + ", editora=" + editora + ", edicao=" + edicao + ", estoque=" + estoque
-                + ", imagens=" + imagens + ", autores=" + autores + ", categorias=" + categorias + ", precificacao="
-                + precificacao + "]";
     }
 }

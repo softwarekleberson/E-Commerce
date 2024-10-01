@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.services.livro;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,17 +9,22 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.Estoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.Categoria;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.RepositorioDeInativacao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.statusLivro.StatusLivro;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 
 @Service
 public class ServiceGetLivro {
 
 	@Autowired
 	private RepositorioDeLivro repositorioDeLivro;
+	
+	@Autowired
+	private EstoqueRepository estoqueRepository;
 	
 	@Autowired
 	private RepositorioDeInativacao repositorioDeInativacao;
@@ -36,7 +43,16 @@ public class ServiceGetLivro {
 
 	public DadosDetalhamentoLivroCompleto listarLivroExpecifico(Long id) {
 		DadosDetalhamentoLivroCompleto livro = repositorioDeLivro.listarLivroExpecifico(id);
-		if(livro.quantidadeDisponivel() <= QUANTIDADE_MINIMA_LIVRO) {
+		
+		Optional<Estoque> estoques = estoqueRepository.findById(id);
+	    
+	    int quantidadeTotal = estoques.stream()
+	                                  .mapToInt(Estoque::getQuantidade)
+	                                  .sum();
+
+		
+		if(quantidadeTotal <= QUANTIDADE_MINIMA_LIVRO) {
+			
 			StatusLivro statusLivro = new StatusLivro();
 			statusLivro.setId(null);
 			statusLivro.setCategoria(Categoria.FORA_MERCADO);

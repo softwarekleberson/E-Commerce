@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.engenharia.projeto.ProjetoFinal.dao.livro.LivroDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;

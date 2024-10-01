@@ -4,4 +4,5 @@ public interface RepositorioDeEstoque {
 
 	void salvar(Estoque estoque);
 	Estoque verificaDisponibilidadeLivro(Long idLivro);
+
 }

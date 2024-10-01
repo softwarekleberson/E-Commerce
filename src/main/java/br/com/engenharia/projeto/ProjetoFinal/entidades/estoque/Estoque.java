@@ -11,10 +11,12 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -34,9 +36,9 @@ public class Estoque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
 	
-	@OneToOne
-	@JoinColumn(name = "livro_id", referencedColumnName = "id")
-	private Livro livro;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "livro_id", referencedColumnName = "id")
+    private Livro livro;
 	
 	public static final int QUANTIDADE_ESTOQUE = 0;
 	private int quantidade;
