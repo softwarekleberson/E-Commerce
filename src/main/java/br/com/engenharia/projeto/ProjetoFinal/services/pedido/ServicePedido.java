@@ -46,7 +46,8 @@ public class ServicePedido {
 	private RepositorioDeCliente repositorioDeCliente;
 	
 	public DadosDetalhamentoPedido criar(@Valid DadosCadastroPedido dados, Long clienteId, Long livroId) {
-				
+		
+		System.out.println(clienteId + "qqqqqqqqqqqq");
 		var livro = verificaExistenciaLivro(livroId);
 		var cliente = verificaExistenciaDeCliente(clienteId);
 		verificaDiponibilidadeEmEstoque(dados, livroId);

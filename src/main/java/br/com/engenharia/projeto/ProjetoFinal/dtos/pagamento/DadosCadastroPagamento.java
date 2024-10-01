@@ -11,9 +11,6 @@ public record DadosCadastroPagamento(
 		@NotNull
 		Long idCobranca,
 		
-		@NotNull
-		String codigoPedido,
-		
 		List<DadosCadastroPagamentoCartao> cartoes,
 		List<DadosCadastroPagamentoCupom> cupons
 		

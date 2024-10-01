@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 public record DadosCadastroPagamentoCupom(
 		
 		@NotNull
-		Long idCupom
+		String idCupom
 		
 		) {
 }

@@ -49,9 +49,8 @@ public class Pagamento {
 	 @Column(name = "valor_total")
 	 private BigDecimal valorTotal;
 	    
-	 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	 @JoinColumn(name = "pedido_id") 
-	 private Pedido pedido;
+	 @OneToMany(mappedBy = "pagamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 private List<Pedido> pedidos;
 	    
 	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	 @JoinColumn(name = "pagamento_id", nullable = true)
@@ -61,9 +60,13 @@ public class Pagamento {
 	 @JoinColumn(name = "pagamento_id", nullable = true)
 	 private List<Cupom> cupons;
 	    
-	 @Column(name = "status_compra")
+	 @Column(name = "status_pagamento")
 	 @Enumerated(EnumType.STRING)
 	 private StatusCompra statusCompra;
+	 
+	 @Column(name = "pagamento")
+	 @Enumerated(EnumType.STRING)
+	 private MetodoPagamento metodoPagamento;
 	    
 	 public void mudarStatusPagamento(StatusCompra statusCompra) {
 	    this.statusCompra = statusCompra;
