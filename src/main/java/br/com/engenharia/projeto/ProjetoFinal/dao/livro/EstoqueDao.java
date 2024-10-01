@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.livro;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,8 @@ public class EstoqueDao implements RepositorioDeEstoque{
 		repository.save(estoque);
 	}
 
-	public Estoque verificaDisponibilidadeLivro(Long idLivro) {
-		var livro = repository.findByLivroId(idLivro);
-		return livro;
+	public Optional<Estoque> verificaDisponibilidadeLivro(Long idLivro) {
+		var estoque = repository.findById(idLivro);
+		return estoque;
 	}
 }
