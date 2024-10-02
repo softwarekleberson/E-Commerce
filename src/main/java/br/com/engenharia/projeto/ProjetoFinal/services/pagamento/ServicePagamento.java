@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,7 +68,11 @@ public class ServicePagamento {
 	 }
 
 	 private void excluirCuponsAposUso(List<DadosCadastroPagamentoCupom> cupons) {
+		List<String> idcupons = cupons.stream()
+								.map(DadosCadastroPagamentoCupom::idCupom)
+								.collect(Collectors.toList());
 		
+		cupomRepository.deleteCupomPosUso(idcupons);
 	}
 
 	private void criarPagamento(Entrega entrega, Cobranca cobranca, List<Cartao> cartoes, List<Cupom> cupons,
