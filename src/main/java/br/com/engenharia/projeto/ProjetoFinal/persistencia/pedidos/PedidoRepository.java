@@ -14,5 +14,5 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 	Pedido findByCodigoPedido(String codigoPedido);
 	Page<Pedido> findByCliente_Id(Long clienteId, Pageable pageable);
 	List<Pedido> findByPagoFalseAndPedidoRealizadoBefore(LocalDate dataLimite);
-	
+    List<Pedido> findByClienteId(Long clienteId);
 }

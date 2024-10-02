@@ -24,8 +24,10 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity(name = "Pagamento")
 @Table(name = "pagamentos")
 @AllArgsConstructor
@@ -36,7 +38,7 @@ public class Pagamento {
      @Column(name = "id", updatable = false, nullable = false)
      private String id = UUID.randomUUID().toString();
         
-	 private LocalDateTime dataPagamento = LocalDateTime.now();
+	 private LocalDateTime dataPagamento;
 	    
 	 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	 @JoinColumn(name = "entrega_id")
@@ -64,10 +66,8 @@ public class Pagamento {
 	 @Enumerated(EnumType.STRING)
 	 private StatusCompra statusCompra;
 	 
-	 @Column(name = "pagamento")
-	 @Enumerated(EnumType.STRING)
-	 private MetodoPagamento metodoPagamento;
-	    
+	 public Pagamento() {}
+
 	 public void mudarStatusPagamento(StatusCompra statusCompra) {
 	    this.statusCompra = statusCompra;
 	  }
