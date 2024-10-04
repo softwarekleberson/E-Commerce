@@ -27,7 +27,7 @@ public class CupomDao implements RepositorioDeCupom{
 	}
 	
 	public Page listarCuponsDosClientes(Long clienteId, Pageable pageable) {
-		 Page<Cupom> cuponsPage = repository.findByCliente_Id(clienteId, pageable);	        
+		 Page<Cupom> cuponsPage = repository.listarCupomAtivo(clienteId, pageable);	        
 	     if(cuponsPage.isEmpty()) {
 	    	 throw new CupomNaoEcontradoExcecao("Id incorreto");
 	     }
