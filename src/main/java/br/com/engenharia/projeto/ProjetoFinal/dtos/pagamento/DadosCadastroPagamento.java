@@ -1,6 +1,5 @@
 package br.com.engenharia.projeto.ProjetoFinal.dtos.pagamento;
 
-import java.util.List;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroPagamento(
@@ -11,8 +10,10 @@ public record DadosCadastroPagamento(
 		@NotNull
 		Long idCobranca,
 		
-		List<DadosCadastroPagamentoCartao> cartoes,
-		List<DadosCadastroPagamentoCupom> cupons
+		Long idCartao1,
+		Long idCartao2,
+		String cupom1,
+		String cupom2
 		
-		) {
+									) {
 }

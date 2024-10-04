@@ -71,4 +71,18 @@ public class Pagamento {
 	 public void mudarStatusPagamento(StatusCompra statusCompra) {
 	    this.statusCompra = statusCompra;
 	  }
+
+	public Pagamento(LocalDateTime dataPagamento, Entrega entrega, Cobranca cobranca, BigDecimal valorTotalPedido,
+			List<Pedido> pedidos, List<Cartao> cartoes, List<Cupom> cupons, StatusCompra statusCompra) {
+		
+		this.dataPagamento = dataPagamento;
+		this.entrega = entrega;
+		this.cobranca = cobranca;
+		this.valorTotal = valorTotalPedido;
+		this.pedidos = pedidos;
+		this.cartoes = cartoes;
+		this.cupons = cupons;
+		this.statusCompra = statusCompra;
+		
+	}
 }

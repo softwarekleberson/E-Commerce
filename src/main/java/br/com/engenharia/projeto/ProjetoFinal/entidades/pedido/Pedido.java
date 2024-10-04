@@ -49,7 +49,7 @@ public class Pedido {
     private List<Item> itens;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pagamento_id", nullable = true)
+    @JoinColumn(name = "pagamento_id", referencedColumnName = "id", nullable = true)
     private Pagamento pagamento;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -82,7 +82,6 @@ public class Pedido {
         }
         
         this.itens.add(item);
-
         item.setPedido(this);
     }
     
@@ -97,10 +96,16 @@ public class Pedido {
 		return valorTotal;
     }
     
-    public void notificarPagamantoPedido() {
-    	this.pago = true;
-    }
+    public void setPagamento(Pagamento pagamento) {
+		System.out.println(pagamento.getId() + "aaaaaaaaaaa");
+    	this.pagamento = pagamento;
+	}
     
+    public void setPago(boolean pago) {
+		System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+    	this.pago = pago;
+	}
+        
     public void modificarStatusEntrega(StatusPedido status) {
     	this.statusEntrega = status;
     }
@@ -112,10 +117,6 @@ public class Pedido {
     public void devolverItem(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
     	this.trocaDevolucao = trocaDevolucao;
     }
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public void setPedidoRealizado(LocalDate pedidoRealizado) {
 		this.pedidoRealizado = pedidoRealizado;
