@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.Devolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.EsperandoDevolucaoOuRecebido;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.imagem.Imagens;
 
 public record DadosDetalhamentoTotalDevolucao(
 		

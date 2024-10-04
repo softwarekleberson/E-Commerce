@@ -94,7 +94,11 @@ public class ServicePagamento {
 		if (idCupom1 != null) {
 			var cupom1 = cupomRepository.buscarCupomPorId(idCupom1);
 			if (cupom1.isPresent()) {
+				cupom1.get().setStatus(false);
+				
+				cupomRepository.save(cupom1.get());
 				cupons.add(cupom1.get());
+				
 			} else {
 				throw new ValidacaoExcepetion("Cupom 1 não encontrado.");
 			}
@@ -103,7 +107,11 @@ public class ServicePagamento {
 		if (idCupom2 != null) {
 			var cupom2 = cupomRepository.buscarCupomPorId(idCupom2);
 			if (cupom2.isPresent()) {
+				cupom2.get().setStatus(false);
+				
+				cupomRepository.save(cupom2.get());
 				cupons.add(cupom2.get());
+				
 			} else {
 				throw new ValidacaoExcepetion("Cupom 2 não encontrado.");
 			}

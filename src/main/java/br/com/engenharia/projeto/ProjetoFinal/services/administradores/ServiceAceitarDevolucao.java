@@ -51,8 +51,8 @@ public class ServiceAceitarDevolucao {
 			var estoque = new Estoque();
 			
 			estoque.setId(null);
-			estoque.setLivro(devolucao.getPedido().getLivro().getId());
-			estoque.setQuantidade(devolucao.getPedido().getQuantidade());
+			estoque.setLivro(devolucao.getPedido().getItens().get(0).getLivro().getId());
+			estoque.setQuantidade(devolucao.getPedido().getItens().get(0).getQuantidade());
 			estoque.setValorCusto(BigDecimal.ZERO);
 			estoque.setDataEntrada(LocalDate.now());
 			estoque.setFornecedor("Devolução feita pelo cliente");
@@ -66,9 +66,8 @@ public class ServiceAceitarDevolucao {
 		Long clienteId = aceitaDevolucao.getPedido().getCliente().getId();
 		Cupom gerarCupom = new Cupom();
 		
-		gerarCupom.setId(null);
 		gerarCupom.setTipoCupom(TipoCupom.TROCA);
-		gerarCupom.setValor(aceitaDevolucao.getPedido().getValorTotal());
+		gerarCupom.setValor(aceitaDevolucao.getPedido().getItens().get(0).getSubtotal());
 		gerarCupom.setStatus(true);
 		gerarCupom.setCliente(clienteId);
 		

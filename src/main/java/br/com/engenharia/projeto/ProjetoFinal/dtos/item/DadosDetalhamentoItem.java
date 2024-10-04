@@ -16,7 +16,8 @@ public record DadosDetalhamentoItem(
 		String nome,
 		String primeiraImagem,
 		BigDecimal precoUnitario,
-		BigDecimal subtotal
+		BigDecimal subtotal,
+		String codigoPedido
 		
 		) {
 
@@ -30,6 +31,7 @@ public record DadosDetalhamentoItem(
 		     item.getLivro().getImagens().stream()
 		     .findFirst().map(Imagens::getUrl).orElse(null),
 			 item.getPrecoUnitario(),
-			 item.getSubtotal());
+			 item.getSubtotal(),
+			 item.getPedido().getCodigoPedido());
 	}
 }
