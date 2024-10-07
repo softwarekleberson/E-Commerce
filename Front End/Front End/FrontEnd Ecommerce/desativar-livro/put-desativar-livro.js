@@ -25,11 +25,12 @@ document.getElementById('desativar-livro').addEventListener('submit', function (
         })
         .then(result => {
             console.log('Sucesso:', result);
-            // Resetar o formulário após o envio bem-sucedido
-            document.getElementById('desativarForm').reset();
         })
         .catch(error => {
             console.error('Erro:', error);
             // Você pode adicionar alguma lógica para mostrar uma mensagem de erro ao usuário aqui
+        })
+        .finally(() => {
+            document.getElementById('desativar-livro').reset();
         });
 });

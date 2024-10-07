@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const status = cupom.status ? 'Válido' : 'Inválido';
                     cupomElement.innerHTML = `
                         <h3>${cupom.tipoCupom}</h3>
-                        <p>Valor R$ ${cupom.valor}</p>
                         <p>Código: ${cupom.idCupom}</p>
+                        <p>Valor R$ ${cupom.valor}</p>
                         <p>Status: ${status}</p>
                     `;
                     cupomContainer.appendChild(cupomElement);

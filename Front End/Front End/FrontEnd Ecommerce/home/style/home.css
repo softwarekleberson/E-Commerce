@@ -7,12 +7,6 @@
     padding: 0px;
 }
 
-html,
-body {
-    height: 100%;
-    width: 100%;
-}
-
 :root {
     --cor0: rgb(000, 000, 000);
     --cor1: rgb(255, 255, 255);
@@ -25,13 +19,19 @@ body {
     --font-destaque: 'Kumbh Sans', sans-serif;
 }
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
 body {
     background-color: var(--cor1);
     font-family: var(--font-destaque);
-}
-
-body > footer {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -59,6 +59,7 @@ main {
     width: 80%;
     margin-left: 320px;
     margin-bottom: 650px;
+    flex: 1;
 }
 
 .logo {

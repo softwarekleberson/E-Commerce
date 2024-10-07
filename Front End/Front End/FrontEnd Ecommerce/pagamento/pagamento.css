@@ -28,6 +28,7 @@ body {
 body {
     background-color: var(--cor1);
     font-family: var(--font-destaque);
+    overflow-y: scroll;
 }
 
 body > footer {
@@ -112,8 +113,9 @@ a:hover {
 footer {
     background-color: var(--cor0);
     color: #fff;
-    padding: 50px;
+    padding: 40px;
     height: 165px;
+    position: relative;
 }
 
 .footer-content {

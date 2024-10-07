@@ -48,7 +48,7 @@ public class PedidoController {
 	@GetMapping("{clienteId}")
 	public ResponseEntity<Page<DadosDetalhamentoItem>> listarItensPorCliente(
 	        @PathVariable Long clienteId,
-	        @PageableDefault(size = 20, sort = "id") Pageable pageable) {
+	        @PageableDefault(size = 15, sort = "id") Pageable pageable) {
 
 	    Page<DadosDetalhamentoItem> itens = repositorioDeItem.listarItensDoCliente(clienteId, pageable);
 	    return ResponseEntity.ok(itens);

@@ -60,6 +60,10 @@ header nav a {
     font-size: 24px;
 }
 
+a:hover {
+    color: var(--cor5);
+}
+
 /* Estilos do campo de pesquisa */
 .search-box {
     display: flex;
@@ -92,7 +96,7 @@ header nav a {
     color: white;
 }
 
-.container {
+main {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -125,9 +129,14 @@ h1 {
 }
 
 footer {
+    margin-top: 20px;
     background-color: black;
     color: #fff;
-    padding: 50px;
+    padding: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer-content {

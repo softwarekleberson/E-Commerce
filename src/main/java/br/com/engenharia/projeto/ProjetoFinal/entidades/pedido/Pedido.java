@@ -24,8 +24,10 @@ import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
@@ -37,9 +39,9 @@ public class Pedido {
     private Long id;
 
     private LocalDate pedidoRealizado;
-    
+
     private boolean pago;
-    
+
     @Transient
     private BigDecimal valorTotal;
 
@@ -47,98 +49,93 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<Item> itens;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pagamento_id", referencedColumnName = "id", nullable = true)
     private Pagamento pagamento;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientes_id", nullable = false)
     private Cliente cliente;
 
     @Enumerated(EnumType.STRING)
-    private StatusPedido  statusEntrega;
+    private StatusPedido statusEntrega;
 
     @Enumerated(EnumType.STRING)
     private DevolucaoFoiPedidaOUNAO trocaDevolucao;
-    
+
     public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusPedido statusEntrega,
-			DevolucaoFoiPedidaOUNAO trocaDevolucao) {
-		
-    	this.id = id;
-    	this.pago = false;
-		this.pedidoRealizado = pedidoRealizado;
-		this.codigoPedido = codigoPedido;
-		this.cliente = cliente;
-		this.statusEntrega = statusEntrega;
-		this.trocaDevolucao = trocaDevolucao;
-	}
-    
-    public Pedido() {}
-         
+                  DevolucaoFoiPedidaOUNAO trocaDevolucao) {
+        this.id = id;
+        this.pago = false;
+        this.pedidoRealizado = pedidoRealizado;
+        this.codigoPedido = codigoPedido;
+        this.cliente = cliente;
+        this.statusEntrega = statusEntrega;
+        this.trocaDevolucao = trocaDevolucao;
+    }
+
     public void adicionarItem(Item item) {
         if (this.itens == null) {
             this.itens = new ArrayList<>();
         }
-        
+
         this.itens.add(item);
         item.setPedido(this);
     }
-    
+
     public BigDecimal atualizarValorTotal() {
         if (this.itens != null && !this.itens.isEmpty()) {
             this.valorTotal = this.itens.stream()
-                                        .map(Item::getSubtotal)
-                                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+                    .map(Item::getSubtotal)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
         } else {
             this.valorTotal = BigDecimal.ZERO;
         }
-		return valorTotal;
+        return valorTotal;
     }
-    
+
     public void setPagamento(Pagamento pagamento) {
-		System.out.println(pagamento.getId() + "aaaaaaaaaaa");
-    	this.pagamento = pagamento;
-	}
-    
+        this.pagamento = pagamento;
+    }
+
     public void setPago(boolean pago) {
-		System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-    	this.pago = pago;
-	}
-        
+        this.pago = pago;
+    }
+
     public void modificarStatusEntrega(StatusPedido status) {
-    	this.statusEntrega = status;
+        this.statusEntrega = status;
     }
-    
+
     public void devolucaoPedida(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
-    	this.trocaDevolucao = trocaDevolucao;
+        this.trocaDevolucao = trocaDevolucao;
     }
-    
+
     public void devolverItem(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
-    	this.trocaDevolucao = trocaDevolucao;
+        this.trocaDevolucao = trocaDevolucao;
     }
 
-	public void setPedidoRealizado(LocalDate pedidoRealizado) {
-		this.pedidoRealizado = pedidoRealizado;
-	}
+    public void setPedidoRealizado(LocalDate pedidoRealizado) {
+        this.pedidoRealizado = pedidoRealizado;
+    }
 
-	public void setValorTotal(BigDecimal valorTotal) {
-		this.valorTotal = valorTotal;
-	}
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
 
-	public void setCodigoPedido(String codigoPedido) {
+    public void setCodigoPedido(String codigoPedido) {
         this.codigoPedido = codigoPedido;
     }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-	public void setStatusEntrega(StatusPedido statusEntrega) {
-		this.statusEntrega = statusEntrega;
-	}
+    public void setStatusEntrega(StatusPedido statusEntrega) {
+        this.statusEntrega = statusEntrega;
+    }
 
-	public void setTrocaDevolucao(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
-		this.trocaDevolucao = trocaDevolucao;
-	}
+    public void setTrocaDevolucao(DevolucaoFoiPedidaOUNAO trocaDevolucao) {
+        this.trocaDevolucao = trocaDevolucao;
+    }
 }

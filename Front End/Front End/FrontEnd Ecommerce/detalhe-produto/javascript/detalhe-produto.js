@@ -14,7 +14,7 @@ async function carregarDetalhesLivro(id) {
   function preencherTabela(livro) {
     const table = document.getElementById('livroDetails');
     const data = [
-      { item: 'Editora', informacao: `${livro.editora}` },
+      { item: 'Editora',  informacao: `${livro.editora}` },
       { item: 'Páginas', informacao: `${livro.paginas} páginas` },
       { item: 'ISBN', informacao: livro.isbn },
       { item: 'Dimensões', informacao: `${livro.largura} x ${livro.altura} x ${livro.profundidade} cm` },
