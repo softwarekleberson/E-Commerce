@@ -50,7 +50,8 @@ public class PedidoDao implements RepositorioDePedido{
 	@Override
 	public Page<DadosDetalhamentoPedido> listarPedidosCliente(Long clienteId, Pageable pageable) {
 		 Page<Pedido> pedidosPage = pedidoRepository.findByCliente_Id(clienteId, pageable);	        
-	     if(pedidosPage.isEmpty()) {
+	     System.out.println("zzzzzzz");
+		 if(pedidosPage.isEmpty()) {
 	    	 throw new PedidoNaoEncontradoExcecao("Id incorreto");
 	     }
 		 return pedidosPage.map(DadosDetalhamentoPedido::new);

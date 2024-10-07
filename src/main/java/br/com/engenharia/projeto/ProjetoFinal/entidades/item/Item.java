@@ -50,9 +50,9 @@ public class Item {
 		this.livro = livro;
 		this.pedido = pedido;
 	}
-	
+		
 	public Item() {}
-	 
+	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}

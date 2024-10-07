@@ -64,8 +64,8 @@ public class ItemDao implements RepositorioDeItem{
 
 	@Override
 	public Page<DadosDetalhamentoItem> listarItensDoCliente(Long clienteId, Pageable pageable) {
-	    List<DadosDetalhamentoItem> itens = repository.buscarItensDetalhadosPorClienteId(clienteId);
-	    
+		List<DadosDetalhamentoItem> itens = repository.buscarItensDetalhadosPorClienteId(clienteId);
+
 	    int start = (int) pageable.getOffset();
 	    int end = Math.min((start + pageable.getPageSize()), itens.size());
 
