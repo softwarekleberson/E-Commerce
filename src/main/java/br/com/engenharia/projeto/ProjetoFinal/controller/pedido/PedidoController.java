@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.controller.pedido;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,11 @@ import br.com.engenharia.projeto.ProjetoFinal.dao.item.RepositorioDeItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosAtualizacaoItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedidoUpdate;
 import jakarta.validation.Valid;
@@ -37,6 +44,12 @@ public class PedidoController {
 	
 	@Autowired
 	private RepositorioDeItem repositorioDeItem;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 	
 	@PostMapping("{livroId}/{clienteId}")
 	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long livroId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
@@ -64,7 +77,12 @@ public class PedidoController {
 	
 	@DeleteMapping("itens/produto/{id}")
 	public ResponseEntity<Void> deletar (@PathVariable Long id){
+		
+		Optional<Item> item = itemRepository.findById(id);
+		Pedido pedido = item.get().getPedido();
+		
 		repositorioDeItem.deletar(id);
+		pedidoRepository.delete(pedido);
 		return ResponseEntity.noContent().build();
 	}
 }
