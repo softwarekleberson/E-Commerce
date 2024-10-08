@@ -7,13 +7,11 @@
     <script src="https://kit.fontawesome.com/76a998f4ed.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="pagamento/pagamento.css">
     <title>Checkout</title>
-    
+
     <style>
-       
-       .hidden {
+        .hidden {
             display: none;
         }
-
     </style>
 </head>
 
@@ -44,79 +42,68 @@
     <main>
         <section>
             <div id="entrega">
-                 <!--Aqui entra entrega principal-->>
+                <!--Aqui entra entrega principal-->>
             </div>
-         </section>
+        </section>
 
         <section>
             <button id="add-delivery-btn">Adicionar nova entrega</button>
             <form id="delivery-form" class="hidden">
-                <div>
-                    <label for="principal">Principal:</label>
-                    <input type="checkbox" id="principal">
-                </div>
 
-                <div>
-                    <label for="receptorEntrega">Receptor da Entrega:</label>
-                    <input type="text" id="receptorEntrega">
-                </div>
+                <label for="idCliente">ID Cliente:</label>
+                <input type="text" id="idCliente" name="idCliente" required><br><br>
 
-                <div>
-                    <label for="tipoResidenciaEntrega">Tipo de Residência:</label>
-                    <input type="text" id="tipoResidenciaEntrega">
-                </div>
+                <label for="">Entrega principal</label>
+                <input type="checkbox" id="principal" name="principal" checked><br>
 
-                <div>
-                    <label for="tipoLogradouroEntrega">Tipo de Logradouro:</label>
-                    <input type="text" id="tipoLogradouroEntrega">
-                </div>
+                <label for="receptorEntrega">Receptor</label>
+                <input type="text" name="receptorEntrega" id="receptorEntrega" autocomplete="name" required
+                    placeholder="Quem irá receber a entrega">
 
-                <div>
-                    <label for="logradouroEntrega">Logradouro:</label>
-                    <input type="text" id="logradouroEntrega">
-                </div>
+                <label for="tipoResidenciaEntrega">Tipo de Residência:</label>
+                <input type="text" id="tipoResidenciaEntrega" name="tipoResidenciaEntrega"
+                    placeholder="casa, apartamento, kitnet, chalé, cobertura etc" required autocomplete="off"><br><br>
 
-                <div>
-                    <label for="numeroEntrega">Número:</label>
-                    <input type="text" id="numeroEntrega">
-                </div>
+                <label for="tipoLogradouroEntrega">Tipo de Logradouro:</label>
+                <input type="text" id="tipoLogradouroEntrega" name="tipoLogradouroEntrega"
+                    placeholder="Rua, Avenida, Alameda, Travessa, etc" required autocomplete="off"><br><br>
 
-                <div>
-                    <label for="bairroEntrega">Bairro:</label>
-                    <input type="text" id="bairroEntrega">
-                </div>
+                <label for="logradouroEntrega">Logradouro:</label>
+                <input type="text" id="logradouroEntrega" name="logradouroEntrega"
+                    placeholder="Ex: Rua das Flores, Avenida Central, Praça da Liberdade" required
+                    autocomplete="off"><br><br>
 
-                <div>
-                    <label for="cepEntrega">CEP:</label>
-                    <input type="text" id="cepEntrega">
-                </div>
+                <label for="numeroEntrega">Número:</label>
+                <input type="text" id="numeroEntrega" name="numeroEntrega" placeholder="Digite o número do imóvel"
+                    required><br><br>
 
-                <div>
-                    <label for="observacaoEntrega">Observação:</label>
-                    <input type="text" id="observacaoEntrega">
-                </div>
+                <label for="bairroEntrega">Bairro:</label>
+                <input type="text" id="bairroEntrega" name="bairroEntrega" placeholder="Digite o nome do bairro"
+                    required><br><br>
 
-                <div>
-                    <label for="cidadeEntrega">Cidade:</label>
-                    <input type="text" id="cidadeEntrega">
-                </div>
+                <label for="cepEntrega">CEP:</label>
+                <input type="text" id="cepEntrega" name="cepEntrega" placeholder="12345-678" required autocomplete="off"
+                    pattern="\d{5}-\d{3}"><br><br>
 
-                <div>
-                    <label for="estadoEntrega">Estado:</label>
-                    <input type="text" id="estadoEntrega">
-                </div>
+                <label for="observacaoEntrega">Observação:</label>
+                <textarea id="observacaoEntrega" name="observacaoEntrega" placeholder="Opcional"></textarea><br><br>
 
-                <div>
-                    <label for="paisEntrega">País:</label>
-                    <input type="text" id="paisEntrega">
-                </div>
+                <label for="cidadeEntrega">Cidade:</label>
+                <input type="text" id="cidadeEntrega" name="cidadeEntrega" placeholder="Digite sua cidade"
+                    required><br><br>
 
-                <div>
-                    <label for="fraseEntregaEntrega">Frase de Entrega:</label>
-                    <input type="text" id="fraseEntregaEntrega">
-                </div>
+                <label for="estadoEntrega">Estado:</label>
+                <input type="text" id="estadoEntrega" name="estadoEntrega" placeholder="Digite seu estado"
+                    required><br><br>
 
-                <button type="submit">Enviar</button>
+                <label for="paisEntrega">País:</label>
+                <input type="text" id="paisEntrega" name="paisEntrega" placeholder="Digite seu pais" required><br><br>
+
+                <label for="fraseEntregaEntrega">Frase de Entrega:</label>
+                <input type="text" id="fraseEntregaEntrega" name="fraseEntregaEntrega"
+                    placeholder="Informe instruções específicas de entrega" required><br><br>
+
+                <input type="submit" value="Enviar">
             </form>
         </section>
 
@@ -129,37 +116,58 @@
         <section>
             <button id="add-card-btn">Adicionar novo cartão</button>
             <form id="card-form" class="hidden">
-                <div>
-                    <label for="principal">Principal:</label>
-                    <input type="checkbox" id="principal">
-                </div>
 
-                <div>
-                    <label for="numeroCartao">Número do Cartão:</label>
-                    <input type="text" id="numeroCartao">
-                </div>
+                <label for="idCliente">ID Cliente:</label>
+                <input type="text" id="idCliente" name="idCliente" required><br><br>
 
-                <div>
-                    <label for="nomeImpresso">Nome Impresso no Cartão:</label>
-                    <input type="text" id="nomeImpresso">
-                </div>
+                <label for="">Cobranca principal</label>
+                <input type="checkbox" id="principal" name="principal" checked><br>
 
-                <div>
-                    <label for="codigo">Código de Segurança (CVV):</label>
-                    <input type="text" id="codigo">
-                </div>
+                <label for="receptorCobranca">Receptor</label>
+                <input type="text" name="receptorCobranca" id="receptorCobranca" autocomplete="name" required
+                    placeholder="Quem irá receber a cobrança">
 
-                <div>
-                    <label for="bandeira">Bandeira:</label>
-                    <input type="text" id="bandeira">
-                </div>
+                <label for="tipoResidenciaCobranca">Tipo de Residência:</label>
+                <input type="text" id="tipoResidenciaCobranca" name="tipoResidenciaCobranca"
+                    placeholder="casa, apartamento, kitnet, chalé, cobertura etc" required autocomplete="off"><br><br>
 
-                <div>
-                    <label for="dataExpiracao">Data de Expiração:</label>
-                    <input type="date" id="dataExpiracao">
-                </div>
+                <label for="tipoLogradouroCobranca">Tipo de Logradouro:</label>
+                <input type="text" id="tipoLogradouroCobranca" name="tipoLogradouroCobranca"
+                    placeholder="Rua, Avenida, Alameda, Travessa, etc." required autocomplete="off"><br><br>
 
-                <button type="submit">Enviar</button>
+                <label for="logradouroCobranca">Logradouro:</label>
+                <input type="text" id="logradouroCobranca" name="logradouroCobranca"
+                    placeholder="Ex: Rua das Flores, Avenida Central, Praça da Liberdade" required
+                    autocomplete="off"><br><br>
+
+                <label for="numeroCobranca">Número:</label>
+                <input type="text" id="numeroCobranca" name="numeroCobranca" placeholder="Digite o número do imóvel"
+                    required><br><br>
+
+                <label for="bairroCobranca">Bairro:</label>
+                <input type="text" id="bairroCobranca" name="bairroCobranca" placeholder="Digite o nome do bairro"
+                    required><br><br>
+
+                <label for="cepCobranca">CEP:</label>
+                <input type="text" id="cepCobranca" name="cepCobranca" placeholder="12345-678" required
+                    autocomplete="off" pattern="\d{5}-\d{3}"><br><br>
+
+                <label for="observacaoEntrega">Observação:</label>
+                <textarea id="observacaoCobranca" name="observacaoCobranca"
+                    placeholder="Inclua observações adicionais (opcional)"></textarea><br><br>
+
+                <label for="cidadeCobranca">Cidade:</label>
+                <input type="text" id="cidadeCobranca" name="cidadeCobranca" placeholder="Digite sua cidade"
+                    required><br><br>
+
+                <label for="estadoCobranca">Estado:</label>
+                <input type="text" id="estadoCobranca" name="estadoCobranca" placeholder="Digite seu estado"
+                    required><br><br>
+
+                <label for="paisCobranca">País:</label>
+                <input type="text" id="paisCobranca" name="paisCobranca" placeholder="Digite seu pais" required><br><br>
+
+                <input type="submit" value="Enviar">
             </form>
         </section>
 
@@ -180,7 +188,8 @@
         <div class="footer-content">
             <div class="footer-section about">
                 <h3>Sobre Nós</h3>
-                <p>Somos uma livraria online dedicada a oferecer uma vasta seleção de livros de qualidade para nossos clientes.</p>
+                <p>Somos uma livraria online dedicada a oferecer uma vasta seleção de livros de qualidade para nossos
+                    clientes.</p>
                 <div class="contact">
                     <span><i class="fas fa-map-marker-alt"></i> 123 Rua das Livrarias, Cidade dos Livros, Brasil</span>
                     <span><i class="fas fa-envelope"></i> info@minhalivraria.com</span>
@@ -228,16 +237,16 @@
             }
 
             document.addEventListener("DOMContentLoaded", function () {
-        fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
-            .then(response => response.json())
-            .then(data => {
-                // Filtra para encontrar o endereço principal
-                const enderecoPrincipal = data.content.find(entrega => entrega.principal);
+                fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        // Filtra para encontrar o endereço principal
+                        const enderecoPrincipal = data.content.find(entrega => entrega.principal);
 
-                if (enderecoPrincipal) {
-                    // Atualiza a seção de entrega com os dados do endereço principal
-                    const entregaSection = document.getElementById("entrega");
-                    entregaSection.innerHTML = `
+                        if (enderecoPrincipal) {
+                            // Atualiza a seção de entrega com os dados do endereço principal
+                            const entregaSection = document.getElementById("entrega");
+                            entregaSection.innerHTML = `
                         <h1>Entrega principal</h1>
                         <p><strong>Logradouro:</strong> ${enderecoPrincipal.logradouro}, ${enderecoPrincipal.numero}</p>
                         <p><strong>Bairro:</strong> ${enderecoPrincipal.bairro}</p>
@@ -246,13 +255,13 @@
                         <p><strong>Frase de Entrega:</strong> ${enderecoPrincipal.fraseEntrega}</p>
                         <p><strong>Receptor:</strong> ${enderecoPrincipal.receptor}</p>
                     `;
-                } else {
-                    // Se não encontrar endereço principal
-                    document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
-                }
-            })
-            .catch(error => console.error('Erro ao buscar os dados:', error));
-    });
+                        } else {
+                            // Se não encontrar endereço principal
+                            document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
+                        }
+                    })
+                    .catch(error => console.error('Erro ao buscar os dados:', error));
+            });
         });
     </script>
 
