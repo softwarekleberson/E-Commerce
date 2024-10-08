@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="nome-produto">${order.nome}</p>
                 <p class="quantidade-produto">${order.quantidade}</p>
                 <button class="botao-devolucao">Devolução</button>
-                <button class="botao-trocar">Trocar</button>
             </div>
         </div>
         `;

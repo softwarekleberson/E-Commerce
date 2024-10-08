@@ -26,7 +26,6 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.itemPedido.ItemPedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedidoUpdate;
@@ -51,9 +50,6 @@ public class PedidoController {
 	
 	@Autowired
 	private ItemRepository itemRepository;
-	
-	@Autowired
-	private ItemPedidoRepository itemPedidoRepository;
 	
 	@PostMapping("{livroId}/{clienteId}")
 	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long livroId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
