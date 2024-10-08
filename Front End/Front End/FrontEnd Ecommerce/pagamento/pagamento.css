@@ -166,3 +166,128 @@ footer {
     margin-left: 480px;
 }
 
+.card > p{
+    padding-bottom: 5px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 45px;
+    width: 40%;
+}
+
+#add-delivery-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    width: 18%;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 25px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.nova-entrega {
+    padding: 5px;
+    background-color: white; 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    width: 39%; 
+    max-width: 600px; 
+    margin-left: 20px auto; 
+}
+
+label {
+    margin-bottom: 5px; 
+    margin-left: 25px;
+    font-weight: bold; 
+}
+
+input[type="text"],
+textarea {
+    padding: 10px; 
+    margin-bottom: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    font-size: 16px; 
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff; 
+    border: none; 
+    padding: 10px;
+    border-radius: 4px; 
+    font-size: 16px; 
+    margin-left: 20px;
+}
+
+.novo-cartao {
+    padding: 20px;
+    background-color: white; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    width: 100%; 
+    max-width: 500px; 
+    margin-left: 5px auto; 
+}
+
+#add-card-btn {
+    background-color: #28a745; 
+    width: 100px;
+    color: white;
+    border: none; 
+    padding: 10px 20px;
+    border-radius: 4px; 
+    font-size: 16px;
+    margin-bottom: 20px; 
+    margin-left: 5px;
+    transition: background-color 0.3s; 
+}
+
+input[type="submit"] {
+    background-color: green; 
+    color: #fff; 
+    border: none; 
+    padding: 10px; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Remove as bordas padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+#add-coupon-btn {
+    background-color: #ffc107; /* Cor de fundo para o botão de adicionar cupom (amarelo) */
+    color: #000; /* Cor do texto (preto) */
+    margin-right: 10px; /* Espaço entre o botão de adicionar e o botão de enviar */
+}
+
+#add-coupon-btn:hover {
+    background-color: #e0a800; /* Cor ao passar o mouse sobre o botão de adicionar cupom */
+}
+
+button[type="submit"] {
+    background-color: green; 
+    color: white; 
+}
+
+section > h3 {
+    margin-bottom: 10px;
+}

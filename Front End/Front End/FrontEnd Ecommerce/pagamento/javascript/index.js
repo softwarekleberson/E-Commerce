@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p id="nomeImpresso"> ${cartaoPrincipal.nomeImpresso}</p>
                             <p id="codigo">Código: ${cartaoPrincipal.codigo}</p>
                             <p>Escolha em quantas vezes parcelar</p>
-                            <p><strong>Endereço de cobrança</strong>: Mesmo que endereço de entrega</p> 
                         `;
                         cardList.appendChild(div);
                         addCardBtn.style.display = 'block'; // Exibe o botão se houver um cartão principal
