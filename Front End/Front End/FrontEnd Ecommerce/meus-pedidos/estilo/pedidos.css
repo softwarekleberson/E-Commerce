@@ -19,6 +19,10 @@
 main {
     margin-top: 20px;
     margin-left: 20px;
+    min-height: 1110px; /* Define uma altura mínima */
+    padding: 20px; /* Adiciona espaço interno */
+    box-sizing: border-box; 
+    margin-bottom: 10px;
 }
 
 header {
@@ -187,3 +191,56 @@ img {
     height: 25px;
 }
 
+footer {
+    background-color: var(--cor0);
+    color: #fff;
+    padding: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 400px;
+}
+
+.links-uteis {
+    margin-left: 400px;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.contact {
+    margin-top: 10px;
+}
+
+.contact span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer-bottom {
+    margin-left: 480px;
+}
