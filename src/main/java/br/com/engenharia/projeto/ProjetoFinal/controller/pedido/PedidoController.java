@@ -21,11 +21,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.engenharia.projeto.ProjetoFinal.dao.item.RepositorioDeItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosAtualizacaoItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItem;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItensPagos;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.pedido.DadosCadastroPedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.itemPedido.ItemPedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedido;
 import br.com.engenharia.projeto.ProjetoFinal.services.pedido.ServicePedidoUpdate;
@@ -51,6 +52,9 @@ public class PedidoController {
 	@Autowired
 	private ItemRepository itemRepository;
 	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
 	@PostMapping("{livroId}/{clienteId}")
 	public ResponseEntity cadastrar(@PathVariable Long clienteId, @PathVariable Long livroId, @RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder uriBuilder) {
 		var dto = insert.criar(dados, clienteId, livroId);
@@ -68,6 +72,15 @@ public class PedidoController {
 	    return ResponseEntity.ok(itens);
 	}
 
+	@GetMapping("pagos/{clienteId}")
+	public ResponseEntity<Page<DadosDetalhamentoItensPagos>> listarItensPagos(
+	        										   @PathVariable Long clienteId,
+	        										   @PageableDefault(size = 15, sort = "id") Pageable pageable) {
+		
+	    Page<DadosDetalhamentoItensPagos> itens = repositorioDeItem.pedidosPagos(clienteId, pageable);
+	    
+	    return ResponseEntity.ok(itens);
+	}
 	
 	@PutMapping("itens/produto/{id}")
 	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoItem dados) {

@@ -8,6 +8,7 @@ CREATE TABLE pedidos (
     clientes_id BIGINT NOT NULL,            
     status_entrega VARCHAR(255),
     troca_devolucao VARCHAR(255),
+    entregue DATE,
     FOREIGN KEY (pagamento_id) REFERENCES pagamentos(id), 
     FOREIGN KEY (clientes_id) REFERENCES clientes(id) 
 );

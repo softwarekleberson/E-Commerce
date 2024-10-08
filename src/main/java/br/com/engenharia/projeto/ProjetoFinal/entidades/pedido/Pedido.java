@@ -63,10 +63,13 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     private DevolucaoFoiPedidaOUNAO trocaDevolucao;
+    
+    private LocalDate entregue;
 
     public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusPedido statusEntrega,
                   DevolucaoFoiPedidaOUNAO trocaDevolucao) {
-        this.id = id;
+        
+    	this.id = id;
         this.pago = false;
         this.pedidoRealizado = pedidoRealizado;
         this.codigoPedido = codigoPedido;
@@ -94,6 +97,10 @@ public class Pedido {
         }
         return valorTotal;
     }
+    
+    public void setEntregue(LocalDate entregue) {
+		this.entregue = entregue;
+	}
 
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;

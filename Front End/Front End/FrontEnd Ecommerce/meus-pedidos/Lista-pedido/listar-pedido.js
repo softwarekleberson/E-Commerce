@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Nº pedido</p>
                 </div>
                 <div class="informacoes-pedito-valores">
-                    <p>${order.pedidoRealizado}</p>
-                    <p>R$ ${order.valorTotal}</p>
-                    <p>Cliente ID: ${order.idCliente}</p>
+                    <p>${order.dataPedido}</p>
+                    <p>R$ ${order.subtotal}</p>
+                    <p>Pedido ID: ${order.idPedido}</p>
                     <p>${order.codigoPedido}</p>
                 </div>
             </div>
             <div>
-                <p class="data-entrega">Status: ${order.statusEntrega}</p>
+                <p class="data-entrega">Status: ${order.status}</p>
                 <div class="imagem-e-descricao">
-                <img src="${order.urlLivro}" alt="">
+                <img src="${order.primeiraImagem}" alt="">
+                <p class="data-entrega">Entregue ${order.entregue}</p>
                 <p class="nome-produto">${order.nome}</p>
-                <p class="descricao-produto">${order.descricaoPedido}</p>
                 <p class="quantidade-produto">${order.quantidade}</p>
                 <button class="botao-devolucao">Devolução</button>
                 <button class="botao-trocar">Trocar</button>
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchOrders = async (orderId) => {
         try {
-            const response = await fetch(`http://localhost:8080/pedidos/${orderId}`);
+            const response = await fetch(`http://localhost:8080/pedidos/pagos/${orderId}`);
             if (!response.ok) {
                 throw new Error('Erro ao buscar o pedido');
             }

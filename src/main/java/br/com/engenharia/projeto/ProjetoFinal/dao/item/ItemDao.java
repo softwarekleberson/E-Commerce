@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosAtualizacaoItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItem;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItensPagos;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.PedidoNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.itemPedido.ItemPedidoRepository;
@@ -65,6 +66,16 @@ public class ItemDao implements RepositorioDeItem{
 	@Override
 	public Page<DadosDetalhamentoItem> listarItensDoCliente(Long clienteId, Pageable pageable) {
 		List<DadosDetalhamentoItem> itens = repository.buscarItensDetalhadosPorClienteId(clienteId);
+
+	    int start = (int) pageable.getOffset();
+	    int end = Math.min((start + pageable.getPageSize()), itens.size());
+
+	    return new PageImpl<>(itens.subList(start, end), pageable, itens.size());
+	}
+
+	@Override
+	public Page<DadosDetalhamentoItensPagos> pedidosPagos(Long clienteId, Pageable pageable) {
+		List<DadosDetalhamentoItensPagos> itens = repository.buscarItensPagos(clienteId);
 
 	    int start = (int) pageable.getOffset();
 	    int end = Math.min((start + pageable.getPageSize()), itens.size());
