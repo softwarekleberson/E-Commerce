@@ -50,13 +50,15 @@
             <h3>Pague com até dois cupons</h3>
             <form id="coupon-form">
                 <div id="coupon-fields">
-                    <label for="codigoCupom">Código :</label>
+                    <label for="codigoCupom1">Cupom 1:</label>
                     <input type="text" id="codigoCupom1" name="codigoCupom">
+        
+                    <label for="codigoCupom2">Cupom 2:</label>
+                    <input type="text" id="codigoCupom2" name="codigoCupom">
                 </div>
-                <button type="button" class="novo-cupom">Novo Cupom</button>
                 <button type="submit" class="enviar">Enviar</button>
             </form>
-        </section>
+        </section>        
 
         <section id="pedidos-pagar" class="pedidos-pagar">
             <!-- Os pedidos serão exibidos aqui -->
@@ -65,20 +67,23 @@
     </main>
 
     <script>
+        // Mostrar/ocultar formulário de entrega
         document.getElementById("add-delivery-btn").addEventListener("click", function () {
             const deliveryForm = document.getElementById("delivery-form");
             deliveryForm.classList.toggle("hidden");
         });
-
+    
+        // Mostrar/ocultar formulário de cartão
         document.getElementById("add-card-btn").addEventListener("click", function () {
             const cardForm = document.getElementById("card-form");
             cardForm.classList.toggle("hidden");
         });
-
+    
+        // Adicionar novo campo de cupom, limitando a dois cupons
         let couponCount = 1;
         const couponForm = document.getElementById("coupon-form");
         const addCouponBtn = document.getElementById("add-coupon-btn");
-
+    
         addCouponBtn.addEventListener("click", function () {
             if (couponCount < 2) {
                 couponCount++;
@@ -89,35 +94,37 @@
                 `;
                 couponForm.insertBefore(couponField, addCouponBtn);
             }
-
-            document.addEventListener("DOMContentLoaded", function () {
-                fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
-                    .then(response => response.json())
-                    .then(data => {
-                        // Filtra para encontrar o endereço principal
-                        const enderecoPrincipal = data.content.find(entrega => entrega.principal);
-
-                        if (enderecoPrincipal) {
-                            // Atualiza a seção de entrega com os dados do endereço principal
-                            const entregaSection = document.getElementById("entrega");
-                            entregaSection.innerHTML = `
-                        <h1>Entrega principal</h1>
-                        <p><strong>Logradouro:</strong> ${enderecoPrincipal.logradouro}, ${enderecoPrincipal.numero}</p>
-                        <p><strong>Bairro:</strong> ${enderecoPrincipal.bairro}</p>
-                        <p><strong>CEP:</strong> ${enderecoPrincipal.cep}</p>
-                        <p><strong>Cidade:</strong> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado}, ${enderecoPrincipal.pais}</p>
-                        <p><strong>Frase de Entrega:</strong> ${enderecoPrincipal.fraseEntrega}</p>
-                        <p><strong>Receptor:</strong> ${enderecoPrincipal.receptor}</p>
-                    `;
-                        } else {
-                            // Se não encontrar endereço principal
-                            document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
-                        }
-                    })
-                    .catch(error => console.error('Erro ao buscar os dados:', error));
-            });
+        });
+    
+        // Buscar dados de entrega principal após o carregamento da página
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
+                .then(response => response.json())
+                .then(data => {
+                    // Filtra para encontrar o endereço principal
+                    const enderecoPrincipal = data.content.find(entrega => entrega.principal);
+    
+                    if (enderecoPrincipal) {
+                        // Atualiza a seção de entrega com os dados do endereço principal
+                        const entregaSection = document.getElementById("entrega");
+                        entregaSection.innerHTML = `
+                            <h1>Entrega principal</h1>
+                            <p><strong>Logradouro:</strong> ${enderecoPrincipal.logradouro}, ${enderecoPrincipal.numero}</p>
+                            <p><strong>Bairro:</strong> ${enderecoPrincipal.bairro}</p>
+                            <p><strong>CEP:</strong> ${enderecoPrincipal.cep}</p>
+                            <p><strong>Cidade:</strong> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado}, ${enderecoPrincipal.pais}</p>
+                            <p><strong>Frase de Entrega:</strong> ${enderecoPrincipal.fraseEntrega}</p>
+                            <p><strong>Receptor:</strong> ${enderecoPrincipal.receptor}</p>
+                        `;
+                    } else {
+                        // Se não encontrar endereço principal
+                        document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar os dados:', error));
         });
     </script>
+    
 
     <script src="pagamento/javascript/index.js"></script>
     <script src="pagamento/javascript/pedidos.js"></script>

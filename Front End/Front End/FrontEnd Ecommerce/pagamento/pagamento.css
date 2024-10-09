@@ -152,7 +152,7 @@ section > h3 {
     height: 600px;
     background-color: white;
     margin-left: 650px;
-    margin-top: -600px;
+    margin-top: -700px;
     border-radius: 4px;
     position: relative;
     border: 1px solid #ccc; 
@@ -188,15 +188,15 @@ main {
     margin-left: -5px;
 }
 
-.novo-cupom {
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 4px; 
-    font-size: 16px; 
-    width: 140px;
-    margin-left: 5px;
-    background-color: green;
-    color: white;
+#coupon-fields label {
+    display: block;
+    margin-bottom: 5px; /* Espaçamento entre o label e o input */
+}
+
+#coupon-fields input {
+    display: block;
+    width: 40%;
+    margin-bottom: 10px; /* Espaçamento entre os inputs */
 }
 
 .enviar {
@@ -204,8 +204,8 @@ main {
     border: none; 
     border-radius: 4px; 
     font-size: 16px; 
-    width: 130px;
-    margin-left: 5px;
+    width: 240px;
+    margin-left: 2px;
     background-color: green;
     color: white;
 }
