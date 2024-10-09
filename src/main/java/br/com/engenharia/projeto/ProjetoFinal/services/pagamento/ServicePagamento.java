@@ -22,10 +22,12 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cupom.CupomRepositroy;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.itemPedido.ItemPedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pagamento.PagamentoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
@@ -87,10 +89,10 @@ public class ServicePagamento {
 	}
 
 	private void baixaNoEstoque(List<Pedido> pedidos) {
-	    System.out.println("Iniciando baixa no estoque...");
 	    
 	    for (Pedido pedido : pedidos) {
 	        for (Item item : pedido.getItens()) {
+	        	System.out.println(item.getLivro().getId() + "wwwwwwww");
 	            Long idDoLivro = item.getLivro().getId();
 	            int quantidadeRequeridaNoPedido = item.getQuantidade();
 	            
@@ -118,11 +120,8 @@ public class ServicePagamento {
 	                throw new RuntimeException("Estoque insuficiente para o livro ID: " + idDoLivro);
 	            }
 	        }
-	    }
-	    
-	    System.out.println("Baixa no estoque concluída.");
+	    }	    
 	}
-
 	
 	private void associarPagamentoAPedidos(Pagamento pagamento, List<Pedido> pedidos) {
 		for (Pedido pedido : pedidos) {
@@ -192,11 +191,18 @@ public class ServicePagamento {
 
 	private List<Pedido> listaPedidos(Long clienteId) {
 		List<Pedido> pedidos = pedidoRepository.findByClienteId(clienteId);
-
-		if (pedidos.isEmpty()) {
-			throw new ValidacaoExcepetion("Não a pedidos para este cliente");
+		
+		List<Pedido> pedidoValido = new ArrayList<>();
+		for(Pedido pedido : pedidos) {
+			if(!pedido.isPago()) {
+				pedidoValido.add(pedido);
+			}
+			else {
+				throw new ValidacaoExcepetion("Não a pedidos");
+			}
 		}
-		return pedidos;
+		
+		return pedidoValido;
 	}
 
 	private Entrega verificarExistenciaEntrega(Long id) {
