@@ -1,6 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.services.livro;
 
-import java.util.Optional;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,12 +45,12 @@ public class ServiceGetLivro {
 	public DadosDetalhamentoLivroCompleto listarLivroExpecifico(Long id) {
 		DadosDetalhamentoLivroCompleto livro = repositorioDeLivro.listarLivroExpecifico(id);
 		
-		Optional<Estoque> estoques = estoqueRepository.findById(id);
+		List<Estoque> estoques = estoqueRepository.findByLivroId(id);
+	    int quantidadeTotal = 0;
 	    
-	    int quantidadeTotal = estoques.stream()
-	                                  .mapToInt(Estoque::getQuantidade)
-	                                  .sum();
-
+	    for(Estoque estoque : estoques) {
+	    	quantidadeTotal += estoque.getQuantidade();
+	    }
 		
 		if(quantidadeTotal <= QUANTIDADE_MINIMA_LIVRO) {
 			
