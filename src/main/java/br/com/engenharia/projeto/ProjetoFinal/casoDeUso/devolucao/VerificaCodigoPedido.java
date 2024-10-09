@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 @Service
 public class VerificaCodigoPedido implements IstrategyDevolucao{
@@ -18,7 +18,7 @@ public class VerificaCodigoPedido implements IstrategyDevolucao{
 	@Override
 	public void processar(DadosCadastroDevolucao dados) {
 		if(!repositorioDePedido.verificaCodigoPedido(dados.codigoPedido())) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}
 	}
 }

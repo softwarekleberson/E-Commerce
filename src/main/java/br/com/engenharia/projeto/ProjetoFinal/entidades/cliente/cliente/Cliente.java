@@ -14,7 +14,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Telefone
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -117,14 +117,14 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		if (nome == null || nome.trim().length() <= VERIFICA_NOME) {
-			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
+			throw new ValidacaoException("Nome deve possuir mais de 2 digitos");
 		}
 		this.nome = nome.trim().toLowerCase();
 	}
 
 	public void setCpf(String cpf) {
 		if (cpf == null || cpf.trim().length() != VERICA_CPF) {
-			throw new ValidacaoExcepetion("Cpf deve conter apenas numeros");
+			throw new ValidacaoException("Cpf deve conter apenas numeros");
 		}
 		this.cpf = cpf.trim().toLowerCase();
 	}

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -99,14 +99,14 @@ public class Cartao {
 	
 	public void setNomeImpresso(String nomeImpresso) {
 		if(nomeImpresso == null || nomeImpresso.trim().isEmpty() || nomeImpresso.length() <= 2) {
-			throw new ValidacaoExcepetion("Nome deve possuir mais de 2 digitos");
+			throw new ValidacaoException("Nome deve possuir mais de 2 digitos");
 		}
 		this.nomeImpresso = nomeImpresso.trim().toLowerCase();
 	}
 	
 	public void setCodigo(String codigo) {
 	    if(codigo.trim().length() != CODIGO_CARTAO_CREDITO) {
-	        throw new ValidacaoExcepetion("Codigo do cartão deve conter 3 digitos");
+	        throw new ValidacaoException("Codigo do cartão deve conter 3 digitos");
 	    }
 	    this.codigo = codigo.trim().toLowerCase();
 	}

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cartao.DadosCadastroCartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.RepositorioDeCartao;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 @Service
 public class VerificaSeCartaoFoiCadastradoAnteriormente implements IstrategyValidaCartao{
@@ -22,7 +22,7 @@ public class VerificaSeCartaoFoiCadastradoAnteriormente implements IstrategyVali
 	public void processar(DadosCadastroCartao dados) {
 		Optional<Cartao> cartao = repositorioDeCartao.cartaoCadastradoAnteriormente(dados.numeroCartao());
 		if(cartao.isPresent() && cartao.get().getNumeroCartao().equals(dados.numeroCartao()) && cartao.get().getBandeira().equals(dados.bandeira())) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}
 	}
 }

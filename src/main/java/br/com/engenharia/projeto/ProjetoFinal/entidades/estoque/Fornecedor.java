@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.estoque;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class Fornecedor {
 	
 	public void setFornecedor(String fornecedor) {
 		if(fornecedor.trim() == null) {
-			throw new ValidacaoExcepetion("Fornecedor não deve ser nulo");
+			throw new ValidacaoException("Fornecedor não deve ser nulo");
 		}
 		this.fornecedor = fornecedor;
 	}

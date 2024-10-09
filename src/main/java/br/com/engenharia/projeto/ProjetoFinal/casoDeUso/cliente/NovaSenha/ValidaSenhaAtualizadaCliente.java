@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 @Service
 public class ValidaSenhaAtualizadaCliente implements IStrategySenhaAtualizadaCliente {
@@ -21,7 +21,7 @@ public class ValidaSenhaAtualizadaCliente implements IStrategySenhaAtualizadaCli
     public void processar(DadosAtualizacaoSenha dados) {
 		String senha = dados.senha();
         if (senha.length() < 8) {
-            throw new ValidacaoExcepetion(MENSAGEM_ERRO_QUANTIDADE_MINIMA);
+            throw new ValidacaoException(MENSAGEM_ERRO_QUANTIDADE_MINIMA);
         }
 
         String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]).*$";
@@ -29,7 +29,7 @@ public class ValidaSenhaAtualizadaCliente implements IStrategySenhaAtualizadaCli
         Matcher matcher = regex.matcher(senha);
 
         if (!matcher.matches()) {
-            throw new ValidacaoExcepetion(MENSAGEM_ERRO_FORMATO_SENHA);
+            throw new ValidacaoException(MENSAGEM_ERRO_FORMATO_SENHA);
         }
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.ClienteRepository;
 
 @Service
@@ -26,7 +26,7 @@ public class ValidaExistenciaCliente implements IStrategyCliente{
 		Optional<Cliente> cliente = repository.findByCpf(dominio.getCpf());
 		
 		if(!cliente.isEmpty()) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}		
 	}
 }

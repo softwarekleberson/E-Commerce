@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.administrador;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.validation.ValidationException;
 
 public class AlgoritmoVerificaSenhaAdm {
@@ -15,7 +15,7 @@ public class AlgoritmoVerificaSenhaAdm {
     public static void algoritmoVerificaSenhaAdm(String senha) {
         
         if (senha.length() < 8) {
-            throw new ValidacaoExcepetion(SENHA_CURTA);
+            throw new ValidacaoException(SENHA_CURTA);
         }
 
         Pattern regex = Pattern.compile(REGEX_SENHA);

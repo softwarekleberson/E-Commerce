@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -51,7 +51,7 @@ public class Cupom {
 
 	public void setValor(BigDecimal valor) {
 		if(valor.compareTo(BigDecimal.ZERO) <= 0) {
-			throw new ValidacaoExcepetion("Valor não deve ser menor ou igual a zero");
+			throw new ValidacaoException("Valor não deve ser menor ou igual a zero");
 		}
 		this.valor = valor;
 	}

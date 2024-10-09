@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 public class AlgoritmoBandeiraCartao {
 
@@ -12,11 +12,11 @@ public class AlgoritmoBandeiraCartao {
 	    
 	    if (bandeira == Bandeira.MASTERCARD || bandeira == Bandeira.VISA) {
 	        if (numeroCartao.length() != VISA_MASTERCARD_LENGHT) {
-	            throw new ValidacaoExcepetion("Mastercard ou Visa precisam conter 16 digitos");
+	            throw new ValidacaoException("Mastercard ou Visa precisam conter 16 digitos");
 	        }
 	    } else if (bandeira == Bandeira.ELO) {
 	        if (!(numeroCartao.length() >= ELO_MINIMO_LENGHT && numeroCartao.length() <= ELO_MAXIMO_LENGHT)) {
-	            throw new ValidacaoExcepetion("Elo precisa conter entre 16 ou 19 digitos");
+	            throw new ValidacaoException("Elo precisa conter entre 16 ou 19 digitos");
 	        }
 	    }
 	}

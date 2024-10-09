@@ -21,7 +21,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.Pagamento;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
@@ -146,7 +146,7 @@ public class ServicePagamento {
 				cupons.add(cupom1.get());
 				
 			} else {
-				throw new ValidacaoExcepetion("Cupom 1 não encontrado.");
+				throw new ValidacaoException("Cupom 1 não encontrado.");
 			}
 		}
 
@@ -159,7 +159,7 @@ public class ServicePagamento {
 				cupons.add(cupom2.get());
 				
 			} else {
-				throw new ValidacaoExcepetion("Cupom 2 não encontrado.");
+				throw new ValidacaoException("Cupom 2 não encontrado.");
 			}
 		}
 		return cupons;
@@ -174,7 +174,7 @@ public class ServicePagamento {
 			if (cartao1.isPresent()) {
 				cartoes.add(cartao1.get());
 			} else {
-				throw new ValidacaoExcepetion("Cartão 1 não encontrado.");
+				throw new ValidacaoException("Cartão 1 não encontrado.");
 			}
 		}
 
@@ -183,7 +183,7 @@ public class ServicePagamento {
 			if (cartao2.isPresent()) {
 				cartoes.add(cartao2.get());
 			} else {
-				throw new ValidacaoExcepetion("Cartão 2 não encontrado.");
+				throw new ValidacaoException("Cartão 2 não encontrado.");
 			}
 		}
 		return cartoes;
@@ -198,7 +198,7 @@ public class ServicePagamento {
 				pedidoValido.add(pedido);
 			}
 			else {
-				throw new ValidacaoExcepetion("Não a pedidos");
+				throw new ValidacaoException("Não a pedidos");
 			}
 		}
 		
@@ -207,12 +207,12 @@ public class ServicePagamento {
 
 	private Entrega verificarExistenciaEntrega(Long id) {
 		return entregaRepository.findById(id)
-				.orElseThrow(() -> new ValidacaoExcepetion("Id da entrega não encontrado"));
+				.orElseThrow(() -> new ValidacaoException("Id da entrega não encontrado"));
 	}
 
 	private Cobranca verificarExistenciaCobranca(Long id) {
 		return cobrancaRepository.findById(id)
-				.orElseThrow(() -> new ValidacaoExcepetion("Id da cobrança não existe"));
+				.orElseThrow(() -> new ValidacaoException("Id da cobrança não existe"));
 	}
 
 	private BigDecimal calcularValorTotalDosPedidos(Long clienteId) {

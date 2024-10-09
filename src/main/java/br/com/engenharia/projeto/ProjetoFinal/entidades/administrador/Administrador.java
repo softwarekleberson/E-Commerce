@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.administrador;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosCadastroAdministrador;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.contato.Email;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -62,7 +62,7 @@ public class Administrador {
 	
 	public void setNome(String nome) {
 		if(nome.trim() == null) {
-			throw new ValidacaoExcepetion("Nome não pode ser nulo");
+			throw new ValidacaoException("Nome não pode ser nulo");
 		}
 		this.nome = nome.trim().toLowerCase();
 	}

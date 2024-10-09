@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.endereco;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class Pais {
 	
 	public void setPais(String pais) {
 		if(pais == null || pais.trim().length() == 0) {
-			throw new ValidacaoExcepetion("Pais não deve ser nulo");
+			throw new ValidacaoException("Pais não deve ser nulo");
 		}
 		this.pais = pais.trim().toLowerCase();
 	}

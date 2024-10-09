@@ -9,7 +9,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosAtualizarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 import jakarta.validation.Valid;
 
@@ -25,15 +25,15 @@ public class ServiceUpdateLivro {
 	public DadosDetalhamentoLivro atualizarLivro(@Valid DadosAtualizarLivro dados) {		
 		Optional<Livro> infoLivro = livroRepository.findById(dados.id());
 		if(infoLivro.isEmpty()) {
-			throw new ValidacaoExcepetion("Id do livro não existe");
+			throw new ValidacaoException("Id do livro não existe");
 		}
 		
 		else if(infoLivro.get().getIsbn().equals(dados.isbn())) {
-			throw new ValidacaoExcepetion("Isbn registrado anteriormente");
+			throw new ValidacaoException("Isbn registrado anteriormente");
 		}
 		
 		else if(infoLivro.get().getCodigoBarra().equals(dados.isbn())) {
-			throw new ValidacaoExcepetion("Codigo de barra registrado anteriormente");
+			throw new ValidacaoException("Codigo de barra registrado anteriormente");
 		}
 		
 		DadosDetalhamentoLivro livro = repositorioDeLivro.alterar(dados);

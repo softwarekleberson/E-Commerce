@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.casoDeUso.cliente.NovaSenha;
 import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 @Service
 public class ValidarConfirmacaoSenhaUpdateCliente implements IStrategySenhaAtualizadaCliente{
@@ -14,7 +14,7 @@ public class ValidarConfirmacaoSenhaUpdateCliente implements IStrategySenhaAtual
 	public void processar(DadosAtualizacaoSenha dados) {
 		
 		if(!dados.senha().matches(dados.confirmarSenha())) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}		
 	}
 }

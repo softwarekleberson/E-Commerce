@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 public class AlgoritmoVerificaSenhaCliente {
 
@@ -8,7 +8,7 @@ public class AlgoritmoVerificaSenhaCliente {
 		
 	 public static void algoritmoVerificaSenhaCliente(String senha, String confirmarSenha) {		
 		if(!senha.matches(confirmarSenha)) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}		
 	}
 }

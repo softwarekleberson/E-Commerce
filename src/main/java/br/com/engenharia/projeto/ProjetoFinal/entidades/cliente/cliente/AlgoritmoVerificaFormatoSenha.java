@@ -3,7 +3,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 public class AlgoritmoVerificaFormatoSenha {
 
@@ -13,7 +13,7 @@ public class AlgoritmoVerificaFormatoSenha {
     
     public static void algoritmoVerificaFormatoSenha(String senha) {
         if (senha.length() < 8) {
-            throw new ValidacaoExcepetion(MENSAGEM_ERRO_QUANTIDADE_MINIMA);
+            throw new ValidacaoException(MENSAGEM_ERRO_QUANTIDADE_MINIMA);
         }
 
         String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]).*$";
@@ -21,7 +21,7 @@ public class AlgoritmoVerificaFormatoSenha {
         Matcher matcher = regex.matcher(senha);
 
         if (!matcher.matches()) {
-            throw new ValidacaoExcepetion(MENSAGEM_ERRO_FORMATO_INCORRETO);
+            throw new ValidacaoException(MENSAGEM_ERRO_FORMATO_INCORRETO);
         }
     }
 }

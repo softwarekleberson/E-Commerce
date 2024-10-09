@@ -13,7 +13,7 @@ import jakarta.validation.ValidationException;
 
 @RestControllerAdvice
 public class TratadorDeErro {
-
+	
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity tratarErro404() {
 	   return ResponseEntity.notFound().build();
@@ -29,7 +29,7 @@ public class TratadorDeErro {
 	   return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-	@ExceptionHandler(ValidacaoExcepetion.class)
+	@ExceptionHandler(ValidacaoException.class)
 	public ResponseEntity tratarErroRegraDeNegocio(ValidationException ex) {
 	   return ResponseEntity.badRequest().body(ex.getMessage());
 	}

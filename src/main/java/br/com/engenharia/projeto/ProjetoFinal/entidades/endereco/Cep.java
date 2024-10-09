@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.endereco;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class Cep {
 	public void setCep(String cep) {
 		String regexCEP = "^\\d{5}-\\d{3}$";
 		if(!cep.matches(regexCEP)) {
-			throw new ValidacaoExcepetion("Cep no formato irregular");
+			throw new ValidacaoException("Cep no formato irregular");
 		}
 		this.cep = cep.trim().toLowerCase();
 	}

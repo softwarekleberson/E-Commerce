@@ -7,7 +7,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dao.pedido.PedidoDao;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.devolucao.DadosCadastroDevolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 @Service
 public class VerificaStatusEntrega implements IstrategyDevolucao{
@@ -21,7 +21,7 @@ public class VerificaStatusEntrega implements IstrategyDevolucao{
 	public void processar(DadosCadastroDevolucao dados) {
 		var pedido = repositorioDePedido.devolvePedidoPeloCodigo(dados.codigoPedido());
 		if(pedido.getStatusEntrega() != StatusPedido.RECEBIDO) {
-			throw new ValidacaoExcepetion(MENSAGEM_ERRO);
+			throw new ValidacaoException(MENSAGEM_ERRO);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao;
 
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 
 public class AlgoritmoLuhn {
 
@@ -24,7 +24,7 @@ public class AlgoritmoLuhn {
 	        }
 
 	        if (sum % 10 != 0) {
-	            throw new ValidacaoExcepetion(String.format(MENSAGEM_ERRO, numero));
+	            throw new ValidacaoException(String.format(MENSAGEM_ERRO, numero));
 	        }
 	}
 }

@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.entidades.endereco;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cobranca.DadosCadastroCobranca;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Entrega.DadosCadastroEntrega;
-import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoExcepetion;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import lombok.Getter;
@@ -30,7 +30,7 @@ public class Cidade {
 	
 	public void setCidade(String cidade) {
 		if (cidade == null || cidade.trim().isEmpty()) {
-			throw new ValidacaoExcepetion("Cidade não deve ser nulo ou vazio");
+			throw new ValidacaoException("Cidade não deve ser nulo ou vazio");
 		 }
 		
 		this.cidade = cidade.trim().toLowerCase();
