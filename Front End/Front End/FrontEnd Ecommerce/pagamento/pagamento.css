@@ -31,10 +31,6 @@ body {
     overflow-y: scroll;
 }
 
-body > footer {
-    margin-top: 20px;
-}
-
 header {
     background-color: black;
     color: #fff;
@@ -52,7 +48,7 @@ header a {
 }
 
 header nav a {
-    margin-right: 15px;
+    margin-right: 60px;
 }
 
 .logo {
@@ -60,110 +56,8 @@ header nav a {
     padding-left: 80px;
 }
 
-.cart-and-avatar {
-    display: flex;
-    align-items: center;
-}
-
-.fa-cart-shopping {
-    font-size: 24px;
-}
-
-/* Estilos do campo de pesquisa */
-.search-box {
-    display: flex;
-    align-items: center;
-}
-
-.search-box input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 5px;
-}
-
-.search-box button[type="submit"] {
-    background-color: white;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
-.fa-search {
-    font-size: 16px;
-    color: black;
-}
-
-.fa-cart-shopping {
-    margin-right: 20px;
-    color: white;
-}
-
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
 a:hover {
     color: var(--cor5);
-}
-
-footer {
-    background-color: var(--cor0);
-    color: #fff;
-    padding: 40px;
-    height: 165px;
-    position: relative;
-}
-
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.footer-section {
-    flex: 1;
-    margin-bottom: 20px;
-}
-
-.footer-section h3 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-}
-
-.footer-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin-left: 400px;
-}
-
-.links-uteis {
-    margin-left: 400px;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.contact {
-    margin-top: 10px;
-}
-
-.contact span {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.footer-bottom {
-    margin-left: 480px;
 }
 
 .card > p{
@@ -178,37 +72,6 @@ section {
     margin-bottom: 10px;
     margin-left: 45px;
     width: 40%;
-}
-
-#add-delivery-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    font-size: 16px;
-    width: 18%;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-left: 25px;
-    margin-top: 6px;
-    margin-bottom: 10px;
-}
-
-.nova-entrega {
-    padding: 5px;
-    background-color: white; 
-    border: 1px solid #ccc;
-    border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    width: 39%; 
-    max-width: 600px; 
-    margin-left: 20px auto; 
-}
-
-label {
-    margin-bottom: 5px; 
-    margin-left: 25px;
-    font-weight: bold; 
 }
 
 input[type="text"],
@@ -269,23 +132,15 @@ button {
     border: none; 
     border-radius: 4px; 
     font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    width: 200px;
+    margin-left: 45px;
+    background-color: green;
 }
 
-#add-coupon-btn {
-    background-color: #ffc107; 
-    color: #000; 
-    margin-right: 10px; 
-}
-
-#add-coupon-btn:hover {
-    background-color: #e0a800; 
-}
-
-button[type="submit"] {
-    background-color: green; 
-    color: white; 
+button > a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }
 
 section > h3 {
@@ -297,7 +152,7 @@ section > h3 {
     height: 600px;
     background-color: white;
     margin-left: 700px;
-    transform: translateY(-680px);
+    margin-top: -400px;
     border-radius: 4px;
     border: 1px solid #ccc; 
 }
@@ -322,4 +177,34 @@ section > h3 {
 
 main {
     height: 120%;
+}
+
+.cupom {
+    margin-left: 85px;
+}
+
+.cupom > form{
+    margin-left: -5px;
+}
+
+.novo-cupom {
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    width: 140px;
+    margin-left: 5px;
+    background-color: green;
+    color: white;
+}
+
+.enviar {
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    width: 130px;
+    margin-left: 5px;
+    background-color: green;
+    color: white;
 }

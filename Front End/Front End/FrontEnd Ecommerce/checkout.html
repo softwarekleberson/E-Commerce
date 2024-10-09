@@ -26,17 +26,7 @@
             <a href="home.html#autoajuda">Autoajuda</a>
             <a href="cupom.html">Cupons</a>
             <a href="contas-listas.html">Contas e Listas</a>
-            <a href="home-adm.html">Adm</a>
         </nav>
-
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </div>
-
-        <div class="cart-and-avatar">
-            <a href="carrinho.html"><i class="fas fa-cart-shopping"></i></a>
-        </div>
     </header>
 
     <main>
@@ -44,152 +34,35 @@
             <div id="entrega">
                 <!--Aqui entra entrega principal-->>
             </div>
-        </section>
 
-        <section class="nova-entrega">
-            <button id="add-delivery-btn">Adicionar</button>
-            <form id="delivery-form" class="hidden">
-
-                <label for="idCliente">ID Cliente:</label>
-                <input type="text" id="idCliente" name="idCliente" required><br><br>
-
-                <label for="">Entrega principal</label>
-                <input type="checkbox" id="principal" name="principal" checked><br>
-
-                <label for="receptorEntrega">Receptor</label>
-                <input type="text" name="receptorEntrega" id="receptorEntrega" autocomplete="name" required
-                    placeholder="Quem irá receber a entrega">
-
-                <label for="tipoResidenciaEntrega">Tipo de Residência:</label>
-                <input type="text" id="tipoResidenciaEntrega" name="tipoResidenciaEntrega"
-                    placeholder="casa, apartamento, kitnet, chalé, cobertura etc" required autocomplete="off"><br><br>
-
-                <label for="tipoLogradouroEntrega">Tipo de Logradouro:</label>
-                <input type="text" id="tipoLogradouroEntrega" name="tipoLogradouroEntrega"
-                    placeholder="Rua, Avenida, Alameda, Travessa, etc" required autocomplete="off"><br><br>
-
-                <label for="logradouroEntrega">Logradouro:</label>
-                <input type="text" id="logradouroEntrega" name="logradouroEntrega"
-                    placeholder="Ex: Rua das Flores, Avenida Central, Praça da Liberdade" required
-                    autocomplete="off"><br><br>
-
-                <label for="numeroEntrega">Número:</label>
-                <input type="text" id="numeroEntrega" name="numeroEntrega" placeholder="Digite o número do imóvel"
-                    required><br><br>
-
-                <label for="bairroEntrega">Bairro:</label>
-                <input type="text" id="bairroEntrega" name="bairroEntrega" placeholder="Digite o nome do bairro"
-                    required><br><br>
-
-                <label for="cepEntrega">CEP:</label>
-                <input type="text" id="cepEntrega" name="cepEntrega" placeholder="12345-678" required autocomplete="off"
-                    pattern="\d{5}-\d{3}"><br><br>
-
-                <label for="observacaoEntrega">Observação:</label>
-                <textarea id="observacaoEntrega" name="observacaoEntrega" placeholder="Opcional"></textarea><br><br>
-
-                <label for="cidadeEntrega">Cidade:</label>
-                <input type="text" id="cidadeEntrega" name="cidadeEntrega" placeholder="Digite sua cidade"
-                    required><br><br>
-
-                <label for="estadoEntrega">Estado:</label>
-                <input type="text" id="estadoEntrega" name="estadoEntrega" placeholder="Digite seu estado"
-                    required><br><br>
-
-                <label for="paisEntrega">País:</label>
-                <input type="text" id="paisEntrega" name="paisEntrega" placeholder="Digite seu pais" required><br><br>
-
-                <label for="fraseEntregaEntrega">Frase de Entrega:</label>
-                <input type="text" id="fraseEntregaEntrega" name="fraseEntregaEntrega"
-                    placeholder="Informe instruções específicas de entrega" required><br><br>
-
-                <input type="submit" value="Enviar">
-            </form>
+            <button><a href="adicionar-Entrega.html" target="_blank" rel="noopener noreferrer">Nova Entrega</a></button>
         </section>
 
         <section>
             <div id="cartao">
                 <!--Aqui entra cartao principal-->
             </div>
+
+            <button><a href="adiciona-cartao.html" target="_blank" rel="noopener noreferrer">Novo Cartão</a></button>
         </section>
 
-        <section class="novo-cartao">
-            <button id="add-card-btn">Adicionar</button>
-            <form id="card-form" class="hidden">
-
-                <label for="idCliente">ID Cliente:</label><br>
-                <input type="text" id="idCliente" name="idCliente" required autocapitalize=""><br>
-
-                <label for="principal">Principal:</label><br>
-                <input type="checkbox" id="principal" name="principal" checked><br>
-
-                <label for="numeroCartao">Número do Cartão:</label><br>
-                <input type="text" id="numeroCartao" name="numeroCartao" placeholder="Ex: 1234567899874563"
-                    required><br>
-
-                <label for="nomeImpresso">Nome Impresso:</label><br>
-                <input type="text" id="nomeImpresso" name="nomeImpresso" placeholder="Nome completo" required
-                    autocomplete="name"><br>
-
-                <label for="codigo">Código:</label><br>
-                <input type="text" id="codigo" name="codigo" placeholder="Ex: 123" required><br>
-
-                <label for="dataExpiracao">Data validade</label><br>
-                <input type="date" id="dataExpiracao" name="dataExpiracao" placeholder="Data validade cartão">
-
-                <label for="bandeira">Bandeira:</label><br>
-                <select id="bandeira" name="bandeira">
-                    <option value="ELO">ELO</option>
-                    <option value="MASTERCARD" selected>Mastercard</option>
-                    <option value="VISA">Visa</option>
-                </select><br>
-                <input type="submit" value="Enviar">
-            </form>
-        </section>
-
-        <section>
+        <section class="cupom">
             <h3>Pague com até dois cupons</h3>
             <form id="coupon-form">
                 <div id="coupon-fields">
                     <label for="codigoCupom">Código :</label>
                     <input type="text" id="codigoCupom1" name="codigoCupom">
                 </div>
-                <button type="button" id="add-coupon-btn">Adicionar outro cupom</button>
-                <button type="submit">Enviar</button>
+                <button type="button" class="novo-cupom">Novo Cupom</button>
+                <button type="submit" class="enviar">Enviar</button>
             </form>
         </section>
 
         <section id="pedidos-pagar" class="pedidos-pagar">
             <!-- Os pedidos serão exibidos aqui -->
-        </section>        
+        </section>
 
     </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>Sobre Nós</h3>
-                <p>Somos uma livraria online dedicada a oferecer uma vasta seleção de livros de qualidade para nossos
-                    clientes.</p>
-                <div class="contact">
-                    <span><i class="fas fa-map-marker-alt"></i> 123 Rua das Livrarias, Cidade dos Livros, Brasil</span>
-                    <span><i class="fas fa-envelope"></i> info@minhalivraria.com</span>
-                </div>
-            </div>
-            <div class="footer-section links">
-                <h3 class="links-uteis">Links Úteis</h3>
-                <ul>
-                    <li><a href="home.html">Página Inicial</a></li>
-                    <li><a href="home.html#">Catálogo de Livros</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 Minha Livraria. Todos os direitos reservados.
-        </div>
-    </footer>
 
     <script>
         document.getElementById("add-delivery-btn").addEventListener("click", function () {
