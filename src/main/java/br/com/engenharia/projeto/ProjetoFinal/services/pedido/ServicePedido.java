@@ -2,7 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.services.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,7 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedid
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 import jakarta.validation.Valid;
 
 @Service
@@ -44,6 +45,9 @@ public class ServicePedido {
 	
 	@Autowired
 	private RepositorioDeCliente repositorioDeCliente;
+	
+	@Autowired
+	private EstoqueRepository estoqueRepository;
 	
 	public DadosDetalhamentoPedido criar(@Valid DadosCadastroPedido dados, Long clienteId, Long livroId) {
 		
@@ -77,13 +81,15 @@ public class ServicePedido {
 	}
 
 	private void verificaDiponibilidadeEmEstoque(DadosCadastroPedido dados, Long livroId) {
-		Optional<Estoque> estoque = repositorioDeEstoque.verificaDisponibilidadeLivro(livroId);
+		List<Estoque> estoque = estoqueRepository.findByLivroId(livroId);
 		
-		Long quantidadeEstoque = estoque.stream()
-								 .mapToLong(Estoque::getQuantidade)
-								 .sum();
+		int disponivel = 0;
+		for(Estoque estoques : estoque) {
+			disponivel += estoques.getQuantidade();
+		}
 		
-		if(dados.quantidade() > quantidadeEstoque) {
+		System.out.println(disponivel + "em estoque");
+		if(dados.quantidade() > disponivel) {
 			throw new EstoqueNaoEncontradoExcecao("Quantidade requerida superior a disponivel em estoque");
 		}
 	}

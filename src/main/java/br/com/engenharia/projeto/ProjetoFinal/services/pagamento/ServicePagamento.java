@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cartao.Cartao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.Estoque;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.Pagamento;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
@@ -22,6 +26,7 @@ import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoReposit
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cupom.CupomRepositroy;
+import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pagamento.PagamentoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
 import jakarta.transaction.Transactional;
@@ -36,6 +41,7 @@ public class ServicePagamento {
 	private final PedidoRepository pedidoRepository;
 	private final CupomRepositroy cupomRepository;
 	private final PagamentoRepository pagamentoRepository;
+	private final EstoqueRepository estoqueRepository;
 
 	@Autowired
 	public ServicePagamento(
@@ -44,13 +50,15 @@ public class ServicePagamento {
 			CartaoRepository cartaoRepository,
 			PedidoRepository pedidoRepository,
 			CupomRepositroy cupomRepository,
-			PagamentoRepository pagamentoRepository) {
+			PagamentoRepository pagamentoRepository,
+			EstoqueRepository estoqueRepository) {
 		this.entregaRepository = entregaRepository;
 		this.cobrancaRepository = cobrancaRepository;
 		this.cartaoRepository = cartaoRepository;
 		this.pedidoRepository = pedidoRepository;
 		this.cupomRepository = cupomRepository;
 		this.pagamentoRepository = pagamentoRepository;
+		this.estoqueRepository = estoqueRepository;
 	}
 
 	@Transactional
@@ -75,8 +83,47 @@ public class ServicePagamento {
 		pagamentoRepository.flush();
 		
 		associarPagamentoAPedidos(pagamento, pedidos);
+		baixaNoEstoque(pedidos);
 	}
 
+	private void baixaNoEstoque(List<Pedido> pedidos) {
+	    System.out.println("Iniciando baixa no estoque...");
+	    
+	    for (Pedido pedido : pedidos) {
+	        for (Item item : pedido.getItens()) {
+	            Long idDoLivro = item.getLivro().getId();
+	            int quantidadeRequeridaNoPedido = item.getQuantidade();
+	            
+	            List<Estoque> estoques = estoqueRepository.findByLivroId(idDoLivro);
+	            
+	            for (Estoque estoque : estoques) {
+	                if (quantidadeRequeridaNoPedido <= 0) {
+	                    break; 
+	                }
+	                
+	                if (estoque.getQuantidade() <= quantidadeRequeridaNoPedido) {
+
+	                	quantidadeRequeridaNoPedido -= estoque.getQuantidade();
+	                    estoque.setQuantidade(0); 
+	                } else {
+
+	                	estoque.setQuantidade(estoque.getQuantidade() - quantidadeRequeridaNoPedido);
+	                    quantidadeRequeridaNoPedido = 0; 
+	                }
+	                
+	                estoqueRepository.save(estoque); 
+	            }
+
+	            if (quantidadeRequeridaNoPedido > 0) {
+	                throw new RuntimeException("Estoque insuficiente para o livro ID: " + idDoLivro);
+	            }
+	        }
+	    }
+	    
+	    System.out.println("Baixa no estoque concluída.");
+	}
+
+	
 	private void associarPagamentoAPedidos(Pagamento pagamento, List<Pedido> pedidos) {
 		for (Pedido pedido : pedidos) {
 			pedido.setPagamento(pagamento);
