@@ -16,27 +16,28 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.hasOwnProperty('content') && Array.isArray(data.content)) {
-                    userList.innerHTML = '';
-
+                    const entrega = document.getElementById('entrega'); // Pegando o container pelo ID correto
+                    entrega.innerHTML = ''; // Limpa o conteúdo anterior
+    
                     const enderecoPrincipal = data.content.find(endereco => endereco.principal);
-
+    
                     if (enderecoPrincipal) {
                         const div = document.createElement('section');
                         div.classList.add('card');
                         div.innerHTML = `
-                            <h3>1 Endereço principal</h3>
+                            <h3>1 Endereço entrega principal</h3>
                             <p id="logradouro"> ${enderecoPrincipal.logradouro}</p>
                             <p id="tipoResidencia"> ${enderecoPrincipal.tipoResidencia} - ${enderecoPrincipal.numero} ${enderecoPrincipal.observacao}</p>
-                            <p id="estado"> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado} ${enderecoPrincipal.cep}
-                            <p id="pais"> ${enderecoPrincipal.pais}<p>                           
+                            <p id="estado"> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado} ${enderecoPrincipal.cep}</p>
+                            <p id="pais"> ${enderecoPrincipal.pais}</p>                           
                         `;
-                        userList.appendChild(div);
+                        entrega.appendChild(div); // Adiciona o novo conteúdo ao container com o ID entrega
                         addDeliveryBtn.style.display = 'block'; // Exibe o botão se houver um endereço principal
                     } else {
                         deliveryForm.classList.remove("hidden"); // Mostra o formulário se não houver endereço principal
                         addDeliveryBtn.style.display = 'none'; // Esconde o botão "Adicionar nova entrega"
                     }
-
+    
                 } else {
                     console.error('Os dados retornados não estão no formato esperado.');
                 }
@@ -47,7 +48,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 addDeliveryBtn.style.display = 'none'; // Esconde o botão "Adicionar nova entrega" em caso de erro
             });
     }
-
+    
+    function carregarCobranca(idCliente) {
+        fetch(`http://localhost:8080/endereco/cobranca/${idCliente}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.hasOwnProperty('content') && Array.isArray(data.content)) {
+                    const cobranca = document.getElementById('cobranca'); // Usando o ID correto
+                    cobranca.innerHTML = ''; // Limpa o conteúdo anterior
+    
+                    const enderecoPrincipal = data.content.find(endereco => endereco.principal);
+    
+                    if (enderecoPrincipal) {
+                        const div = document.createElement('section');
+                        div.classList.add('card');
+                        div.innerHTML = `
+                            <h3>2 Endereço cobrança principal</h3>
+                            <p id="logradouro"> ${enderecoPrincipal.logradouro}</p>
+                            <p id="tipoResidencia"> ${enderecoPrincipal.tipoResidencia} - ${enderecoPrincipal.numero} ${enderecoPrincipal.observacao}</p>
+                            <p id="estado"> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado} ${enderecoPrincipal.cep}</p>
+                            <p id="pais"> ${enderecoPrincipal.pais}</p>                           
+                        `;
+                        cobranca.appendChild(div); // Adiciona o novo conteúdo ao container com o ID cobrança
+                        addDeliveryBtn.style.display = 'block'; // Exibe o botão se houver um endereço principal
+                    } else {
+                        deliveryForm.classList.remove("hidden"); // Mostra o formulário se não houver endereço principal
+                        addDeliveryBtn.style.display = 'none'; // Esconde o botão "Adicionar nova entrega"
+                    }
+    
+                } else {
+                    console.error('Os dados retornados não estão no formato esperado.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                deliveryForm.classList.remove("hidden"); // Exibe o formulário em caso de erro
+                addDeliveryBtn.style.display = 'none'; // Esconde o botão "Adicionar nova entrega" em caso de erro
+            });
+    }
+       
     function carregarCartao(idCliente) {
         fetch(`http://localhost:8080/cartoes/${idCliente}`)
             .then(response => response.json())
@@ -61,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const div = document.createElement('section');
                         div.classList.add('card');
                         div.innerHTML = `
-                            <h3>2 Método de pagamento</h3>
+                            <h3>3 Método de pagamento</h3>
                             <p id="bandeira">Pagar com ${cartaoPrincipal.bandeira} </p>
                             <p id="nomeImpresso"> ${cartaoPrincipal.nomeImpresso}</p>
                             <p id="codigo">Código: ${cartaoPrincipal.codigo}</p>
@@ -87,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const idCliente = getClienteIdFromURL();
     if (idCliente) {
         carregarEndereco(idCliente);
+        carregarCobranca(idCliente)
         carregarCartao(idCliente);
     } else {
         console.error('ID do cliente não encontrado na URL.');

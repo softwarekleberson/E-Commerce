@@ -8,7 +8,8 @@ public record DadosDetalhamentoCobranca(
 		String bairro, String cep, String observacao,
 		String tipoLogradouto,
 		String tipoResidencia, String cidade,
-		String estado, String pais, String receptor
+		String estado, String pais, boolean principal,
+		String receptor
 		
 		) {
 
@@ -23,6 +24,6 @@ public record DadosDetalhamentoCobranca(
 				cobranca.getCidade().getCidade(),
 				cobranca.getCidade().getEstado().getEstado(), 
 				cobranca.getCidade().getEstado().getPais().getPais(),
-				cobranca.getReceptor());
+				cobranca.isPrincipal(), cobranca.getReceptor());
 	}
 }

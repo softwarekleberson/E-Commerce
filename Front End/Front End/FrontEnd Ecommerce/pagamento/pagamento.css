@@ -150,10 +150,10 @@ section > h3 {
 
 .pedidos-pagar {
     width: 46%;
-    height: 600px;
+    height: 650px;
     background-color: white;
     margin-left: 650px;
-    margin-top: -700px;
+    margin-top: -1150px;
     border-radius: 4px;
     position: relative;
     border: 1px solid #ccc; 
@@ -164,7 +164,7 @@ section > h3 {
 }
 
 .pedido-item > h3 {
-    margin-top: 5px;
+    margin-top: 30px;
     margin-bottom: 5px;
 }
 
@@ -210,3 +210,19 @@ main {
     background-color: green;
     color: white;
 }
+
+.cobranca {
+    margin-left: 360px;
+    transform: translateY(-310px);
+}
+
+.cupom {
+    margin-left: 380px;
+    transform: translateY(-480px);
+}
+
+.cartao {
+    transform: translateY(-240px);
+}
+
+

@@ -31,105 +31,44 @@
     </header>
 
     <main>
-        <section>
+        <section class="entrega">
             <div id="entrega">
                 <!--Aqui entra entrega principal-->>
             </div>
-
             <button><a href="adicionar-Entrega.html" target="_blank" rel="noopener noreferrer">Nova Entrega</a></button>
-
-            <button><a href="entrega.html" target="_blank" rel="noopener noreferrer">Trocar Entrega</a></button>
+            <button><a href="entrega.html" target="_blank" rel="noopener noreferrer">Trocar Entrega Principal</a></button>
         </section>
-
-        <section>
+        <section class="cobranca">
+            <div id="cobranca">
+                <!--Aqui entra cobranca principal-->>
+            </div>
+            <button><a href="adicionar-Cobranca.html" target="_blank" rel="noopener noreferrer">Nova
+                    Cobranca</a></button>
+            <button><a href="cobranca.html" target="_blank" rel="noopener noreferrer">Trocar Cobranca Principal</a></button>
+        </section>
+        <section class="cartao">
             <div id="cartao">
                 <!--Aqui entra cartao principal-->
             </div>
-
             <button><a href="adiciona-cartao.html" target="_blank" rel="noopener noreferrer">Novo Cartão</a></button>
-
-            <button><a href="cartoes.html" target="_blank" rel="noopener noreferrer">Trocar Cartão</a></button>
+            <button><a href="cartoes.html" target="_blank" rel="noopener noreferrer">Trocar Cartão Principal</a></button>
         </section>
-
         <section class="cupom">
             <h3>Pague com até dois cupons</h3>
             <form id="coupon-form">
                 <div id="coupon-fields">
                     <label for="codigoCupom1">Cupom 1:</label>
                     <input type="text" id="codigoCupom1" name="codigoCupom">
-        
                     <label for="codigoCupom2">Cupom 2:</label>
                     <input type="text" id="codigoCupom2" name="codigoCupom">
                 </div>
                 <button type="submit" class="enviar">Pagar</button>
             </form>
-        </section>        
-
+        </section>
         <section id="pedidos-pagar" class="pedidos-pagar">
             <!-- Os pedidos serão exibidos aqui -->
         </section>
-
     </main>
-
-    <script>
-        // Mostrar/ocultar formulário de entrega
-        document.getElementById("add-delivery-btn").addEventListener("click", function () {
-            const deliveryForm = document.getElementById("delivery-form");
-            deliveryForm.classList.toggle("hidden");
-        });
-    
-        // Mostrar/ocultar formulário de cartão
-        document.getElementById("add-card-btn").addEventListener("click", function () {
-            const cardForm = document.getElementById("card-form");
-            cardForm.classList.toggle("hidden");
-        });
-    
-        // Adicionar novo campo de cupom, limitando a dois cupons
-        let couponCount = 1;
-        const couponForm = document.getElementById("coupon-form");
-        const addCouponBtn = document.getElementById("add-coupon-btn");
-    
-        addCouponBtn.addEventListener("click", function () {
-            if (couponCount < 2) {
-                couponCount++;
-                const couponField = document.createElement("div");
-                couponField.innerHTML = `
-                    <label for="codigoCupom${couponCount}">Código :</label>
-                    <input type="text" id="codigoCupom${couponCount}" name="codigoCupom">
-                `;
-                couponForm.insertBefore(couponField, addCouponBtn);
-            }
-        });
-    
-        // Buscar dados de entrega principal após o carregamento da página
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('http://localhost:8080/endereco/entrega/1')  // Faz a requisição ao endpoint
-                .then(response => response.json())
-                .then(data => {
-                    // Filtra para encontrar o endereço principal
-                    const enderecoPrincipal = data.content.find(entrega => entrega.principal);
-    
-                    if (enderecoPrincipal) {
-                        // Atualiza a seção de entrega com os dados do endereço principal
-                        const entregaSection = document.getElementById("entrega");
-                        entregaSection.innerHTML = `
-                            <h1>Entrega principal</h1>
-                            <p><strong>Logradouro:</strong> ${enderecoPrincipal.logradouro}, ${enderecoPrincipal.numero}</p>
-                            <p><strong>Bairro:</strong> ${enderecoPrincipal.bairro}</p>
-                            <p><strong>CEP:</strong> ${enderecoPrincipal.cep}</p>
-                            <p><strong>Cidade:</strong> ${enderecoPrincipal.cidade}, ${enderecoPrincipal.estado}, ${enderecoPrincipal.pais}</p>
-                            <p><strong>Frase de Entrega:</strong> ${enderecoPrincipal.fraseEntrega}</p>
-                            <p><strong>Receptor:</strong> ${enderecoPrincipal.receptor}</p>
-                        `;
-                    } else {
-                        // Se não encontrar endereço principal
-                        document.getElementById("entrega").innerHTML = `<p>Nenhuma entrega principal encontrada.</p>`;
-                    }
-                })
-                .catch(error => console.error('Erro ao buscar os dados:', error));
-        });
-    </script>
-    
 
     <script src="pagamento/javascript/index.js"></script>
     <script src="pagamento/javascript/pedidos.js"></script>
