@@ -17,8 +17,8 @@ public class ServiceRecusarDevolucao {
 	@Autowired 
 	private RepositorioDeDevolucao repositorioDeDevolucao;
 	
-	public DadosDetalhamentoTotalDevolucao devolucaoRecusada(@Valid DadosAtualizacaoDevolucao dados, String codigoDevolucao) {
-		var recusaDevolucao = repositorioDeDevolucao.carregarDevolucao(codigoDevolucao);
+	public DadosDetalhamentoTotalDevolucao devolucaoRecusada(@Valid DadosAtualizacaoDevolucao dados) {
+		var recusaDevolucao = repositorioDeDevolucao.carregarDevolucao(dados.codigoDevolucao());
 		
 		recusaDevolucao.setDataConclusaoTroca(LocalDate.now());
 		recusaDevolucao.devoluvaoChegou(dados.esperandoDevolucaoOuRecebido());

@@ -32,8 +32,8 @@ public class ServiceAceitarDevolucao {
 	@Autowired
 	private RepositorioDeEstoque repositorioDeEstoque;
 	
-	public DadosDetalhamentoTotalDevolucao devolucaoAceita (@Valid DadosAtualizacaoDevolucao dados, String codigoDevolucao) {
-		var aceitaDevolucao = repositorioDeDevolucao.carregarDevolucao(codigoDevolucao);
+	public DadosDetalhamentoTotalDevolucao devolucaoAceita (@Valid DadosAtualizacaoDevolucao dados) {
+		var aceitaDevolucao = repositorioDeDevolucao.carregarDevolucao(dados.codigoDevolucao());
 		
 		aceitaDevolucao.setDataConclusaoTroca(LocalDate.now());
 		aceitaDevolucao.devoluvaoChegou(dados.esperandoDevolucaoOuRecebido());

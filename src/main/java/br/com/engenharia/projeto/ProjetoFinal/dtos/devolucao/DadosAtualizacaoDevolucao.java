@@ -11,6 +11,9 @@ public record DadosAtualizacaoDevolucao(
 		String codigoPedido,
 		
 		@NotNull
+		String codigoDevolucao,
+		
+		@NotNull
 		EsperandoDevolucaoOuRecebido esperandoDevolucaoOuRecebido,
 		
 		@NotNull
