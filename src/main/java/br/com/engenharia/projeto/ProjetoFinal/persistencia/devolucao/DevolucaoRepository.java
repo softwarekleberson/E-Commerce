@@ -14,4 +14,6 @@ public interface DevolucaoRepository extends JpaRepository<Devolucao, Long>{
 
 	Optional<Devolucao> findByCodigoDevolucao(String codigoDevolucao);
 
+	Optional<Devolucao> findByCodigoPedido(String codigoDevolucao);
+
 }

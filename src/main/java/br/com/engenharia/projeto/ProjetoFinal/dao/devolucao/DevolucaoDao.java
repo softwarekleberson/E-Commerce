@@ -42,4 +42,10 @@ public class DevolucaoDao implements RepositorioDeDevolucao{
 		}
 		return devolucaoExiste.get();
 	}
+
+	@Override
+	public Optional<Devolucao> verificaCodigoPedido(String codigoPedido) {
+		Optional<Devolucao> devolucoes = devolucao.findByCodigoPedido(codigoPedido);
+		return devolucoes;
+	}
 }

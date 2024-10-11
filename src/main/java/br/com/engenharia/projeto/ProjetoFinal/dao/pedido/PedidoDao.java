@@ -2,6 +2,7 @@ package br.com.engenharia.projeto.ProjetoFinal.dao.pedido;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,12 +31,9 @@ public class PedidoDao implements RepositorioDePedido{
 	}
 
 	@Override
-	public boolean verificaCodigoPedido(String codigoPedido) {
-		Pedido pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
-		if(pedido == null) {
-			throw new PedidoNaoEncontradoExcecao("Codigo do produto não encontrado");
-		}
-		return true;
+	public Optional<Pedido> verificaCodigoPedido(String codigoPedido) {
+		Optional<Pedido> pedido = pedidoRepository.findByCodigoPedido(codigoPedido);
+		return pedido;
 	}
 
 	@Override
@@ -44,7 +42,7 @@ public class PedidoDao implements RepositorioDePedido{
 		if(pedido == null) {
 			throw new PedidoNaoEncontradoExcecao("Codigo pedido incorreto");
 		}
-		return pedido;
+		return pedido.get();
 	}
 
 	@Override
