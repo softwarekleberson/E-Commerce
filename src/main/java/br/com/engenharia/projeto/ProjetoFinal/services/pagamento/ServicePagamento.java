@@ -191,18 +191,18 @@ public class ServicePagamento {
 
 	private List<Pedido> listaPedidos(Long clienteId) {
 		List<Pedido> pedidos = pedidoRepository.findByClienteId(clienteId);
-		
-		List<Pedido> pedidoValido = new ArrayList<>();
+		List<Pedido> pedidosNaoPagos = new ArrayList<>();
 		for(Pedido pedido : pedidos) {
 			if(!pedido.isPago()) {
-				pedidoValido.add(pedido);
-			}
-			else {
-				throw new ValidacaoException("Não a pedidos");
-			}
+				pedidosNaoPagos.add(pedido);
+			}	
 		}
 		
-		return pedidoValido;
+	    if (pedidosNaoPagos.isEmpty()) {
+	        throw new ValidacaoException("Nenhum pedido não pago encontrado para o cliente com ID " + clienteId);
+	    }
+		
+		return pedidosNaoPagos;
 	}
 
 	private Entrega verificarExistenciaEntrega(Long id) {

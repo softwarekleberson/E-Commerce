@@ -27,4 +27,6 @@ public interface CobrancaRepository extends JpaRepository<Cobranca, Long>{
 	@Query("UPDATE Cobranca c SET c.principal = (c.id = :id) WHERE c.cliente.id = :id2")
 	void atualizarCobrancasNaoPrincipalClienteExceptIdAndPrincipal(Long id, Long id2);
 
+	Cobranca findByPrincipalTrue();
+
 }

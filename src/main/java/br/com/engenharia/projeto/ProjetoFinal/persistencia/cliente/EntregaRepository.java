@@ -31,4 +31,6 @@ public interface EntregaRepository extends JpaRepository<Entrega, Long>{
     @Transactional
     @Query("UPDATE Entrega e SET e.principal = true WHERE e.id = :entregaId")
     void updateEntregaPrincipal(Long entregaId);
+
+	Entrega findByPrincipalTrue();
 }
