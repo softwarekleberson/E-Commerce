@@ -3,90 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="imagem/fiveicon.jpeg" type="image/x-icon">
-    <title>Formulário de Devolução</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .container img {
-            display: block;
-            margin-left: 10px;
-            width: 100px;
-        }
-        .container p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        .container label {
-            font-weight: bold;
-            display: block;
-            margin: 10px 0 5px;
-        }
-        .container select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        .container .buttons {
-            text-align: center;
-        }
-        .container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .container button.aceitar {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .container button.recusar {
-            background-color: #f44336;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="devolucao-adm/style.css">
+    <title>Devoluções</title>
 </head>
 <body>
     <div class="container">
-        <img src="detalhe-produto/imagens/Foto-terciaria.jpg" alt="Produto">
-
-        <p><strong>Código de Devolução:</strong> 1f1eaeaf-00c6-46b1-b7fd-8a6345868476</p>
-        <p><strong>Código do Pedido:</strong> 5531d266-b13b-4c12-9bc8-9d7160da2ff9</p>
-        <p><strong>Data do Pedido de Troca:</strong> 2024-07-04</p>
-
-        <label for="analisePedidoDevolucao">Análise do Pedido de Devolução:</label>
-        <select id="analisePedidoDevolucao" name="analisePedidoDevolucao">
-            <option value="ESPERANDO_DEVOLUCAO" selected>ESPERANDO_DEVOLUCAO</option>
-            <option value="DEVOLUCAO_RECEBIDA">RECEBIDO</option>
-        </select>
-        
-        <label for="analiseDevolucao">Análise da Devolução:</label>
-        <select id="analiseDevolucao" name="analiseDevolucao">
-            <option value="EM_ANALISE" selected>EM_ANALISE</option>
-            <option value="TROCA_ACEITA">TROCA_ACEITA</option>
-            <option value="TROCA_RECUSADA">TROCA_RECUSADA</option>
-        </select>  
-
-        <div class="buttons">
-            <button type="button" class="aceitar">Aceitar</button>
-            <button type="button" class="recusar">Recusar</button>
-        </div>
+        <h1>Lista de Devoluções</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Devolução</th>
+                    <th>Código Devolução</th>
+                    <th>Código Pedido</th>
+                    <th>Data Pedido Troca</th>
+                    <th>Data Conclusão Troca</th>
+                    <th>Email Adm</th>
+                    <th>Análise Pedido Devolução</th>
+                    <th>Análise Devolução</th>
+                </tr>
+            </thead>
+            <tbody id="devolucoes">
+                <!-- As devoluções serão inseridas aqui dinamicamente -->
+            </tbody>
+        </table>
     </div>
+    
+    <script>
+        // Obtém o ID da devolução da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const devolucaoId = urlParams.get('id') || 1; // Usa 1 como padrão se não houver ID na URL
+        
+        // URL da API com o ID dinâmico
+        const apiUrl = `http://localhost:8080/administrador/devolucoes/${devolucaoId}`;
+
+        // Função para buscar as devoluções
+        async function fetchDevolucoes() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar as devoluções');
+                }
+                const data = await response.json();
+                populateTable(data.content);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Função para popular a tabela com os dados
+        function populateTable(devolucoes) {
+            const devolucoesTable = document.getElementById('devolucoes');
+            devolucoesTable.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
+            
+            devolucoes.forEach(devolucao => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${devolucao.idDevolucao}</td>
+                    <td>${devolucao.codigoDevolucao}</td>
+                    <td>${devolucao.codigoPedido}</td>
+                    <td>${devolucao.dataPedidoTroca}</td>
+                    <td>${devolucao.dataConclusaoTroca ? devolucao.dataConclusaoTroca : 'Não Concluído'}</td>
+                    <td>${devolucao.emailAdm}</td>
+                    <td>${devolucao.analisePedidoDevolucao}</td>
+                    <td>${devolucao.analiseDevolucao}</td>
+                `;
+                devolucoesTable.appendChild(row);
+            });
+        }
+
+        // Chama a função para buscar as devoluções ao carregar a página
+        fetchDevolucoes();
+    </script>
 </body>
 </html>
