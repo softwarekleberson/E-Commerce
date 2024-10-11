@@ -82,4 +82,9 @@ public class ItemDao implements RepositorioDeItem{
 
 	    return new PageImpl<>(itens.subList(start, end), pageable, itens.size());
 	}
+
+	@Override
+	public Page<DadosDetalhamentoItensPagos> listarTodosOsPedidos(Pageable pageable) {
+	    return repository.buscarTodosOsItensPagos(pageable);
+	}
 }

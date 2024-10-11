@@ -23,6 +23,7 @@ public class ServiceModificaPedido {
 		
 		if(pedido != null && pedido.isPago()) {
 			pedido.modificarStatusEntrega(StatusPedido.RECEBIDO);
+			pedido.setEntregue(LocalDate.now());
 			repository.salvar(pedido);
 		}
 		else {

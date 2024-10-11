@@ -1,15 +1,23 @@
 package br.com.engenharia.projeto.ProjetoFinal.controller.administrador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.engenharia.projeto.ProjetoFinal.dao.item.RepositorioDeItem;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosCodigoPedido;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Administrador.DadosExcluirPedidos;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItem;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItensPagos;
 import br.com.engenharia.projeto.ProjetoFinal.services.administradores.ServiceModificaPedido;
 import jakarta.validation.Valid;
 
@@ -21,6 +29,9 @@ public class AdministradorModificaPedidosController {
 	@Autowired
 	private ServiceModificaPedido service;
 	
+	@Autowired
+	private RepositorioDeItem repositorioDeItem;
+	
 	@PostMapping("status/entrega/entregue")
 	public ResponseEntity<Void> modificarStatusEntregaPedido(@RequestBody @Valid DadosCodigoPedido dados) {
 		service.modificarStatusEntregaPedido(dados.codigo());
@@ -31,5 +42,13 @@ public class AdministradorModificaPedidosController {
 	public ResponseEntity<Void> excluirPedidosAutomaticamente(@RequestBody @Valid DadosExcluirPedidos dados) {
 		service.excluirPedidosNaoFinalizados(dados.dias());
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/listar-pedidos")
+	public ResponseEntity<Page<DadosDetalhamentoItensPagos>> listarTodosOsPedidosPagos(
+	        										   @PageableDefault(size = 15, sort = "id") Pageable pageable) {
+
+	    Page<DadosDetalhamentoItensPagos> itens = repositorioDeItem.listarTodosOsPedidos(pageable);
+	    return ResponseEntity.ok(itens);
 	}
 }

@@ -15,5 +15,6 @@ public interface RepositorioDeItem {
 	public void deletar(Long id);
 	public Page<DadosDetalhamentoItem> listarItensDoCliente(Long clienteId, Pageable pageable);
 	public Page<DadosDetalhamentoItensPagos> pedidosPagos(Long clienteId, Pageable pageable);
+	public Page<DadosDetalhamentoItensPagos> listarTodosOsPedidos(Pageable pageable);
 
 }
