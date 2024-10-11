@@ -47,3 +47,19 @@ td {
 td:nth-child(5) {
     color: #ff5722; /* Cor para a data de conclusão */
 }
+
+a {
+    text-decoration: none;  /* Remove o sublinhado */
+    color: #3498db;  /* Cor azul */
+    font-family: Arial, sans-serif;  /* Fonte básica */
+    font-size: 16px;  /* Tamanho da fonte */
+    padding: 8px 12px;  /* Espaçamento interno */
+    border: 1px solid #3498db;  /* Borda da mesma cor */
+    border-radius: 4px;  /* Bordas arredondadas */
+    transition: background-color 0.3s ease;  /* Transição suave de cor */
+}
+
+a:hover {
+    background-color: #3498db;  /* Muda a cor de fundo ao passar o mouse */
+    color: white;  /* Cor do texto quando o fundo mudar */
+}

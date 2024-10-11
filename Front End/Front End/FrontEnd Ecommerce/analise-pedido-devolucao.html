@@ -13,7 +13,7 @@
 <body>
     <h1>Formulário de Atualização de Devolução</h1>
 
-    <form>
+    <form id="formDevolucao">
         <label for="codigoPedido">Código do Pedido:</label>
         <input type="text" id="codigoPedido" name="codigoPedido" required>
         <br><br>
@@ -49,10 +49,13 @@
         <br><br>
 
         <div class="button-container">
-            <button type="submit">Aceitar Devolução</button>
-            <button type="submit">Recusar Devolução</button>
+            <button type="submit" id="aceitar">Aceitar Devolução</button>
+            <button type="submit" id="recusar">Recusar Devolução</button>
         </div>
     </form>
+
 </body>
 
+    <script src="analise-pedido-devolucao/javascript/aceitar.js"></script>
+    <script src="analise-pedido-devolucao/javascript/recusar.js"></script>
 </html>

@@ -40,13 +40,13 @@ public class DevolucaoAdministradorController {
     }
 
     @PutMapping("/recusar")
-    public ResponseEntity<DadosDetalhamentoTotalDevolucao> recusarDevolucoes(@PathVariable String codigoDevolucao, @RequestBody @Valid DadosAtualizacaoDevolucao dados) {
+    public ResponseEntity<DadosDetalhamentoTotalDevolucao> recusarDevolucoes(@RequestBody @Valid DadosAtualizacaoDevolucao dados) {
         DadosDetalhamentoTotalDevolucao detalhamentoDevolucao = serviceRecusarDevolucao.devolucaoRecusada(dados);
         return ResponseEntity.ok(detalhamentoDevolucao);
     }
 
     @PutMapping("/aceitar")
-    public ResponseEntity<DadosDetalhamentoTotalDevolucao> aceitarDevolucoes(@PathVariable String codigoDevolucao, @RequestBody @Valid DadosAtualizacaoDevolucao dados) {
+    public ResponseEntity<DadosDetalhamentoTotalDevolucao> aceitarDevolucoes(@RequestBody @Valid DadosAtualizacaoDevolucao dados) {
         DadosDetalhamentoTotalDevolucao detalhamentoDevolucao = serviceAceitarDevolucao.devolucaoAceita(dados);
         return ResponseEntity.ok(detalhamentoDevolucao);
     }
