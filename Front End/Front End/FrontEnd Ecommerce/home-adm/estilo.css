@@ -57,7 +57,7 @@ header nav a {
 
 .logo {
     font-size: 2em;
-    padding-left: 80px;
+    margin: auto;
 }
 
 .cart-and-avatar {

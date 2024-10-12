@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    const clienteId = urlParams.get('clienteId');
+    const clienteId = urlParams.get('clienteId') || 1;
 
     if (!id || !clienteId) {
         return;
