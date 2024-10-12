@@ -49,35 +49,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelectorAll('.botao-devolucao').forEach((button, index) => {
                 button.addEventListener('click', async () => {
-                    const orderElement = button.closest('.caixa-principal');
-                    const codigoPedido = orderElement.querySelector('.codigo-pedido').textContent;
+                    const confirmDevolucao = confirm('Você tem certeza que deseja solicitar a devolução deste pedido?');
+                    if (confirmDevolucao) {
+                        const orderElement = button.closest('.caixa-principal');
+                        const codigoPedido = orderElement.querySelector('.codigo-pedido').textContent;
 
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const clienteId = urlParams.get('clienteId');
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const clienteId = urlParams.get('clienteId') || 1;
 
-                    const url = `http://localhost:8080/devolucoes/${clienteId}`;
+                        const url = `http://localhost:8080/devolucoes/${clienteId}`;
 
-                    const requestBody = {
-                        codigoPedido: codigoPedido
-                    };
+                        const requestBody = {
+                            codigoPedido: codigoPedido
+                        };
 
-                    try {
+                        try {
 
-                        const postResponse = await fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(requestBody) 
-                        });
+                            const postResponse = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(requestBody) 
+                            });
 
-                        if (postResponse.ok) {
-                            console.log('Devolução solicitada com sucesso.');
-                        } else {
-                            console.error('Erro ao solicitar devolução:', postResponse.statusText);
+                            if (postResponse.ok) {
+                                alert('Devolução solicitada com sucesso.');
+                            } else {
+                                console.error('Erro ao solicitar devolução:', postResponse.statusText);
+                            }
+                        } catch (error) {
+                            console.error('Erro ao enviar a requisição de devolução:', error);
                         }
-                    } catch (error) {
-                        console.error('Erro ao enviar a requisição de devolução:', error);
                     }
                 });
             });
