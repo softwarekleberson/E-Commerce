@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div>
-                <p class="data-entrega">Status: ${order.status}</p>
+                <p class="data-entrega">Status Pagamento: ${order.status}</p>
                 <div class="imagem-e-descricao">
                     <img src="${order.primeiraImagem}" alt="">
                     <p class="data-entrega">Entregue ${order.entregue}</p>

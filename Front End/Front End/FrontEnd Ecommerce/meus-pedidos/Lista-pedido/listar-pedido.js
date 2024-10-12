@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div>
-                <p class="data-entrega">Status: ${order.status}</p>
+                <p class="status">Status: ${order.status}</p>
                 <div class="imagem-e-descricao">
                 <img src="${order.primeiraImagem}" alt="">
                 <p class="data-entrega">Entregue ${order.entregue}</p>
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const orders = data.content;
 
-            ordersContainer.innerHTML = ''; 
+            ordersContainer.innerHTML = '';
             orders.forEach(order => {
                 const orderHTML = createOrderHTML(order);
                 ordersContainer.innerHTML += orderHTML;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderId = urlParams.get('clienteId');
 
     if (orderId) {
-        console.log('Order ID:', orderId); 
+        console.log('Order ID:', orderId);
         fetchOrders(orderId);
     } else {
         console.error('ID do pedido não encontrado na URL');
