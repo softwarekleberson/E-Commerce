@@ -45,10 +45,9 @@ header nav a {
 
 a {
     text-decoration: none;
-}
-
-a:hover {
     color: var(--cor5);
+    font-size: 1.2em;
+    margin-left: 20px;
 }
 
 .container {
