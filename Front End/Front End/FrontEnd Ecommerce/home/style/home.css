@@ -151,6 +151,7 @@ a:hover {
     max-width: 100%;
     height: auto;
     display: block;
+    border-radius: 5px ;
 }
 
 #produtos h3 {
