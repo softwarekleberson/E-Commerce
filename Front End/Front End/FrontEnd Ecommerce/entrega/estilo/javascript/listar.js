@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function getClienteIdFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('idCliente');
+        return urlParams.get('idCliente') || 1;
     }
 
     function carregarUsuarios(idCliente) {

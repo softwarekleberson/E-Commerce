@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Obter o ID do cliente da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const clienteId = urlParams.get('clienteId');
 
-    // 2. Construir a URL do endpoint
+    const urlParams = new URLSearchParams(window.location.search);
+    const clienteId = urlParams.get('clienteId') || 1;
+
     const endpoint = `http://localhost:8080/administrador/cupons/${clienteId}`;
 
-    // 3. Fazer uma solicitação GET para o endpoint usando Fetch
     fetch(endpoint)
         .then(response => {
             if (!response.ok) {
@@ -15,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            // 4. Verificar se há conteúdo e manipular adequadamente
+
             if (data.content && Array.isArray(data.content)) {
                 // Se houver conteúdo e for um array, iterar sobre eles
                 const cupomContainer = document.querySelector('.cupom-container');
@@ -32,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     cupomContainer.appendChild(cupomElement);
                 });
             } else {
-                // Se não houver conteúdo ou não for um array, faça algo diferente
+
                 console.error('Os dados retornados não são válidos.');
-                // Você pode adicionar lógica aqui para lidar com outros casos
+
             }
         })
         .catch(error => {

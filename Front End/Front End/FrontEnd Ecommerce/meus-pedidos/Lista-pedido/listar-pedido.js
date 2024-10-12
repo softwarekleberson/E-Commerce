@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('clienteId');
+    const orderId = urlParams.get('clienteId') || 1;
 
     if (orderId) {
         console.log('Order ID:', orderId);

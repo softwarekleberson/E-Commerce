@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Captura o ID do cliente da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const clienteId = urlParams.get('clienteId');
+    const clienteId = urlParams.get('clienteId') || 1;
 
     if (clienteId) {
         // Faz a requisição à API para obter os dados do pedido

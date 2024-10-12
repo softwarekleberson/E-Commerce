@@ -47,32 +47,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 ordersContainer.innerHTML += orderHTML;
             });
 
-            // Adicionando listeners para o botão de devolução
             document.querySelectorAll('.botao-devolucao').forEach((button, index) => {
                 button.addEventListener('click', async () => {
                     const orderElement = button.closest('.caixa-principal');
                     const codigoPedido = orderElement.querySelector('.codigo-pedido').textContent;
 
-                    // Captura o clienteId da URL
                     const urlParams = new URLSearchParams(window.location.search);
                     const clienteId = urlParams.get('clienteId');
 
-                    // Construir a URL com clienteId dinâmico
                     const url = `http://localhost:8080/devolucoes/${clienteId}`;
 
-                    // Montar o corpo da requisição
                     const requestBody = {
                         codigoPedido: codigoPedido
                     };
 
                     try {
-                        // Fazer a requisição POST
+
                         const postResponse = await fetch(url, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(requestBody) // Enviar o código do pedido no corpo da requisição
+                            body: JSON.stringify(requestBody) 
                         });
 
                         if (postResponse.ok) {
@@ -91,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('clienteId');
+    const orderId = urlParams.get('clienteId') || 1;
 
     if (orderId) {
         fetchOrders(orderId);
