@@ -4,7 +4,7 @@ CREATE TABLE pagamentos (
     entrega_id BIGINT NOT NULL,
     cobranca_id BIGINT NOT NULL,
     valor_total DECIMAL(15, 2) NULL,
-    status_pagamento VARCHAR(20) NULL,
+    status_compra VARCHAR(20) NULL,
     CONSTRAINT fk_entrega
         FOREIGN KEY (entrega_id) REFERENCES entregas(id),
     CONSTRAINT fk_cobranca

@@ -20,7 +20,6 @@ public class ServiceModificaPedido {
 		
 	public void modificarStatusEntregaPedido(String codigoPedido) {
 		var pedido = repository.devolvePedidoPeloCodigo(codigoPedido);
-		
 		if(pedido != null && pedido.isPago()) {
 			pedido.modificarStatusEntrega(StatusPedido.RECEBIDO);
 			pedido.setEntregue(LocalDate.now());

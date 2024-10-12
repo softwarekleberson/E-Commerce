@@ -62,7 +62,7 @@ public class Pagamento {
 	 @JoinColumn(name = "pagamento_id", nullable = true)
 	 private List<Cupom> cupons;
 	    
-	 @Column(name = "status_pagamento")
+	 @Column(name = "status_compra")
 	 @Enumerated(EnumType.STRING)
 	 private StatusCompra statusCompra;
 	 
