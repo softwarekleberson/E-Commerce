@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     // Passo 1: Capturar o ID do pedido da URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalElement = document.createElement('div');
             totalElement.classList.add('total-geral');
             totalElement.innerHTML = `
-                <h3 class="preco-final">Total Geral: R$${totalGeral.toFixed(2)}</h3>
+                <h3 class="preco-final">Total: R$${totalGeral.toFixed(2)}</h3>
             `;
             
             pedidosSection.appendChild(totalElement); 

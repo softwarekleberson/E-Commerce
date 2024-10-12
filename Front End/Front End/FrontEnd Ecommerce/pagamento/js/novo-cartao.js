@@ -1,25 +1,28 @@
 document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Previne o envio do formulário
+
+    // Obtém o checkbox
     var isChecked = document.getElementById('principal').checked;
-    document.getElementById('principal').value = isChecked ? 'true' : 'false';
-});
 
-document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
+    // Cria um objeto FormData
     const formData = new FormData(this);
     const jsonData = {};
 
+    // Preenche o jsonData com os valores do FormData
     formData.forEach((value, key) => {
-        jsonData[key] = value;
+        // Se o checkbox estiver marcado, define o valor como true, senão, false
+        if (key === 'principal') {
+            jsonData[key] = isChecked ? true : false; // Usar booleano verdadeiro/falso
+        } else {
+            jsonData[key] = value;
+        }
     });
 
     sendDataToBackend(jsonData);
-    this.reset();
-    window.location.href = "cartoes.html"
+    this.reset(); // Reseta o formulário
 });
 
 function sendDataToBackend(data) {
-   
     fetch('http://localhost:8080/cartoes', {
         method: 'POST',
         headers: {
@@ -40,5 +43,3 @@ function sendDataToBackend(data) {
         console.error('Erro:', error);
     });
 }
-
-
