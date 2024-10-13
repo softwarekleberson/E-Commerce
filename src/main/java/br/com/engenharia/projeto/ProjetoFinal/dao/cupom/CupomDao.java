@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.dao.cupom;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,5 +34,11 @@ public class CupomDao implements RepositorioDeCupom{
 	    	 throw new CupomNaoEcontradoExcecao("Id incorreto");
 	     }
 		 return cuponsPage.map(DadosDetalhamentoCupom::new);
+	}
+
+	@Override
+	public Optional<Cupom> encontrarCupomPorCodigo(String codigoCupom) {
+		Optional<Cupom> cupom = repository.buscarCupomPorId(codigoCupom);
+		return cupom;
 	}
 }

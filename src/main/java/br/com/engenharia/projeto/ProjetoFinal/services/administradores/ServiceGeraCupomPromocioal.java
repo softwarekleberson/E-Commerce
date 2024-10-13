@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosCadastroCupom;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.DadosDetalhamentoCupom;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Cupom.ValidarCupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.Cupom;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cupom.RepositorioDeCupom;
@@ -32,5 +33,17 @@ public class ServiceGeraCupomPromocioal {
 		
 		repositorioDeCupom.salvar(cupom);
 		return new DadosDetalhamentoCupom(cupom);
+	}
+	
+	public boolean validarCupomUsuario(@Valid ValidarCupom dados) {
+		Optional<Cupom> cupomValido = repositorioDeCupom.encontrarCupomPorCodigo(dados.codigoCupom());
+		if(cupomValido.isPresent()) {
+			Cupom cupom = cupomValido.get();
+			cupom.setStatus(false);
+			repositorioDeCupom.salvar(cupom);
+			return true;
+		}
+		
+		return false;
 	}
 }
