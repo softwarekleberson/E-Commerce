@@ -8,12 +8,12 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.log.LogRepository;
 
 @Service
-public class LogDao implements RepositorioDeLog {
+public class LogClienteDao implements RepositorioDeLog {
 
 	@Autowired
 	private LogRepository logRepository;
 	
-	public LogDao(LogRepository logRepository) {
+	public LogClienteDao(LogRepository logRepository) {
 		this.logRepository = logRepository;
 	}
 

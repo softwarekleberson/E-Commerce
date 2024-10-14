@@ -30,7 +30,7 @@ public interface ItemPedidoRepository extends JpaRepository<Item, Long> {
 	
 	@Query("SELECT new br.com.engenharia.projeto.ProjetoFinal.dtos.item.DadosDetalhamentoItensPagos( " +
 		       "i.id, l.id, p.id, p.pago, p.entregue,i.quantidade, p.pedidoRealizado, l.titulo, " +
-		       "img.url, pag.statusCompra, i.precoUnitario, i.subtotal, p.codigoPedido) " +
+		       "img.url, pag.statusCompra, i.precoUnitario, i.subtotal, p.codigoPedido, p.trocaDevolucao ) " +
 		       "FROM Item i " +
 		       "JOIN i.livro l " +
 		       "JOIN l.imagens img " + 

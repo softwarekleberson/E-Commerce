@@ -8,24 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="informacoes-pedito">
                     <p>Pedido realizado</p>
                     <p>Total</p>
-                    <p>Entregue</p>
+                    <p>Pedido troca</p>
                     <p>Nº pedido</p>
                 </div>
                 <div class="informacoes-pedito-valores">
                     <p>${order.dataPedido}</p>
                     <p>R$ ${order.subtotal}</p>
-                    <p>Pedido ID: ${order.idPedido}</p>
+                    <p>
+                        ${order.trocaDevolucao === "DEVOLUCAO_NAO_PEDIDA"
+                ? "Devolução não solicitada"
+                : order.trocaDevolucao === "DEVOLUCAO_PEDIDO"
+                    ? "Troca solicitada"
+                    : order.trocaDevolucao}
+                    </p>
+
                     <p class="codigo-pedido">${order.codigoPedido}</p>
                 </div>
             </div>
             <div>
-                <p class="data-entrega">Status Pagamento: ${order.status}</p>
+                <p class="data-entrega">
+                    Pagamento: ${order.status === "EM_PROCESSAMENTO" ? "Em processamento" : order.status}
+                </p>
                 <div class="imagem-e-descricao">
                     <img src="${order.primeiraImagem}" alt="">
                     <p class="data-entrega">Entregue ${order.entregue}</p>
                     <p class="nome-produto">${order.nome}</p>
                     <p class="quantidade-produto">${order.quantidade}</p>
-                    <button class="botao-devolucao">Devolução</button>
+                    <button class="botao-devolucao">Troca</button>
                 </div>
             </div>
         </div>
@@ -41,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const orders = data.content;
 
-            ordersContainer.innerHTML = ''; 
+            ordersContainer.innerHTML = '';
             orders.forEach(order => {
                 const orderHTML = createOrderHTML(order);
                 ordersContainer.innerHTML += orderHTML;
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelectorAll('.botao-devolucao').forEach((button, index) => {
                 button.addEventListener('click', async () => {
-                    const confirmDevolucao = confirm('Você tem certeza que deseja solicitar a devolução deste pedido?');
+                    const confirmDevolucao = confirm('Você tem certeza que deseja solicitar a troca deste pedido?');
                     if (confirmDevolucao) {
                         const orderElement = button.closest('.caixa-principal');
                         const codigoPedido = orderElement.querySelector('.codigo-pedido').textContent;
@@ -70,16 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
-                                body: JSON.stringify(requestBody) 
+                                body: JSON.stringify(requestBody)
                             });
 
                             if (postResponse.ok) {
                                 alert('Devolução solicitada com sucesso.');
                             } else {
-                                console.error('Erro ao solicitar devolução:', postResponse.statusText);
+                                console.error('Erro ao solicitar troca:', postResponse.statusText);
                             }
                         } catch (error) {
-                            console.error('Erro ao enviar a requisição de devolução:', error);
+                            console.error('Erro ao enviar a requisição de troca:', error);
                         }
                     }
                 });

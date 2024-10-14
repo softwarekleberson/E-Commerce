@@ -1,5 +1,5 @@
-document.getElementById('aceitar').addEventListener('click', function(event) {
-    event.preventDefault(); 
+document.getElementById('aceitar').addEventListener('click', function (event) {
+    event.preventDefault();
 
     const codigoPedido = document.getElementById('codigoPedido').value;
     const codigoDevolucao = document.getElementById('codigoDevolucao').value;
@@ -16,7 +16,7 @@ document.getElementById('aceitar').addEventListener('click', function(event) {
     };
 
     // Faz a requisição PUT
-    fetch('http://localhost:8080/administrador/aceitar', { 
+    fetch('http://localhost:8080/administrador/aceitar', {
 
         method: 'PUT',
         headers: {
@@ -24,15 +24,18 @@ document.getElementById('aceitar').addEventListener('click', function(event) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (response.ok) {
-            alert('Devolução aceita com sucesso!');
-        } else {
-            alert('Erro ao aceitar devolução.');
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao processar sua solicitação.');
-    });
+        .then(response => {
+            if (response.ok) {
+
+                alert('Devolução aceita com sucesso!');
+                document.getElementById('formDevolucao').reset();
+
+            } else {
+                alert('Erro ao aceitar devolução.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao processar sua solicitação.');
+        });
 });

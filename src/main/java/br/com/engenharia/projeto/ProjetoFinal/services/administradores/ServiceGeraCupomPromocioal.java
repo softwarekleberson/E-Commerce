@@ -32,6 +32,7 @@ public class ServiceGeraCupomPromocioal {
 		Cupom cupom = new Cupom(dados);
 		
 		repositorioDeCupom.salvar(cupom);
+		
 		return new DadosDetalhamentoCupom(cupom);
 	}
 	

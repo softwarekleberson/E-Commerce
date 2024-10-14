@@ -34,7 +34,7 @@ public class ServiceGetLivro {
 	
 	public Page<DadosDetalhamentoLivro> listarLivros(Pageable pageable) {
         Page<DadosDetalhamentoLivro> livros = repositorioDeLivro.listarLivros(pageable);
-                
+        
         if (livros.isEmpty()) {
             throw new ValidacaoException("Não há livros disponíveis");
         }

@@ -59,23 +59,27 @@ public class Pedido {
     private Cliente cliente;
 
     @Enumerated(EnumType.STRING)
-    private StatusPedido statusEntrega;
+    private StatusPedido statusPedido;
 
     @Enumerated(EnumType.STRING)
     private DevolucaoFoiPedidaOUNAO trocaDevolucao;
     
+    @Enumerated(EnumType.STRING)
+    private StatusEntrega statusEntrega;
+    
     private LocalDate entregue;
 
-    public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusPedido statusEntrega,
-                  DevolucaoFoiPedidaOUNAO trocaDevolucao) {
+    public Pedido(Long id, LocalDate pedidoRealizado, String codigoPedido, Cliente cliente, StatusPedido statusPedido,
+                  DevolucaoFoiPedidaOUNAO trocaDevolucao, StatusEntrega statusEntrega) {
         
     	this.id = id;
         this.pago = false;
         this.pedidoRealizado = pedidoRealizado;
         this.codigoPedido = codigoPedido;
         this.cliente = cliente;
-        this.statusEntrega = statusEntrega;
+        this.statusPedido = statusPedido;
         this.trocaDevolucao = trocaDevolucao;
+        this.statusEntrega = statusEntrega;
     }
 
     public void adicionarItem(Item item) {
@@ -110,7 +114,11 @@ public class Pedido {
         this.pago = pago;
     }
 
-    public void modificarStatusEntrega(StatusPedido status) {
+    public void modificarStatusPedido(StatusPedido status) {
+        this.statusPedido = status;
+    }
+    
+    public void modificarStatusEntrega(StatusEntrega status) {
         this.statusEntrega = status;
     }
 
@@ -138,8 +146,8 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public void setStatusEntrega(StatusPedido statusEntrega) {
-        this.statusEntrega = statusEntrega;
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
     }
 
     public void setTrocaDevolucao(DevolucaoFoiPedidaOUNAO trocaDevolucao) {

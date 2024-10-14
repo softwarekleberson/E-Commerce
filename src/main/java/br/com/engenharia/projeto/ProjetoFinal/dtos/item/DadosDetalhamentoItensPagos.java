@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.imagem.Imagens;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
 
 public record DadosDetalhamentoItensPagos(
 		Long id,

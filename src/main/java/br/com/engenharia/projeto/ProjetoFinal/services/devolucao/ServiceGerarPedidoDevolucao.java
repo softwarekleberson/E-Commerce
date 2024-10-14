@@ -18,9 +18,14 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Reposito
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.AnalisePedidoDevolucaoAceitoOuRecusa;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.Devolucao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.devolucao.EsperandoDevolucaoOuRecebido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
+import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
 import jakarta.validation.Valid;
 
 @Service
@@ -40,11 +45,23 @@ public class ServiceGerarPedidoDevolucao {
 	
 	@Autowired
 	private DevolucaoDao devolucaoDao;
+	
+	@Autowired
+	private RepositorioDeLog repositorioDeLog;
 		
 	public DadosDetalhamentoDevolucao pedidoDevolucao(@Valid DadosCadastroDevolucao dados, Long idCliente) {
 		
 		var pedido = carregaPedidoPeloCodigoPedido(dados);
 		pedido.devolucaoPedida(DevolucaoFoiPedidaOUNAO.DEVOLUCAO_PEDIDO);
+		
+		if(pedido.getStatusPedido() != StatusPedido.PAGO) {
+			throw new ValidacaoException("Pedido ainda não pago");
+		}
+		
+		if(pedido.getStatusEntrega() != StatusEntrega.ENTREGUE) {
+			throw new ValidacaoException("Pedido ainda não entregue");
+		}
+		
 		repositorioDePedido.salvar(pedido);
 
 		validacoes.forEach(v ->v.processar(dados));
@@ -61,6 +78,10 @@ public class ServiceGerarPedidoDevolucao {
 									  );
 		
 		devolucaoDao.salvar(devolucao);
+		
+		Log log = new Log(devolucao.getCliente().getId());
+		repositorioDeLog.save(log);
+		
 		return new DadosDetalhamentoDevolucao(devolucao);
 	}
 

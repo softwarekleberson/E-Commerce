@@ -64,7 +64,7 @@ public class PedidoController {
 	        										   @PageableDefault(size = 15, sort = "id") Pageable pageable) {
 
 	    Page<DadosDetalhamentoItem> itens = repositorioDeItem.listarItensDoCliente(clienteId, pageable);
-
+	    
 	    return ResponseEntity.ok(itens);
 	}
 

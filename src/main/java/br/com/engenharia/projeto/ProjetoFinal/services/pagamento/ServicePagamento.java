@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +15,19 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Cobranca;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.endereco.Entrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.estoque.Estoque;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.Pagamento;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.carrinho.ItemRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CartaoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.CobrancaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cliente.EntregaRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.cupom.CupomRepositroy;
-import br.com.engenharia.projeto.ProjetoFinal.persistencia.itemPedido.ItemPedidoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pagamento.PagamentoRepository;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.pedidos.PedidoRepository;
@@ -44,7 +44,8 @@ public class ServicePagamento {
 	private final CupomRepositroy cupomRepository;
 	private final PagamentoRepository pagamentoRepository;
 	private final EstoqueRepository estoqueRepository;
-
+	private final RepositorioDeLog repositorioDeLog;
+	
 	@Autowired
 	public ServicePagamento(
 			EntregaRepository entregaRepository,
@@ -53,7 +54,8 @@ public class ServicePagamento {
 			PedidoRepository pedidoRepository,
 			CupomRepositroy cupomRepository,
 			PagamentoRepository pagamentoRepository,
-			EstoqueRepository estoqueRepository) {
+			EstoqueRepository estoqueRepository,
+			RepositorioDeLog repositorioDeLog) {
 		this.entregaRepository = entregaRepository;
 		this.cobrancaRepository = cobrancaRepository;
 		this.cartaoRepository = cartaoRepository;
@@ -61,6 +63,7 @@ public class ServicePagamento {
 		this.cupomRepository = cupomRepository;
 		this.pagamentoRepository = pagamentoRepository;
 		this.estoqueRepository = estoqueRepository;
+		this.repositorioDeLog = repositorioDeLog;
 	}
 
 	@Transactional
@@ -79,20 +82,22 @@ public class ServicePagamento {
 											pedidos,
 											cartoes,
 											cupons,
-											StatusCompra.APROVADO);
+											StatusCompra.EM_PROCESSAMENTO);
 		
 		pagamentoRepository.save(pagamento);
 		pagamentoRepository.flush();
 		
 		associarPagamentoAPedidos(pagamento, pedidos);
 		baixaNoEstoque(pedidos);
+		
+		Log log = new Log(clienteId);
+		repositorioDeLog.save(log);
 	}
 
 	private void baixaNoEstoque(List<Pedido> pedidos) {
 	    
 	    for (Pedido pedido : pedidos) {
 	        for (Item item : pedido.getItens()) {
-	        	System.out.println(item.getLivro().getId() + "wwwwwwww");
 	            Long idDoLivro = item.getLivro().getId();
 	            int quantidadeRequeridaNoPedido = item.getQuantidade();
 	            
@@ -121,13 +126,32 @@ public class ServicePagamento {
 	            }
 	        }
 	    }	    
+	    
+	    verificaSeLivroConstaEmEstoque(pedidos);
 	}
 	
+	private void verificaSeLivroConstaEmEstoque(List<Pedido> pedidos) {
+		
+		 for (Pedido pedido : pedidos) {
+		        for (Item item : pedido.getItens()) {
+		            Long idDoLivro = item.getLivro().getId();
+		            
+		            List<Estoque> estoques = estoqueRepository.findByLivroId(idDoLivro);
+		            for(Estoque estoque : estoques) {
+		            	int quantidade =+ estoque.getQuantidade();
+		            	 if(quantidade == 0) {
+		            		 estoque.getLivro().setAtivo(false);
+		            	 }
+		            }
+		        }
+		 }   
+	}
+
 	private void associarPagamentoAPedidos(Pagamento pagamento, List<Pedido> pedidos) {
 		for (Pedido pedido : pedidos) {
 			pedido.setPagamento(pagamento);
 			pedido.setPago(true);
-			pedido.setStatusEntrega(StatusPedido.PAGO);
+			pedido.setStatusPedido(StatusPedido.PAGO);
 			pedidoRepository.save(pedido);
 		}
 	    pedidoRepository.flush();
@@ -194,7 +218,8 @@ public class ServicePagamento {
 		List<Pedido> pedidosNaoPagos = new ArrayList<>();
 		for(Pedido pedido : pedidos) {
 			if(!pedido.isPago()) {
-				pedidosNaoPagos.add(pedido);
+				pedido.modificarStatusEntrega(StatusEntrega.EM_SEPARACAO);
+				pedidosNaoPagos.add(pedido);				
 			}	
 		}
 		

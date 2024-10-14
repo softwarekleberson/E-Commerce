@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,8 @@
             background-color: #fff;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
@@ -48,7 +50,34 @@
 
         .status {
             font-weight: bold;
-            color: #28a745; /* Verde para status "APROVADO" */
+            color: #28a745;
+            /* Verde para status "APROVADO" */
+        }
+
+        a {
+            text-decoration: none;
+            /* Remove o sublinhado */
+            color: #3498db;
+            /* Cor azul */
+            font-family: Arial, sans-serif;
+            /* Fonte básica */
+            font-size: 16px;
+            /* Tamanho da fonte */
+            padding: 8px 12px;
+            /* Espaçamento interno */
+            border: 1px solid #3498db;
+            /* Borda da mesma cor */
+            border-radius: 4px;
+            /* Bordas arredondadas */
+            transition: background-color 0.3s ease;
+            /* Transição suave de cor */
+        }
+
+        a:hover {
+            background-color: #3498db;
+            /* Muda a cor de fundo ao passar o mouse */
+            color: white;
+            /* Cor do texto quando o fundo mudar */
         }
 
         .footer {
@@ -60,10 +89,13 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1>Pedidos de Livros</h1>
+        <a href="adm-transito.html" target="_blank" rel="noopener noreferrer">Mercadoria Transito</a>
+        <a href="adm-entregue.html" target="_blank" rel="noopener noreferrer">Mercadoria Entregue</a>
         <table id="pedidos-table">
             <thead>
                 <tr>
@@ -130,4 +162,5 @@
     </script>
 
 </body>
+
 </html>

@@ -25,7 +25,10 @@ document.getElementById('recusar').addEventListener('click', function (event) {
     })
         .then(response => {
             if (response.ok) {
+
                 alert('Devolução recusada com sucesso!');
+                document.getElementById('formDevolucao').reset();
+
             } else {
                 alert('Erro ao recusar devolução.');
             }

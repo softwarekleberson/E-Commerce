@@ -64,6 +64,9 @@ public class ServiceCartao {
 		}
 		
 		var cartao = repositorioDeCartao.alterar(cartaoId,dados);
+		Log log = new Log(cartao.getCliente().getId());
+		repositorioDeLog.save(log);
+		
 		return new DadosDetalhamentoCartao(cartao);
 	}
 }

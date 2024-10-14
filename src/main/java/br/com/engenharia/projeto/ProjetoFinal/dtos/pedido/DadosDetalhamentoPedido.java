@@ -10,7 +10,7 @@ public record DadosDetalhamentoPedido(
 	Long id,
 	LocalDate pedidoRealizado,
 	String codigoPedido,
-	StatusPedido statusEntrega
+	StatusPedido statusPedido
 									) {
 	
 	
@@ -18,6 +18,6 @@ public record DadosDetalhamentoPedido(
 		this(pedido.getId(),
 			 pedido.getPedidoRealizado(),
 			 pedido.getCodigoPedido(),
-			 pedido.getStatusEntrega());
+			 pedido.getStatusPedido());
 	}
 }

@@ -21,9 +21,12 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.item.Item;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.LivroNaoEncontradoExcecao;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.RepositorioDeLivro;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.Log;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.DevolucaoFoiPedidaOUNAO;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.EstoqueRepository;
 import jakarta.validation.Valid;
@@ -49,21 +52,32 @@ public class ServicePedido {
 	@Autowired
 	private EstoqueRepository estoqueRepository;
 	
+	@Autowired
+	private RepositorioDeLog repositorioDeLog;
+	
 	public DadosDetalhamentoPedido criar(@Valid DadosCadastroPedido dados, Long clienteId, Long livroId) {
 		
-		System.out.println(clienteId + "qqqqqqqqqqqq");
 		var livro = verificaExistenciaLivro(livroId);
 		var cliente = verificaExistenciaDeCliente(clienteId);
 		verificaDiponibilidadeEmEstoque(dados, livroId);
 			
 		Pedido pedido = criarPedidoERetornarCodigoPedido(cliente);
 		registrarItensPedido(pedido.getCodigoPedido(), dados.quantidade(), livro);
+		
+		Log log = new Log(pedido.getCliente().getId());
+		repositorioDeLog.save(log);
+		
 		return new DadosDetalhamentoPedido(pedido);
 	}
 
 	private Pedido criarPedidoERetornarCodigoPedido(Cliente cliente) {
 		var codigoPedido = UUID.randomUUID().toString();
-		Pedido pedido = new Pedido(null, LocalDate.now(), codigoPedido, cliente, StatusPedido.AGUARDANDO_PAGAMENTO, DevolucaoFoiPedidaOUNAO.DEVOLUCAO_NAO_PEDIDA);
+		Pedido pedido = new Pedido(null, LocalDate.now(),
+								   codigoPedido, cliente,
+								   StatusPedido.AGUARDANDO_PAGAMENTO,
+								   DevolucaoFoiPedidaOUNAO.DEVOLUCAO_NAO_PEDIDA,
+								   StatusEntrega.NAO_PAGO);
+		
 		repositorioDePedido.salvar(pedido);
 		
 		return pedido;

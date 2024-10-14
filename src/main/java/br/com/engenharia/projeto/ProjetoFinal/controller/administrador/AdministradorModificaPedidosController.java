@@ -31,6 +31,12 @@ public class AdministradorModificaPedidosController {
 	@Autowired
 	private RepositorioDeItem repositorioDeItem;
 	
+	@PutMapping("status/entrega/transporte")
+	public ResponseEntity<Void> modificarStatusEntregaPedidoTransporte(@RequestBody @Valid DadosCodigoPedido dados) {
+		service.modificarStatusTransportePedido(dados.codigo());
+		return ResponseEntity.noContent().build();
+	}
+	
 	@PutMapping("status/entrega/entregue")
 	public ResponseEntity<Void> modificarStatusEntregaPedido(@RequestBody @Valid DadosCodigoPedido dados) {
 		service.modificarStatusEntregaPedido(dados.codigo());

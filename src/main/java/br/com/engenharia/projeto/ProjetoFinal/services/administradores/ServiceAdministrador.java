@@ -32,6 +32,7 @@ public class ServiceAdministrador {
 		criptografia.processar(administrador);
 		
 		repositorioDeAdministrador.salvar(administrador);
+		
 		return new DadosDetalhamentoAdministrador(administrador);
 	}
 }
