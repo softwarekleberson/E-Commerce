@@ -37,8 +37,8 @@ public class CartaoFake {
     @Column(name = "is_simulado", nullable = false)
     private Boolean isSimulado = true;
     
-    public void subtraiValorDoLimite(BigDecimal saldoDisponivel ,BigDecimal valorPedido) {
-    	this.saldoDisponivel = valorPedido.subtract(saldoDisponivel);
+    public void subtraiValorDoLimite(BigDecimal valorPedido) {
+    	this.saldoDisponivel.subtract(valorPedido);
     }
 
 }

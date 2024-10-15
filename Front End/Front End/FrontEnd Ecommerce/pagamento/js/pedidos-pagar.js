@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             totalElement.classList.add('total-geral');
             totalElement.innerHTML = `
                 <h3 class="preco-final">Total: R$${totalGeral.toFixed(2)}</h3>
+                <p>Em 1 x no cartão R$${totalGeral.toFixed(2)}</p>
             `;
             
             pedidosSection.appendChild(totalElement); 
