@@ -159,7 +159,6 @@ public class ServicePagamento {
 	        pagamento.setStatusCompra(StatusCompra.REPROVADO);
 	        pagamentoRepository.save(pagamento);
 	        pagamentoRepository.flush();
-	        throw new ValidacaoException("Pagamento recusado, falta de credito");
 	    }
 	}
 
@@ -181,11 +180,11 @@ public class ServicePagamento {
 					saldoCartao2 = saldoCartao2.add(card2.get().getSaldoDisponivel()); 
 				}
 			}
-		}
-		
-		if(saldoCartao1.compareTo(BigDecimal.TEN) < 0 && saldoCartao2.compareTo(BigDecimal.TEN) < 0) {
-			throw new ValidacaoException("Não se pode usar dois cartões e o valor a ser pago com os"
-										+ " dois cartões ser menor que 10 reais em cada cartão");	
+			
+			if(saldoCartao1.compareTo(BigDecimal.TEN) < 0 && saldoCartao2.compareTo(BigDecimal.TEN) < 0) {
+				throw new ValidacaoException("Não se pode usar dois cartões e o valor a ser pago com os"
+											+ " dois cartões ser menor que 10 reais em cada cartão");	
+			}
 		}
 	}
 
