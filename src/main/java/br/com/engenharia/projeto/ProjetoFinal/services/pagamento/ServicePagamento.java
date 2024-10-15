@@ -20,7 +20,6 @@ import br.com.engenharia.projeto.ProjetoFinal.entidades.log.RepositorioDeLog;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.Pagamento;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pagamento.StatusCompra;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.Pedido;
-import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.RepositorioDePedido;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusEntrega;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.pedido.StatusPedido;
 import br.com.engenharia.projeto.ProjetoFinal.infra.TratadorErros.erros.ValidacaoException;
@@ -74,7 +73,9 @@ public class ServicePagamento {
 		List<Pedido> pedidos = listaPedidos(clienteId);
 		List<Cartao> cartoes = verificaInformacoesSobreCartao(dados.idCartao1(), dados.idCartao2());
 		List<Cupom> cupons = verificaInformacoesSobreCupom(dados.cupom1(), dados.cupom2());
-
+		
+		checarQuantidadeCartoesPermitida(valorTotalPedido, cartoes);
+		
 		Pagamento pagamento = new Pagamento(LocalDateTime.now(),
 											entrega,
 											cobranca,
@@ -92,6 +93,14 @@ public class ServicePagamento {
 		
 		Log log = new Log(clienteId);
 		repositorioDeLog.save(log);
+	}
+
+	private void checarQuantidadeCartoesPermitida(BigDecimal valorTotalPedido, List<Cartao> cartoes) {
+		if(cartoes.size() == 2 && valorTotalPedido.compareTo(BigDecimal.TEN) <= 0) {
+			throw new ValidacaoException("Para pagar com dois"
+									   + " cartões" + "necessario"
+									   + " que o valor do pedido seja maior que R$ 10.00 reais");
+		}
 	}
 
 	private void baixaNoEstoque(List<Pedido> pedidos) {
@@ -190,28 +199,29 @@ public class ServicePagamento {
 	}
 
 	private List<Cartao> verificaInformacoesSobreCartao(Long idCartao1, Long idCartao2) {
+	    List<Cartao> cartoes = new ArrayList<>();
 
-		List<Cartao> cartoes = new ArrayList<>();
+	    if (idCartao1 != null) {
+	        var cartao1 = cartaoRepository.findById(idCartao1);
+	        if (cartao1.isPresent()) {
+	            cartoes.add(cartao1.get());
+	        } else {
+	            throw new ValidacaoException("Cartão 1 não encontrado.");
+	        }
+	    }
 
-		if (idCartao1 != null) {
-			var cartao1 = cartaoRepository.findById(idCartao1);
-			if (cartao1.isPresent()) {
-				cartoes.add(cartao1.get());
-			} else {
-				throw new ValidacaoException("Cartão 1 não encontrado.");
-			}
-		}
-
-		if (idCartao2 != null) {
-			var cartao2 = cartaoRepository.findById(idCartao2);
-			if (cartao2.isPresent()) {
-				cartoes.add(cartao2.get());
-			} else {
-				throw new ValidacaoException("Cartão 2 não encontrado.");
-			}
-		}
-		return cartoes;
+	    if (idCartao2 != null) {
+	        var cartao2 = cartaoRepository.findById(idCartao2);
+	        if (cartao2.isPresent()) {
+	            cartoes.add(cartao2.get());
+	        } else {
+	            throw new ValidacaoException("Cartão 2 não encontrado.");
+	        }
+	    }
+	    
+	    return cartoes;
 	}
+
 
 	private List<Pedido> listaPedidos(Long clienteId) {
 		List<Pedido> pedidos = pedidoRepository.findByClienteId(clienteId);
@@ -241,7 +251,7 @@ public class ServicePagamento {
 	}
 
 	private BigDecimal calcularValorTotalDosPedidos(Long clienteId) {
-		return pedidoRepository.findByClienteId(clienteId).stream()
+		return pedidoRepository.findByClienteIdAndPagoFalse(clienteId).stream()
 				.map(Pedido::atualizarValorTotal)
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
