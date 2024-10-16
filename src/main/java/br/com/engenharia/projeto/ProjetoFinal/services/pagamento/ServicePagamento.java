@@ -93,10 +93,8 @@ public class ServicePagamento {
 		pagamentoRepository.save(pagamento);
 		pagamentoRepository.flush();
 		
-		associarPagamentoAPedidos(pagamento, pedidos);
-		
 		apiDePagamentoFake(pagamento, dados.idCartao1(), dados.idCartao2(), dados.cupom1(), dados.cupom2());
-		
+		associarPagamentoAPedidos(pagamento, pedidos);
 		baixaNoEstoque(pedidos);
 		
 		Log log = new Log(clienteId);
@@ -242,13 +240,16 @@ public class ServicePagamento {
 	}
 
 	private void associarPagamentoAPedidos(Pagamento pagamento, List<Pedido> pedidos) {
-		for (Pedido pedido : pedidos) {
-			pedido.setPagamento(pagamento);
-			pedido.setPago(true);
-			pedido.setStatusPedido(StatusPedido.PAGO);
-			pedidoRepository.save(pedido);
+		if(pagamento.getStatusCompra() == StatusCompra.APROVADO) {
+			
+			for (Pedido pedido : pedidos) {
+				pedido.setPagamento(pagamento);
+				pedido.setPago(true);
+				pedido.setStatusPedido(StatusPedido.PAGO);
+				pedidoRepository.save(pedido);
+			}
+		    pedidoRepository.flush();
 		}
-	    pedidoRepository.flush();
 	}
 
 	private List<Cupom> verificaInformacoesSobreCupom(String idCupom1, String idCupom2) {
