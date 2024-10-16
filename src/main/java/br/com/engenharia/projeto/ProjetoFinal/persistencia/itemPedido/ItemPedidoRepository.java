@@ -37,7 +37,7 @@ public interface ItemPedidoRepository extends JpaRepository<Item, Long> {
 		       "JOIN i.pedido.pagamento pag " + 
 		       "JOIN i.pedido p " +
 		       "JOIN p.cliente c " +
-		       "WHERE c.id = :clienteId AND p.pago = true " + 
+		       "WHERE c.id = :clienteId AND pag.statusCompra = APROVADO " + 
 		       "AND img.id = (SELECT MIN(i2.id) FROM Imagens i2 WHERE i2.livro.id = l.id)")
 	List<DadosDetalhamentoItensPagos> buscarItensPagos(@Param("clienteId") Long clienteId);
 

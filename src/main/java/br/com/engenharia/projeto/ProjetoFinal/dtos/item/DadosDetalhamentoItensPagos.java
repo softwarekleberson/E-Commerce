@@ -21,7 +21,8 @@ public record DadosDetalhamentoItensPagos(
 		StatusCompra status,
 		BigDecimal precoUnitario,
 		BigDecimal subtotal,
-		String codigoPedido
+		String codigoPedido,
+	    DevolucaoFoiPedidaOUNAO trocaDevolucao 
 ) {
 
 	public DadosDetalhamentoItensPagos(Item item) {
@@ -41,7 +42,8 @@ public record DadosDetalhamentoItensPagos(
 			item.getPedido().getPagamento().getStatusCompra(),
 			item.getPrecoUnitario(),
 			item.getSubtotal(),
-			item.getPedido().getCodigoPedido()
+			item.getPedido().getCodigoPedido(),
+			item.getPedido().getTrocaDevolucao()
 		);
 	}
 }
