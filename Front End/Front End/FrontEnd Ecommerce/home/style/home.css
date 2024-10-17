@@ -132,6 +132,7 @@ a:hover {
 }
 
 .container {
+    margin-left: 90px;
     max-width: 1000px;
     transform: translateX(-120px);
     padding: 2px;
