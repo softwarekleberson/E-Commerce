@@ -56,7 +56,7 @@ public class LivroController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	@PostMapping("/consulta")
+	@PostMapping("/consulta/paramentros")
 	public Page<DadosDetalhamentoLivroCompleto> buscarLivros(
 	       @RequestBody LivroConsultaDto livroConsultaDTO,
 	       @RequestParam(defaultValue = "0") int page,
