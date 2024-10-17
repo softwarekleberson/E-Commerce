@@ -1,5 +1,7 @@
 package br.com.engenharia.projeto.ProjetoFinal.controller.cliente;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,17 +15,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaDto;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosAtualizacaoSenha;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosCadastroCliente;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.cliente.DadosDetalhamentoCliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.Cliente;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.cliente.cliente.RepositorioDeCliente;
+import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceCliente;
 import br.com.engenharia.projeto.ProjetoFinal.services.cliente.ServiceClienteUpdate;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.consulta.LivroConsultaService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -39,6 +46,9 @@ public class ClienteController {
 	
 	@Autowired
 	private RepositorioDeCliente repositorioDeCliente;
+	
+	@Autowired
+	private LivroConsultaService livroConsultaService;
 		
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroCliente dados, UriComponentsBuilder uriBuilder) {
@@ -47,12 +57,21 @@ public class ClienteController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
+	 @PostMapping("/consulta")
+	 public Page<DadosDetalhamentoLivroCompleto> buscarLivros(
+	       @RequestBody LivroConsultaDto livroConsultaDTO,
+	       @RequestParam(defaultValue = "0") int page,
+	       @RequestParam(defaultValue = "10") int size) {
+
+	       return livroConsultaService.buscarLivros(livroConsultaDTO, page, size);
+	  }
+	
 	@GetMapping
 	public ResponseEntity<Page<Cliente>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
 		var page = repositorioDeCliente.pegaTodosClientes(paginacao);
 		return ResponseEntity.ok(page);
 	}
-	
+
 	@PutMapping
 	public  ResponseEntity atualizarCliente(@RequestBody @Valid DadosAtualizacaoCliente dados) {
 		DadosDetalhamentoCliente updateCliente = serviceClienteUpdate.atualizarCliente(dados);

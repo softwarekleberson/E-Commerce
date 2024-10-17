@@ -6,10 +6,11 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 
-public interface LivroRepository extends JpaRepository<Livro, Long>{
+public interface LivroRepository extends JpaRepository<Livro, Long>, JpaSpecificationExecutor<Livro>{
 
 	Page<Livro> findAllByAtivoTrue(Pageable paginacao);
 
