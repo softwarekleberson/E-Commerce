@@ -27,6 +27,14 @@ body {
     overflow-x: hidden;
 }
 
+main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
 body {
     background-color: var(--cor1);
     font-family: var(--font-destaque);
@@ -131,11 +139,79 @@ a:hover {
     color: inherit;
 }
 
+.pesquisa-dinamica {
+    width: 100%;
+    max-width: 200px;
+    /* Limita a largura máxima do formulário */
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-left: -250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .container {
-    margin-left: 90px;
-    max-width: 1000px;
-    transform: translateX(-120px);
+    flex: 1;
+    margin-left: 0;
+    max-width: 90%;
     padding: 2px;
+}
+
+.pesquisa-dinamica > form {
+    max-width: 250px;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* Estilização dos labels */
+form > label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilização dos inputs */
+form >
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Foco nos campos */
+form >
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #eef7ff;
+}
+
+form >
+button[type="submit"] {
+    background-color: var(--cor5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+form >
+button[type="submit"]:hover {
+    background-color: darkorange;
 }
 
 #produtos {
@@ -144,7 +220,7 @@ a:hover {
     gap: 15px;
 }
 
-#produtos > div {
+#produtos>div {
     padding: 10px;
     text-align: center;
 }
@@ -153,7 +229,7 @@ a:hover {
     max-width: 100%;
     height: auto;
     display: block;
-    border-radius: 5px ;
+    border-radius: 5px;
 }
 
 #produtos h3 {

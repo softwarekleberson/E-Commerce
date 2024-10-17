@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,10 +21,12 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroStatusLivr
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaDto;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceAtivarInativarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceGetLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceInsertLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceUpdateLivro;
+import br.com.engenharia.projeto.ProjetoFinal.services.livro.consulta.LivroConsultaService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,12 +45,24 @@ public class LivroController {
 	
 	@Autowired
 	private ServiceAtivarInativarLivro deleteLivro;
+	
+	@Autowired
+	private LivroConsultaService livroConsultaService;
 		
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroLivro dados, UriComponentsBuilder uriBuilder) {
 		var dto = insertLivro.criar(dados);
 		var uri = uriBuilder.path("/livro/{id}").buildAndExpand(dto.id()).toUri();
 		return ResponseEntity.created(uri).body(dto);
+	}
+	
+	@PostMapping("/consulta")
+	public Page<DadosDetalhamentoLivroCompleto> buscarLivros(
+	       @RequestBody LivroConsultaDto livroConsultaDTO,
+	       @RequestParam(defaultValue = "0") int page,
+	       @RequestParam(defaultValue = "10") int size) {
+
+	       return livroConsultaService.buscarLivros(livroConsultaDTO, page, size);
 	}
 	
 	@GetMapping

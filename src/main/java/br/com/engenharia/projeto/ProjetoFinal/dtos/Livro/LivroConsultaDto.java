@@ -26,7 +26,6 @@ public record LivroConsultaDto(
         Double profundidadeMaior,
         Double profundidadeMenor
 		
-		
 		) 
 	{
 }
