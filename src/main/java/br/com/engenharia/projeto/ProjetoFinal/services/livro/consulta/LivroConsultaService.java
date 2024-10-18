@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaDto;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaGeralDto;
 import br.com.engenharia.projeto.ProjetoFinal.entidades.livro.livro.Livro;
 import br.com.engenharia.projeto.ProjetoFinal.persistencia.livro.LivroRepository;
 
@@ -45,6 +46,21 @@ public class LivroConsultaService {
             .and(LivroSpecification.comAlturaMaiorQue(livroConsultaDTO.alturaMaior()));
 
         Pageable pageable = PageRequest.of(page, size);
+
+        return livroRepository.findAll(spec, pageable).map(DadosDetalhamentoLivroCompleto::new);
+    }
+    
+    
+    public Page<DadosDetalhamentoLivroCompleto> buscarLivrosPorTermoGeral(LivroConsultaGeralDto livroConsultaDTO, int page, int size) {
+        String termoDeBusca = livroConsultaDTO.termoDePesquisa();
+        
+        Specification<Livro> spec = Specification
+            .where(LivroSpecification.comTitulo(termoDeBusca))
+            .or(LivroSpecification.comEditora(termoDeBusca))
+        	.or(LivroSpecification.comEdicao(termoDeBusca))
+        	.or(LivroSpecification.comSinopse(termoDeBusca));
+        
+            Pageable pageable = PageRequest.of(page, size);
 
         return livroRepository.findAll(spec, pageable).map(DadosDetalhamentoLivroCompleto::new);
     }

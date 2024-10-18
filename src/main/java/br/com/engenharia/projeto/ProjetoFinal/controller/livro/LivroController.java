@@ -22,6 +22,7 @@ import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosCadastroLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivro;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.DadosDetalhamentoLivroCompleto;
 import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaDto;
+import br.com.engenharia.projeto.ProjetoFinal.dtos.Livro.LivroConsultaGeralDto;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceAtivarInativarLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceGetLivro;
 import br.com.engenharia.projeto.ProjetoFinal.services.livro.ServiceInsertLivro;
@@ -56,15 +57,24 @@ public class LivroController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	@PostMapping("/consulta/paramentros")
-	public Page<DadosDetalhamentoLivroCompleto> buscarLivros(
-	       @RequestBody LivroConsultaDto livroConsultaDTO,
-	       @RequestParam(defaultValue = "0") int page,
-	       @RequestParam(defaultValue = "10") int size) {
+	@PostMapping("consulta/pesquisa")
+	public Page<DadosDetalhamentoLivroCompleto> buscarLivrosPorTermo(
+	    @RequestBody LivroConsultaGeralDto livroConsultaGeralDto,
+	    @RequestParam(defaultValue = "0") int page,
+	    @RequestParam(defaultValue = "10") int size) {
 
-	       return livroConsultaService.buscarLivros(livroConsultaDTO, page, size);
+	    return livroConsultaService.buscarLivrosPorTermoGeral(livroConsultaGeralDto, page, size);
 	}
-	
+
+	@PostMapping("/consulta/parametros")
+	public Page<DadosDetalhamentoLivroCompleto> buscarLivros(
+	    @RequestBody LivroConsultaDto livroConsultaDTO,
+	    @RequestParam(defaultValue = "0") int page,
+	    @RequestParam(defaultValue = "10") int size) {
+
+	    return livroConsultaService.buscarLivros(livroConsultaDTO, page, size);
+	}
+
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoLivro>> listarLivrosAtivos(@PageableDefault(size = 15) Pageable paginacao){
 		Page<DadosDetalhamentoLivro> page = listLivros.listarLivros(paginacao);

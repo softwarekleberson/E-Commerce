@@ -185,4 +185,10 @@ public class LivroSpecification {
             return criteriaBuilder.lessThan(root.get("dimensoes").get("profundidade"), profundidadeMenor);
         };
     }
+
+	public static Specification<Livro> comSinopse(String termoDeBusca) {
+		 return (root, query, criteriaBuilder) ->
+	        criteriaBuilder.like(root.get("sinopse"), "%" + termoDeBusca + "%");
+	}
+
 }
