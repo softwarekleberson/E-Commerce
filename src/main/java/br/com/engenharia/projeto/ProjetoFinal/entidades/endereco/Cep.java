@@ -17,8 +17,8 @@ public class Cep {
 	}
 	
 	public void setCep(String cep) {
-		String regexCEP = "^\\d{5}-\\d{3}$";
-		if(!cep.matches(regexCEP)) {
+        String regexCep = "^\\d{5}-\\d{3}$";
+		if(!cep.matches(regexCep)) {
 			throw new ValidacaoException("Cep no formato irregular");
 		}
 		this.cep = cep.trim().toLowerCase();

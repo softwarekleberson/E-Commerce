@@ -19,6 +19,9 @@
             <label for="receptorCobranca">Receptor:</label>
             <input type="text" id="receptorCobranca" name="receptorCobranca">
 
+            <label for="cepCobranca">CEP:</label>
+            <input type="text" id="cepCobranca" name="cepCobranca" placeholder="12345-678" autocomplete="off" pattern="\d{5}-\d{3}"><br><br>
+
             <label for="tipoResidenciaCobranca">Tipo de Residência:</label>
             <input type="text" id="tipoResidenciaCobranca" name="tipoResidenciaCobranca" placeholder="casa, apartamento, kitnet, chalé, cobertura etc" autocomplete="off"><br><br>
 
@@ -34,9 +37,6 @@
             <label for="bairroCobranca">Bairro:</label>
             <input type="text" id="bairroCobranca" name="bairroCobranca" placeholder="Digite o nome do bairro"><br><br>
 
-            <label for="cepCobranca">CEP:</label>
-            <input type="text" id="cepCobranca" name="cepCobranca" placeholder="12345-678" autocomplete="off" pattern="\d{5}-\d{3}"><br><br>
-
             <label for="observacaoEntrega">Observação:</label>
             <textarea id="observacaoCobranca" name="observacaoCobranca" placeholder="Inclua observações adicionais (opcional)"></textarea><br><br>
 
@@ -47,12 +47,13 @@
             <input type="text" id="estadoCobranca" name="estadoCobranca" placeholder="Digite seu estado" ><br><br>
 
             <label for="paisCobranca">País:</label>
-            <input type="text" id="paisCobranca" name="paisCobranca" placeholder="Digite seu pais" autocomplete="country"><br><br>
+            <input type="text" id="paisCobranca" name="paisCobranca" placeholder="Digite seu pais" autocomplete="country" value="Brasil"><br><br>
 
             <input type="submit" value="Enviar">
         </form>
     </div>
 
     <script src="cobranca/javascript/update.js"></script>
+    <script src="cobranca/javascript/cep.js"></script>
 </body>
 </html>

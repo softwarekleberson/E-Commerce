@@ -43,12 +43,22 @@ header nav a {
     margin: auto;
 }
 
+header > a {
+    color: var(--cor5);
+}
+
 a {
     text-decoration: none;
     color: var(--cor5);
     font-size: 1.2em;
     margin-left: 60px;
     margin-right: 60px;
+}
+
+.salvar {
+    color: #007BFF;
+    font-size: 1.1em;
+    margin-left: -20px;
 }
 
 .container {
