@@ -27,7 +27,7 @@
         <div class="search-box">
             <input type="text" id="searchQuery" placeholder="Search">
             <button type="submit" id="pesquisa"><i class="fas fa-search"></i></button>
-        </div>        
+        </div>
 
         <div class="cart-and-avatar">
             <a href="carrinho.html"><i class="fas fa-cart-shopping"></i></a>
@@ -36,15 +36,14 @@
 
     <main>
         <section class="pesquisa-dinamica">
-            <form>
-
+            <form id="pesquisa-livros-form">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo"><br><br>
 
-                <label for="precoMenor">Preço Mínimo:</label>
+                <label for="precoMenor">Preço Menor:</label>
                 <input type="number" id="precoMenor" name="precoMenor" step="0.01"><br><br>
 
-                <label for="precoMaior">Preço Máximo:</label>
+                <label for="precoMaior">Preço Maior:</label>
                 <input type="number" id="precoMaior" name="precoMaior" step="0.01"><br><br>
 
                 <label for="dataMenor">Data Mínima:</label>
@@ -70,30 +69,6 @@
 
                 <label for="categoriaIds">IDs das Categorias (separados por vírgula):</label>
                 <input type="text" id="categoriaIds" name="categoriaIds"><br><br>
-
-                <label for="alturaMenor">Altura Mínima (cm):</label>
-                <input type="number" id="alturaMenor" name="alturaMenor" step="0.01"><br><br>
-
-                <label for="alturaMaior">Altura Máxima (cm):</label>
-                <input type="number" id="alturaMaior" name="alturaMaior" step="0.01"><br><br>
-
-                <label for="larguraMenor">Largura Mínima (cm):</label>
-                <input type="number" id="larguraMenor" name="larguraMenor" step="0.01"><br><br>
-
-                <label for="larguraMaior">Largura Máxima (cm):</label>
-                <input type="number" id="larguraMaior" name="larguraMaior" step="0.01"><br><br>
-
-                <label for="pesoMenor">Peso Mínimo (g):</label>
-                <input type="number" id="pesoMenor" name="pesoMenor" step="0.01"><br><br>
-
-                <label for="pesoMaior">Peso Máximo (g):</label>
-                <input type="number" id="pesoMaior" name="pesoMaior" step="0.01"><br><br>
-
-                <label for="profundidadeMenor">Profundidade Mínima (cm):</label>
-                <input type="number" id="profundidadeMenor" name="profundidadeMenor" step="0.01"><br><br>
-
-                <label for="profundidadeMaior">Profundidade Máxima (cm):</label>
-                <input type="number" id="profundidadeMaior" name="profundidadeMaior" step="0.01"><br><br>
 
                 <button type="submit">Filtrar Livros</button>
             </form>
@@ -132,6 +107,7 @@
 
     <script src="home/javascript/listar.js"></script>
     <script src="home/javascript/pesquisa-geral.js"></script>
+    <script src="home/javascript/pesquisa-paramentros.js"></script>
 
 </body>
 

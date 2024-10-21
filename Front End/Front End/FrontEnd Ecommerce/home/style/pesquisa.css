@@ -23,7 +23,6 @@
     transform: scale(1.05);
 }
 
-/* Estilo para a imagem do livro */
 .livro-item img {
     max-width: 100%;
     height: auto;
@@ -31,26 +30,22 @@
     margin-bottom: 10px;
 }
 
-/* Estilo para o título */
 .livro-item h2 {
     font-size: 1.2rem;
     margin: 10px 0;
     color: #333;
 }
 
-/* Estilo para os detalhes do livro */
 .livro-item p {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin: 5px 0;
     color: #555;
 }
 
-/* Estilo para os detalhes em negrito */
 .livro-item p strong {
     color: #222;
 }
 
-/* Estilo para o preço */
 .livro-item p strong + span {
     font-size: 1.1rem;
     color: #e63946;
